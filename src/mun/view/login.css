@@ -1,0 +1,12 @@
+.background {
+    -fx-background-color: white;
+}
+
+#root{
+	-fx-background-image: url("../../../img/login/background.png");
+    -fx-background-color: white;
+}
+
+#gridPane{
+    -fx-background-color: white;
+}
