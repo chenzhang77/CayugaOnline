@@ -105,20 +105,14 @@ public class DictionaryController {
 	  private Button showButton;  
 	  @FXML
 	  private Button deleteButton;  
-	  
-	  
-	  
 	  @FXML
 	  private Button exportButton;  
 	  @FXML
-	  private Button importButton; 
-	  
-	  
+	  private Button importButton; 	  
 	  @FXML
 	  private TextField inputText;
 	  
-	  private MainApp mainApp;
-	  
+	  private MainApp mainApp;  
 	  private ArrayList<String> dictionaryEnglishList = new ArrayList<>();
 	  private ArrayList<String> dictionaryCayugaList = new ArrayList<>();
 	  private String firstItem = "";
@@ -139,7 +133,6 @@ public class DictionaryController {
     	
     	firsteColumn.setCellValueFactory(cellData -> cellData.getValue().englishColProperty());
     	firsteColumn.setCellFactory(new Callback<TableColumn<Dictionary, String>, TableCell<Dictionary, String>>() {
-
 			@Override
 		     public TableCell<Dictionary, String> call(
 		                TableColumn<Dictionary, String> param) {
@@ -152,11 +145,10 @@ public class DictionaryController {
 		            text.textProperty().bind(cell.itemProperty());
 		            return cell ;
 		        }
-    	    });
+    	});
 
      	lastColumn.setCellValueFactory(cellData -> cellData.getValue().CayugaColProperty());
      	lastColumn.setCellFactory(new Callback<TableColumn<Dictionary, String>, TableCell<Dictionary, String>>() {
-
 			@Override
 		     public TableCell<Dictionary, String> call(
 		                TableColumn<Dictionary, String> param) {
@@ -169,7 +161,7 @@ public class DictionaryController {
 		            text.textProperty().bind(cell.itemProperty());
 		            return cell ;
 		        }
-    	    });
+    	 });
      	
      	
     	dictionaryTable.setVisible(true);
@@ -211,14 +203,13 @@ public class DictionaryController {
 
     	autoTF.setMinWidth(457);
 	  	autoTF.setOnAutoCompleted(new EventHandler(){
-	
 				@Override
 				public void handle(Event event) {
 					// TODO Auto-generated method stub
-					System.out.println(inputText.getText());
-					firstItem = aa.get(0);
-					System.out.println("firstItem ==="+firstItem);
-					System.out.println(inputTextString);
+//					System.out.println(inputText.getText());
+//					firstItem = aa.get(0);
+//					System.out.println("firstItem ==="+firstItem);
+//					System.out.println(inputTextString);
 					firstItem = aa.get(0);
 					if(inputText.getText().equalsIgnoreCase(firstItem)){
 						inputText.setText(inputTextString);
@@ -414,27 +405,19 @@ public class DictionaryController {
     }
     
     public void showAction(ActionEvent ae) {
-    	
-   
-    	
+    	    	
     	Dictionary tempData = dictionaryTable.getSelectionModel().getSelectedItem();
-
- 	   
-	    if (tempData !=null) {
-	    		   
+	    if (tempData !=null) {	    		   
 	    	String english = tempData.getEnglishCol();
 	    	String cayuga = tempData.getCayugaCol();
-//	    	Dictionary old = mainApp.showUpdateItemDialog(tempData);
-	    		   
-               for(int j=0; j<dictionaryEnglishList.size();j++) {
-            	   if(dictionaryEnglishList.get(j).toString().equals(english) 
-            			   &&dictionaryCayugaList.get(j).toString().equals(cayuga))  {
-
-            		   dictionaryEnglishList.set(j, tempData.getEnglishCol());
-            		   dictionaryCayugaList.set(j, tempData.getCayugaCol());
-            		   
-            	   }      	   
-               }
+	    	mainApp.showUpdateItemDialog(tempData);	    		   
+           for(int j=0; j<dictionaryEnglishList.size();j++) {
+        	   if(dictionaryEnglishList.get(j).toString().equals(english) 
+        			   &&dictionaryCayugaList.get(j).toString().equals(cayuga))  {
+        		   dictionaryEnglishList.set(j, tempData.getEnglishCol());
+        		   dictionaryCayugaList.set(j, tempData.getCayugaCol());           		   
+        	   }      	   
+           }
 	    } else {
 	    	Alert alert = new Alert(AlertType.INFORMATION);
 	    	alert.setTitle("Information Dialog");
@@ -627,7 +610,6 @@ public class DictionaryController {
     	related_1.setVisible(false);
     	related_2.setVisible(false);
     	related_3.setVisible(false);
-
        	String currentInput = inputText.getText();
        	if(currentInput.length() == 0) return;
 		if(englishBut.selectedProperty().getValue()) {
@@ -717,7 +699,8 @@ public class DictionaryController {
     
     public void exportDictionary() {
     	System.out.println("export");
-        FileChooser fileChooser = new FileChooser();    
+        FileChooser fileChooser = new FileChooser();  
+        
         //Set extension filter
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*cayuga-english.txt)", "*cayuga-english.txt");
         fileChooser.getExtensionFilters().add(extFilter);
