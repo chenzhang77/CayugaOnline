@@ -34,6 +34,10 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
     private ObservableList<Dictionary> dictionary = FXCollections.observableArrayList();
 	
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
     public ObservableList<Dictionary> getData() {
         return dictionary;
     }
