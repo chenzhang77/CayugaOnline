@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -104,7 +105,7 @@ public class LoginViewController implements Initializable {
 
     private boolean loginSuccessful() {
     	//return true;
-        return txField.getText().equals("steve") && pwField.getText().equals("steve");
+        return txField.getText().equals("admin") && pwField.getText().equals("admin");
     }
 
     private void setOnKeyPressed() {
@@ -118,16 +119,26 @@ public class LoginViewController implements Initializable {
 
     private void animateWhenLoginSuccess() {
         try {
-            Parent main = FXMLLoader.load(getClass().getResource("sample.fxml"));
+//            Parent main = FXMLLoader.load(getClass().getResource("sample.fxml"));
+          FXMLLoader loader = new FXMLLoader();
+          loader.setLocation(MainApp.class.getResource("view/LayoutView.fxml"));
+          AnchorPane mainView = (AnchorPane) loader.load();
+          DictionaryController controller = loader.getController();
+          controller.setMainApp(mainApp);
+          
             StackPane temp = new StackPane();
             temp.getChildren().add(new ImageView(new Image("buttons/Checkmark-50.png")));
+            
             animationGenerator.applyFadeAnimationOn(root, 1000, 1.0f, 0f, event -> {
                 temp.setOpacity(0);
-                mainApp.getPrimaryStage().setScene(new Scene(temp, 800, 700));
+//                mainApp.getPrimaryStage().setScene(new Scene(temp, 800, 700));
+                rootLayout.setCenter(temp);
                 animationGenerator.applyFadeAnimationOn(temp, 1000, 0f, 1.0f, event1 -> {
                     animationGenerator.applyFadeAnimationOn(temp, 1000, 1.0f, 0f, event2 -> {
-                    	mainApp.getPrimaryStage().setScene(new Scene(main, 800, 700));
-                        animationGenerator.applyFadeAnimationOn(main, 1000, 0f, 1.0f, null);
+//                    	mainApp.getPrimaryStage().setScene(new Scene(main, 800, 700));
+                    	mainView.setOpacity(0f);              	
+                        rootLayout.setCenter(mainView);
+                        animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
                     });
                 });
             });
@@ -142,19 +153,19 @@ public class LoginViewController implements Initializable {
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/login.fxml"));
             GridPane login = (GridPane) loader.load();
-        	
-            StackPane temp = new StackPane();
-            temp.getChildren().add(new ImageView(new Image("buttons/Delete-50.png")));
+            LoginViewController controller = loader.getController();
+            controller.setMainApp(mainApp);
             
+            StackPane temp = new StackPane();
+            temp.setMaxSize(100, 100);
+            temp.getChildren().add(new ImageView(new Image("buttons/memeber.jpg")));
+         
             animationGenerator.applyFadeAnimationOn(login, 1000, 1.0f, 0f, event -> {
                 temp.setOpacity(0f);
-                
-                //mainApp.getPrimaryStage().setScene(new Scene(temp, 600, 400));
-               // rootLayout.setCenter(temp);
+                rootLayout.setCenter(temp);
                 animationGenerator.applyFadeAnimationOn(temp, 1000, 0f, 1.0f, event1 -> {                	
-                	login.setOpacity(0f);
+                	login.setOpacity(0f);              	
                     rootLayout.setCenter(login);
-                    //mainApp.getPrimaryStage().setScene(new Scene(root, 800, 700));
                     animationGenerator.applyFadeAnimationOn(login, 1000, 0f, 1.0f, null);
             });
                     
