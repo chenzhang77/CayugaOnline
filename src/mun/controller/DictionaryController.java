@@ -33,6 +33,8 @@ import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -64,8 +66,6 @@ public class DictionaryController {
 	  @FXML
 	  private AnchorPane mainScene;	
 	  @FXML
-	  private ImageView logoImage;
-	  @FXML
 	  private ImageView imagebackgroup;
 	  @FXML
 	  private TableView<Dictionary> dictionaryTable;
@@ -77,14 +77,14 @@ public class DictionaryController {
 	  private RadioButton englishBut;
 	  @FXML
 	  private RadioButton cayugaBut; 
-	  @FXML
-	  private RadioButton related_1;
-	  @FXML
-	  private RadioButton related_2; 
-	  @FXML
-	  private RadioButton related_3;   
-	  @FXML
-	  private Button relatedWordBut;
+//	  @FXML
+//	  private RadioButton related_1;
+//	  @FXML
+//	  private RadioButton related_2; 
+//	  @FXML
+//	  private RadioButton related_3;   
+//	  @FXML
+//	  private Button relatedWordBut;
 	  @FXML
 	  private Button searchBut;
 	  @FXML
@@ -101,14 +101,10 @@ public class DictionaryController {
 	  private Button textBut_3;
 	  @FXML
 	  private Button textBut_4;  
-	  @FXML
-	  private Button showButton;  
-	  @FXML
-	  private Button deleteButton;  
-	  @FXML
-	  private Button exportButton;  
-	  @FXML
-	  private Button importButton; 	  
+//	  @FXML
+//	  private Button showButton;  
+//	  @FXML
+//	  private Button deleteButton;  	  
 	  @FXML
 	  private TextField inputText;
 	  
@@ -118,6 +114,8 @@ public class DictionaryController {
 	  private String firstItem = "";
 	  private String inputTextString ="";
 	  private ArrayList<String> aa = new ArrayList<>();
+	  //private ObservableList<Dictionary> dictionaryObservableList = FXCollections.observableArrayList();
+	  
 	  public DictionaryController() {
 		  
 	  }
@@ -139,8 +137,8 @@ public class DictionaryController {
 		            TableCell<Dictionary, String> cell = new TableCell<>();
 		            Text text = new Text("term of addess for a maternal grandmotherterm of addess for a maternal grandmother");
 		            cell.setGraphic(text);
-		            cell.setPrefHeight(Control.USE_COMPUTED_SIZE*3);
-		        	cell.setMinSize(400, 80);
+		           // cell.setPrefHeight(Control.USE_COMPUTED_SIZE*3);
+		        	//cell.setMinSize(400, 80);
 		            text.wrappingWidthProperty().bind(cell.widthProperty());
 		            text.textProperty().bind(cell.itemProperty());
 		            return cell ;
@@ -155,8 +153,8 @@ public class DictionaryController {
 		            TableCell<Dictionary, String> cell = new TableCell<>();
 		            Text text = new Text("term of addess for a maternal grandmotherterm of addess for a maternal grandmother");
 		            cell.setGraphic(text);
-		            cell.setPrefHeight(Control.USE_COMPUTED_SIZE*3);		            
-		            cell.setMinSize(400, 80);
+		            //cell.setPrefHeight(Control.USE_COMPUTED_SIZE*3);		            
+		            //cell.setMinSize(400, 80);
 		            text.wrappingWidthProperty().bind(cell.widthProperty());
 		            text.textProperty().bind(cell.itemProperty());
 		            return cell ;
@@ -165,8 +163,8 @@ public class DictionaryController {
      	
      	
     	dictionaryTable.setVisible(true);
-    	showButton.setVisible(false);
-    	deleteButton.setVisible(false);
+//    	showButton.setVisible(false);
+//    	deleteButton.setVisible(false);
     	
     	initialArrayList();
     	initialButtons();
@@ -225,11 +223,7 @@ public class DictionaryController {
       row.setOnMouseClicked(event -> {
     	  
     	  if(event.getClickCount() == 1 && (! row.isEmpty()) ) {    		  
-    		  logoImage.setVisible(false);
-    		  importButton.setVisible(false);
-    		  exportButton.setVisible(false);
-    		  showButton.setVisible(true);
-    		  deleteButton.setVisible(true);		  
+		  
     	  }else if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
     		  showAction(null);	  
           }       
@@ -245,14 +239,14 @@ public class DictionaryController {
       	englishBut.setToggleGroup(group);
     	englishBut.setSelected(true);
     	cayugaBut.setToggleGroup(group);
-    	relatedWordBut.setVisible(false);
-    	final ToggleGroup group2 = new ToggleGroup();
-    	related_1.setToggleGroup(group2);
-    	related_2.setToggleGroup(group2);
-    	related_3.setToggleGroup(group2);
-    	related_1.setVisible(false);
-    	related_2.setVisible(false);
-    	related_3.setVisible(false);
+//    	relatedWordBut.setVisible(false);
+//    	final ToggleGroup group2 = new ToggleGroup();
+//    	related_1.setToggleGroup(group2);
+//    	related_2.setToggleGroup(group2);
+//    	related_3.setToggleGroup(group2);
+//    	related_1.setVisible(false);
+//    	related_2.setVisible(false);
+//    	related_3.setVisible(false);
     	textBut_1.setVisible(false);
     	textBut_2.setVisible(false);
     	textBut_3.setVisible(false);
@@ -270,33 +264,29 @@ public class DictionaryController {
     	                	textBut_3.setVisible(false);
     	                	textBut_4.setVisible(false);
     	                	
-    	                	relatedWordBut.setVisible(false);
-    	                	related_1.setVisible(false);
-    	                	related_2.setVisible(false);
-    	                	related_3.setVisible(false);
+//    	                	relatedWordBut.setVisible(false);
+//    	                	related_1.setVisible(false);
+//    	                	related_2.setVisible(false);
+//    	                	related_3.setVisible(false);
     	                	
     	                	
     	                	mainApp.getData().clear();
     	                	inputText.clear();
     	                	
-    	                	  logoImage.setVisible(true);
-    	                	  importButton.setVisible(true);
-    	            		  exportButton.setVisible(true);
-    	            		  showButton.setVisible(false);
-    	            		  deleteButton.setVisible(false);
+
+//    	            		  showButton.setVisible(false);
+//    	            		  deleteButton.setVisible(false);
     	                	
     	            	} else {
     	            		inputText.clear();
-		            		  logoImage.setVisible(true);
-		            		  importButton.setVisible(true);
-    	            		  exportButton.setVisible(true);
-		            		  showButton.setVisible(false);
-		            		  deleteButton.setVisible(false);
+
+//		            		  showButton.setVisible(false);
+//		            		  deleteButton.setVisible(false);
 		            		  
-		            		  relatedWordBut.setVisible(true);
-		            		related_1.setVisible(false);
-		            	    	related_2.setVisible(false);
-		            	    	related_3.setVisible(false);
+//		            		  relatedWordBut.setVisible(true);
+//		            		related_1.setVisible(false);
+//		            	    	related_2.setVisible(false);
+//		            	    	related_3.setVisible(false);
 		            		  
 		            		  
     	                	textBut_1.setVisible(true);
@@ -310,36 +300,36 @@ public class DictionaryController {
     	});
     	
     	
-    	group2.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-    		
-    	    public void changed(ObservableValue<? extends Toggle> ov,
-    	        Toggle old_toggle, Toggle new_toggle) {
-    	    	
-    	    	
-	    	    	relatedWordBut.requestFocus();
-		            if (group2.getSelectedToggle() != null) {
-		            	mainApp.getData().clear();
-		            	String currentInput;
-		            	if(related_1.selectedProperty().getValue()) {
-		            		currentInput = related_1.getText();
-		                	
-		            	} else if (related_2.selectedProperty().getValue()) {
-		            		currentInput = related_2.getText();
-		            	} else {
-		            		currentInput = related_3.getText();
-		            	}		            	
-		        		for(int i=0; i<dictionaryCayugaList.size();i++) {		    			
-			    			if(dictionaryCayugaList.get(i).toString().matches(".*"+currentInput+".*")) {
-			    				//System.out.println("coming in update dictionaryCayugaList");
-			    				Dictionary tempData = new Dictionary();
-			    				tempData.setEnglishCol(dictionaryEnglishList.get(i));
-			    				tempData.setCayugaCol(dictionaryCayugaList.get(i));
-			    				mainApp.getData().add(tempData);
-			    			}
-		        		}
-		            }                
-	    	   }
-    	}); 	
+//    	group2.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+//    		
+//    	    public void changed(ObservableValue<? extends Toggle> ov,
+//    	        Toggle old_toggle, Toggle new_toggle) {
+//    	    	
+//    	    	
+//	    	    	relatedWordBut.requestFocus();
+//		            if (group2.getSelectedToggle() != null) {
+//		            	mainApp.getData().clear();
+//		            	String currentInput;
+//		            	if(related_1.selectedProperty().getValue()) {
+//		            		currentInput = related_1.getText();
+//		                	
+//		            	} else if (related_2.selectedProperty().getValue()) {
+//		            		currentInput = related_2.getText();
+//		            	} else {
+//		            		currentInput = related_3.getText();
+//		            	}		            	
+//		        		for(int i=0; i<dictionaryCayugaList.size();i++) {		    			
+//			    			if(dictionaryCayugaList.get(i).toString().matches(".*"+currentInput+".*")) {
+//			    				//System.out.println("coming in update dictionaryCayugaList");
+//			    				Dictionary tempData = new Dictionary();
+//			    				tempData.setEnglishCol(dictionaryEnglishList.get(i));
+//			    				tempData.setCayugaCol(dictionaryCayugaList.get(i));
+//			    				mainApp.getData().add(tempData);
+//			    			}
+//		        		}
+//		            }                
+//	    	   }
+//    	}); 	
     }
     
     private void initialArrayList() {
@@ -387,13 +377,13 @@ public class DictionaryController {
      */
     @FXML
     private void handleNewData() {
-    	Dictionary tempData = new Dictionary();
-        boolean okClicked = mainApp.showAddItemDialog(tempData);
-        if (okClicked) {
-        	dictionaryEnglishList.add(tempData.getEnglishCol());
-        	dictionaryCayugaList.add(tempData.getCayugaCol());
-            mainApp.getData().add(tempData);
-        }     
+//    	Dictionary tempData = new Dictionary();
+//        boolean okClicked = mainApp.showAddItemDialog(tempData);
+//        if (okClicked) {
+//        	dictionaryEnglishList.add(tempData.getEnglishCol());
+//        	dictionaryCayugaList.add(tempData.getCayugaCol());
+//            mainApp.getData().add(tempData);
+//        }     
     }
     
     @FXML
@@ -406,25 +396,25 @@ public class DictionaryController {
     
     public void showAction(ActionEvent ae) {
     	    	
-    	Dictionary tempData = dictionaryTable.getSelectionModel().getSelectedItem();
-	    if (tempData !=null) {	    		   
-	    	String english = tempData.getEnglishCol();
-	    	String cayuga = tempData.getCayugaCol();
-	    	mainApp.showUpdateItemDialog(tempData);	    		   
-           for(int j=0; j<dictionaryEnglishList.size();j++) {
-        	   if(dictionaryEnglishList.get(j).toString().equals(english) 
-        			   &&dictionaryCayugaList.get(j).toString().equals(cayuga))  {
-        		   dictionaryEnglishList.set(j, tempData.getEnglishCol());
-        		   dictionaryCayugaList.set(j, tempData.getCayugaCol());           		   
-        	   }      	   
-           }
-	    } else {
-	    	Alert alert = new Alert(AlertType.INFORMATION);
-	    	alert.setTitle("Information Dialog");
-	    	alert.setHeaderText(null);
-	    	alert.setContentText("Please select one row !");
-	    	alert.showAndWait();
-	    }
+//    	Dictionary tempData = dictionaryTable.getSelectionModel().getSelectedItem();
+//	    if (tempData !=null) {	    		   
+//	    	String english = tempData.getEnglishCol();
+//	    	String cayuga = tempData.getCayugaCol();
+//	    	mainApp.showUpdateItemDialog(tempData);	    		   
+//           for(int j=0; j<dictionaryEnglishList.size();j++) {
+//        	   if(dictionaryEnglishList.get(j).toString().equals(english) 
+//        			   &&dictionaryCayugaList.get(j).toString().equals(cayuga))  {
+//        		   dictionaryEnglishList.set(j, tempData.getEnglishCol());
+//        		   dictionaryCayugaList.set(j, tempData.getCayugaCol());           		   
+//        	   }      	   
+//           }
+//	    } else {
+//	    	Alert alert = new Alert(AlertType.INFORMATION);
+//	    	alert.setTitle("Information Dialog");
+//	    	alert.setHeaderText(null);
+//	    	alert.setContentText("Please select one row !");
+//	    	alert.showAndWait();
+//	    }
     }
     
     public void deleteAction(ActionEvent ae) {
@@ -502,9 +492,9 @@ public class DictionaryController {
     public void searchButtonAction() {	
 
     	mainApp.getData().clear();
-    	related_1.setVisible(false);
-    	related_2.setVisible(false);
-    	related_3.setVisible(false);   	
+//    	related_1.setVisible(false);
+//    	related_2.setVisible(false);
+//    	related_3.setVisible(false);   	
        	String currentInput = inputText.getText();
        	if(currentInput.length() == 0) return;
 		if(englishBut.selectedProperty().getValue()) {
@@ -607,9 +597,9 @@ public class DictionaryController {
     public void partialSearch(ActionEvent ae) {
     	
     	mainApp.getData().clear();
-    	related_1.setVisible(false);
-    	related_2.setVisible(false);
-    	related_3.setVisible(false);
+//    	related_1.setVisible(false);
+//    	related_2.setVisible(false);
+//    	related_3.setVisible(false);
        	String currentInput = inputText.getText();
        	if(currentInput.length() == 0) return;
 		if(englishBut.selectedProperty().getValue()) {
@@ -670,22 +660,22 @@ public class DictionaryController {
 	    			if(newList.get(d).toString().matches(".*"+sub+".*") && !newList.get(d).toString().matches(".*"+currentInput+".*")) {    				
 	    				if(total == 0) {
 	    					newList.remove(d);
-	    					related_1.setText(sub);
-	    					related_1.setVisible(true);
+//	    					related_1.setText(sub);
+//	    					related_1.setVisible(true);
 	    					total++;
 	    					break;
 	    				}
 	    				else if(total == 1) {
 	    					newList.remove(d);
-	    					related_2.setText(sub);
-	    					related_2.setVisible(true);
+//	    					related_2.setText(sub);
+//	    					related_2.setVisible(true);
 	    					total++;
 	    					break;
 	    				}
 	    				else if(total == 2) {
 	    					newList.remove(d);
-	    					related_3.setText(sub);
-	    					related_3.setVisible(true);
+//	    					related_3.setText(sub);
+//	    					related_3.setVisible(true);
 	    					total++;
 	    					break;
 	    				} else {	

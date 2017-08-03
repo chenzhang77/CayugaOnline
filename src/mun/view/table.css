@@ -5,11 +5,11 @@
     -fx-background-color: #8fbc8f;
 }
 #topPane {
-	-fx-background-color: #eef3f7;
+	-fx-background-color: white;
 }
 
 #botPane {
-	-fx-background-color: #c1dce0;
+	-fx-background-color: white;
 }
 
 #midPane {
@@ -112,8 +112,11 @@
     -fx-table-cell-border-color: #83e5ea;
 }
 
+
 .table-row-cell {
+	 /*
    -fx-cell-size: 80px;
+   */
     -fx-font-size: 15pt;
 }
 
@@ -243,18 +246,6 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
 }
 
-#deleteButton {
-    -fx-background-color: 
-        #c3c4c4,
-        linear-gradient(#d6d6d6 50%, white 100%),
-        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
-    -fx-background-radius: 30;
-    -fx-background-insets: 0,1,1;
-    -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
-}
-
-
 #importButton {
     -fx-background-color: 
         #42f4b6,
@@ -278,16 +269,12 @@
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
 }
 
-#addButton {
-	
-	    		-fx-background-radius: 28em; 
-                -fx-min-width: 28px; 
-                -fx-min-height: 28px; 
-                -fx-max-width: 28px;
-                -fx-max-height: 28px;
-                -fx-background-repeat: stretch;   
-   				-fx-background-position: center center;
-                -fx-background-image: url('plus.png');
+#addbutton { 
+                -fx-background-image: url('add.png');
+}
+
+#deleteButton {
+		-fx-background-image: url('delete.png');
 }
 #textBut_1:pressed, .button:default:hover:pressed {
 		-fx-padding: 5 22 5 22;

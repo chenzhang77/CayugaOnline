@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="about" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="855.0" styleClass="login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.AboutViewController">
+   <children>
+      <ImageView fx:id="portrait" fitHeight="120.0" fitWidth="112.0" layoutX="8.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="book" fitHeight="106.0" fitWidth="81.0" layoutX="881.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="272.0" layoutY="14.0" prefHeight="36.0" prefWidth="389.0" text="English-Cayuga, Cayuga-English Dictionary">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="252.0" layoutY="57.0" prefHeight="17.0" prefWidth="429.0" text="By Dr. Carrie Dyck, Lottie Keye, Alfred Keye, and Frances Froman">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="120.0" layoutY="90.0" lineSpacing="2.0" prefHeight="73.0" prefWidth="855.0" text="In 1992, the Woodland Cultural Centre in Brantford, ON, decided to produce a dictionary and grammar guide for the Cayuga language. Initially the group thought it would take two years to complete both projects. Seven years later, the dictionary was published by the University of Toronto Press." textOverrun="CLIP" wrapText="true" />
+      <Label layoutX="120.0" layoutY="151.0" prefHeight="36.0" prefWidth="836.0" text="Dr. Carrie Dyck, who started work on the English-Cayuga, Cayuga-English Dictionary in 1994 calls it &quot;a labour of love.&quot;" wrapText="true" />
+      <Label layoutX="8.0" layoutY="202.0" prefHeight="36.0" prefWidth="986.0" text="About 100 people now speak the language, and the Cayuga school at Six Nations Reserve near Brantford offers a K-12 immersion program. Part of the reason for compiling this dictionary was to offer curriculum material for the school." wrapText="true" />
+      <Label layoutX="6.0" layoutY="237.0" prefHeight="36.0" prefWidth="974.0" text="Cayuga is an Iroquoian language related to the Mohawk and Seneca languages. There are many recordings of the oral tradition of the Cayuga." wrapText="true" />
+      <Label layoutX="2.0" layoutY="265.0" prefHeight="36.0" prefWidth="879.0" text="&quot;A dictionary is another step in helping record that oral tradition and codify it,&quot; she said." />
+      <Label layoutX="5.0" layoutY="293.0" prefHeight="36.0" prefWidth="851.0" text="To write the dictionary, Dr. Dyck started with word lists such as the 2,000 word list compiled by the Summer Institute of Linguistics." />
+      <Label layoutX="4.0" layoutY="324.0" prefHeight="45.0" prefWidth="974.0" text="&quot;Because there are lots of concepts in Iroquoian languages that aren't expressed in English, we used Mohawk and Seneca word lists, too,&quot; she said. The three other listed authors are the Cayuga speakers. &quot;They gave me the words and I did the rest,&quot; she explained." wrapText="true" />
+      <Label layoutX="5.0" layoutY="370.0" prefHeight="29.0" prefWidth="793.0" text="The dictionary contains over 3,000 entries, including 1,000 verb forms and many nouns never before recorded in print." wrapText="true" />
+      <Label layoutX="5.0" layoutY="400.0" prefHeight="29.0" prefWidth="775.0" text="The book is dedicated to Reg Henry, the designer of the Cayuga writing system." />
+      <Label layoutX="6.0" layoutY="436.0" prefHeight="17.0" prefWidth="652.0" text="The grammar guide is the next project and Dr. Dyck will be working on that over the summer." />
+      <Label layoutX="7.0" layoutY="462.0" prefHeight="17.0" prefWidth="685.0" text="Dr. Dyck said she's pleased with the result of her work." />
+      <Label layoutX="5.0" layoutY="484.0" prefHeight="45.0" prefWidth="986.0" text="&quot;It's a very meaningful and rewarding experience to be able to work with speakers of another language to produce something that they really wanted to produce,&quot; she said." wrapText="true" />
+   </children>
+</AnchorPane>

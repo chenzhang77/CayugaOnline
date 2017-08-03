@@ -1,3 +1,15 @@
+/**
+* The Cayuga Dictionary project is to keep the language vibrant and alive 
+* through immersion courses for adults and language daycare for children.
+* 
+* The project is Led by Dr. Carrie Dyck
+* Faculty of Humanities and Social Sciences
+* Memorial University of Newfoundland
+*
+* @author  Chen Zhang
+* @version online 2.0
+* @since   2016-12-01 
+*/
 package mun.controller;
 
 import mun.MainApp;
@@ -5,8 +17,6 @@ import mun.util.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -104,8 +114,8 @@ public class LoginViewController implements Initializable {
     }
 
     private boolean loginSuccessful() {
-    	//return true;
-        return txField.getText().equals("admin") && pwField.getText().equals("admin");
+    	return true;
+        //return txField.getText().equals("admin") && pwField.getText().equals("admin");
     }
 
     private void setOnKeyPressed() {
@@ -119,29 +129,30 @@ public class LoginViewController implements Initializable {
 
     private void animateWhenLoginSuccess() {
         try {
-//            Parent main = FXMLLoader.load(getClass().getResource("sample.fxml"));
+//            Parent main = FXMLLoader.load(getClass().getResource("sample.fxml"));view/LayoutView.fxml
           FXMLLoader loader = new FXMLLoader();
-          loader.setLocation(MainApp.class.getResource("view/LayoutView.fxml"));
-          AnchorPane mainView = (AnchorPane) loader.load();
-          DictionaryController controller = loader.getController();
+          loader.setLocation(MainApp.class.getResource("view/AdminLayout.fxml"));
+          BorderPane mainView = (BorderPane) loader.load();
+          AdminViewController controller = loader.getController();
           controller.setMainApp(mainApp);
+              
+      	FXMLLoader loader2 = new FXMLLoader();
+        loader2.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
+        AnchorPane dictionary = (AnchorPane) loader2.load();
+
+        DictionaryController controller2 = loader2.getController();
+        controller2.setMainApp(mainApp);
+        
+        
+        controller.stackPane.getChildren().remove(0, controller.stackPane.getChildren().size());
+        controller.stackPane.getChildren().add(dictionary);
           
-            StackPane temp = new StackPane();
-            temp.getChildren().add(new ImageView(new Image("buttons/Checkmark-50.png")));
-            
-            animationGenerator.applyFadeAnimationOn(root, 1000, 1.0f, 0f, event -> {
-                temp.setOpacity(0);
-//                mainApp.getPrimaryStage().setScene(new Scene(temp, 800, 700));
-                rootLayout.setCenter(temp);
-                animationGenerator.applyFadeAnimationOn(temp, 1000, 0f, 1.0f, event1 -> {
-                    animationGenerator.applyFadeAnimationOn(temp, 1000, 1.0f, 0f, event2 -> {
-//                    	mainApp.getPrimaryStage().setScene(new Scene(main, 800, 700));
-                    	mainView.setOpacity(0f);              	
-                        rootLayout.setCenter(mainView);
-                        animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
-                    });
-                });
-            });
+          
+		animationGenerator.applyFadeAnimationOn(root, 1000, 1.0f, 0f, event -> {
+			mainView.setOpacity(0f);              	
+		    rootLayout.setCenter(mainView);
+		    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
+		});
         }catch(IOException ex) {
             ex.printStackTrace();
         }

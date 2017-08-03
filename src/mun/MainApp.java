@@ -34,15 +34,18 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private BorderPane rootLayout;
-	
+    private ObservableList<Dictionary> dictionary = FXCollections.observableArrayList();
+    
     public static void main(String[] args) {
         launch(args);
     }
     
+	public ObservableList<Dictionary> getData() {
+		return dictionary;
+	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		
 	    this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Cayuga Dictionary");
         initRootLayout();
@@ -92,11 +95,7 @@ public class MainApp extends Application {
     
 //	
 //    private BorderPane rootLayout;
-//    private ObservableList<Dictionary> dictionary = FXCollections.observableArrayList();
-    
-//  public ObservableList<Dictionary> getData() {
-//  return dictionary;
-//}
+
 	
 
 //    
