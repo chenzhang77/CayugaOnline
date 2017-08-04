@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="575.0" maxWidth="855.0" minHeight="575.0" minWidth="855.0" prefHeight="575.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.ContributorViewController">
+   <children>
+      <VBox layoutX="243.0" layoutY="188.0" prefHeight="200.0" prefWidth="391.0" spacing="10.0">
+         <children>
+            <TextField fx:id="txField" promptText="Username" />
+            <PasswordField fx:id="pwField" promptText="Password" />
+            <PasswordField fx:id="pwField1" promptText="Confirm Password" />
+            <HBox>
+               <children>
+                  <Label fx:id="loginLabel" onMouseClicked="#login" onMouseEntered="#mouseMovedLoginLabel" onMouseExited="#mouseExitedLoginLabel" text="OK" textFill="#155dda">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="registerLabel" onMouseEntered="#mouseMovedRegisterLabel" onMouseExited="#mouseExitedRegisterLabel" text="Reset" textFill="#155dda">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <Label layoutX="323.0" layoutY="93.0" prefHeight="37.0" prefWidth="406.0" text="Add a new contributor ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

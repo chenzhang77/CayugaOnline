@@ -43,6 +43,7 @@ public class AdminViewController implements Initializable{
     private Label title;
     @FXML
     private VBox menuRoot;
+      
     @FXML
     private Separator sep_1, sep_2, sep_3, sep_4, sep_5 ;
     
@@ -169,6 +170,44 @@ public class AdminViewController implements Initializable{
             e.printStackTrace();
         }
     }
+    
+    @FXML
+    private void contributorSelected() {
+        try {
+        	closeAnimation();
+        	title.setText("Manage Contributor");
+        	FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/contributor.fxml"));
+            AnchorPane about = (AnchorPane) loader.load();
+              
+        	 
+            stackPane.getChildren().remove(0, stackPane.getChildren().size());
+            stackPane.getChildren().add(about);
+            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    @FXML
+    private void fileSelected() {
+        try {
+        	closeAnimation();
+        	title.setText("File Update");
+        	FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/file.fxml"));
+            AnchorPane about = (AnchorPane) loader.load();
+              
+        	 
+            stackPane.getChildren().remove(0, stackPane.getChildren().size());
+            stackPane.getChildren().add(about);
+            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     
     @FXML
     private void aboutSelected() {

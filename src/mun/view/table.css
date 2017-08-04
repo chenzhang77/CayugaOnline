@@ -27,7 +27,6 @@
 	-fx-background-color: #eef3f7;
 }
 
-
 #leftPane {
 	-fx-background-color: white;/*#dabe90; #ea6c00*/
 }
@@ -35,7 +34,6 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: Eurostile;
-    -fx-text-fill: #ffffff;
     -fx-opacity: 0.6;
 }
 
@@ -108,8 +106,8 @@
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: #83e5ea;
-    -fx-table-cell-border-color: #83e5ea;
+    -fx-background-color: #bac9e2;
+    -fx-table-cell-border-color: #bac9e2;
 }
 
 
@@ -202,7 +200,7 @@
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+   
 }
 #textBut_3 {
   -fx-background-color: 
@@ -212,7 +210,6 @@
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
     
 }
 #textBut_2 {
@@ -223,7 +220,7 @@
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+   
 }
 #textBut_1 {
   -fx-background-color: 
@@ -233,7 +230,7 @@
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+   
 }
 #showButton  {
     -fx-background-color: 
@@ -272,6 +269,10 @@
 #addbutton { 
                 -fx-background-image: url('add.png');
 }
+#relatedImg { 
+                -fx-background-image: url('related.png');
+}
+
 
 #deleteButton {
 		-fx-background-image: url('delete.png');
@@ -388,4 +389,14 @@
 
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color,30%);
+}
+
+
+.check-box .box {
+
+-fx-background-color: white;
+-fx-border-color:grey;
+-fx-border-radius:3px; 
+ -fx-padding: 1px;
+
 }

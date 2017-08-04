@@ -28,6 +28,8 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Optional;
 import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
@@ -42,9 +44,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -55,6 +59,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -100,7 +105,30 @@ public class DictionaryController {
 	  @FXML
 	  private Button textBut_3;
 	  @FXML
-	  private Button textBut_4;  
+	  private Button textBut_4;
+	  
+	  @FXML
+	  private Button relatedImg;  
+	  @FXML
+	  private HBox relatedPane;
+	  @FXML
+	  private Separator sep_1, sep_2, sep_3, sep_4;
+	  @FXML
+	  private Label relatedLabel;
+	  @FXML
+	  private CheckBox Prefix_checkBox_1;
+	  @FXML
+	  private CheckBox Prefix_checkBox_2;
+	  @FXML
+	  private CheckBox Prefix_checkBox_3;
+	  @FXML
+	  private CheckBox Suffix_checkBox;
+	  @FXML
+	  private Label Prefix_label;
+	  @FXML
+	  private Label Suffix_label;
+	  
+	  
 //	  @FXML
 //	  private Button showButton;  
 //	  @FXML
@@ -111,12 +139,28 @@ public class DictionaryController {
 	  private MainApp mainApp;  
 	  private ArrayList<String> dictionaryEnglishList = new ArrayList<>();
 	  private ArrayList<String> dictionaryCayugaList = new ArrayList<>();
+	  
+	  
+	  private Hashtable<String, String> word_initial = new Hashtable<String, String>();
+	  private Hashtable<String, String> word_medial_1 = new Hashtable<String, String>();
+	  private Hashtable<String, String> word_medial_2 = new Hashtable<String, String>();
+	  private Hashtable<String, String> word_suffix = new Hashtable<String, String>();
+	  private Hashtable<String, String> word_without_affixes = new Hashtable<String, String>();
+	  
+	  //private ArrayList<String> word_initial = new ArrayList<>();
+//	  private ArrayList<String> word_medial_1 = new ArrayList<>();
+//	  private ArrayList<String> word_medial_2 = new ArrayList<>();
+//	  private ArrayList<String> word_suffix = new ArrayList<>();
+//	  private ArrayList<String> word_without_affixes = new ArrayList<>();
+	  
+	  
 	  private String firstItem = "";
 	  private String inputTextString ="";
-	  private ArrayList<String> aa = new ArrayList<>();
-	  //private ObservableList<Dictionary> dictionaryObservableList = FXCollections.observableArrayList();
 	  
+	  private ArrayList<String> aa = new ArrayList<>();
+  
 	  public DictionaryController() {
+		  
 		  
 	  }
 
@@ -127,7 +171,14 @@ public class DictionaryController {
     @SuppressWarnings("unchecked")
 	@FXML
     private void initialize() {
-        // Initialize the person table with the two columns.
+    	
+//    	dictionaryTable.setVisible(true);
+//    	showButton.setVisible(false);
+//    	deleteButton.setVisible(false);   	
+    	initialArrayList();
+    	initialButtons();
+    	initialAffixesFiles();
+    	//testFiles();
     	
     	firsteColumn.setCellValueFactory(cellData -> cellData.getValue().englishColProperty());
     	firsteColumn.setCellFactory(new Callback<TableColumn<Dictionary, String>, TableCell<Dictionary, String>>() {
@@ -137,8 +188,6 @@ public class DictionaryController {
 		            TableCell<Dictionary, String> cell = new TableCell<>();
 		            Text text = new Text("term of addess for a maternal grandmotherterm of addess for a maternal grandmother");
 		            cell.setGraphic(text);
-		           // cell.setPrefHeight(Control.USE_COMPUTED_SIZE*3);
-		        	//cell.setMinSize(400, 80);
 		            text.wrappingWidthProperty().bind(cell.widthProperty());
 		            text.textProperty().bind(cell.itemProperty());
 		            return cell ;
@@ -153,22 +202,12 @@ public class DictionaryController {
 		            TableCell<Dictionary, String> cell = new TableCell<>();
 		            Text text = new Text("term of addess for a maternal grandmotherterm of addess for a maternal grandmother");
 		            cell.setGraphic(text);
-		            //cell.setPrefHeight(Control.USE_COMPUTED_SIZE*3);		            
-		            //cell.setMinSize(400, 80);
 		            text.wrappingWidthProperty().bind(cell.widthProperty());
 		            text.textProperty().bind(cell.itemProperty());
 		            return cell ;
 		        }
     	 });
-     	
-     	
-    	dictionaryTable.setVisible(true);
-//    	showButton.setVisible(false);
-//    	deleteButton.setVisible(false);
-    	
-    	initialArrayList();
-    	initialButtons();
-    	
+     		
     	AutoCompletionTextFieldBinding<String> autoTF = new AutoCompletionTextFieldBinding(inputText, new Callback<AutoCompletionBinding.ISuggestionRequest, ArrayList<String>>() {
     	    @Override
     	    public ArrayList<String> call(AutoCompletionBinding.ISuggestionRequest param) {
@@ -204,10 +243,6 @@ public class DictionaryController {
 				@Override
 				public void handle(Event event) {
 					// TODO Auto-generated method stub
-//					System.out.println(inputText.getText());
-//					firstItem = aa.get(0);
-//					System.out.println("firstItem ==="+firstItem);
-//					System.out.println(inputTextString);
 					firstItem = aa.get(0);
 					if(inputText.getText().equalsIgnoreCase(firstItem)){
 						inputText.setText(inputTextString);
@@ -221,9 +256,7 @@ public class DictionaryController {
       dictionaryTable.setRowFactory( tv -> {
       TableRow<Dictionary> row = new TableRow<>();
       row.setOnMouseClicked(event -> {
-    	  
-    	  if(event.getClickCount() == 1 && (! row.isEmpty()) ) {    		  
-		  
+    	  if(event.getClickCount() == 1 && (! row.isEmpty()) ) {    		  	  
     	  }else if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
     		  showAction(null);	  
           }       
@@ -252,6 +285,16 @@ public class DictionaryController {
     	textBut_3.setVisible(false);
     	textBut_4.setVisible(false);
     	
+    	relatedImg.setVisible(false);
+    	relatedPane.setVisible(false);
+    	sep_1.setVisible(false);
+    	sep_2.setVisible(false);
+    	sep_3.setVisible(false);
+    	sep_4.setVisible(false);
+    	relatedLabel.setVisible(false);
+    	
+
+    	
     	group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
     		
     	    public void changed(ObservableValue<? extends Toggle> ov,
@@ -263,6 +306,14 @@ public class DictionaryController {
     	                	textBut_2.setVisible(false);
     	                	textBut_3.setVisible(false);
     	                	textBut_4.setVisible(false);
+    	                	
+    	                	relatedImg.setVisible(false);
+    	                	relatedPane.setVisible(false);
+    	                	sep_1.setVisible(false);
+    	                	sep_2.setVisible(false);
+    	                	sep_3.setVisible(false);
+    	                	sep_4.setVisible(false);
+    	                	relatedLabel.setVisible(false);
     	                	
 //    	                	relatedWordBut.setVisible(false);
 //    	                	related_1.setVisible(false);
@@ -279,20 +330,25 @@ public class DictionaryController {
     	                	
     	            	} else {
     	            		inputText.clear();
-
-//		            		  showButton.setVisible(false);
-//		            		  deleteButton.setVisible(false);
+//		            		showButton.setVisible(false);
+//		            		deleteButton.setVisible(false);
 		            		  
-//		            		  relatedWordBut.setVisible(true);
-//		            		related_1.setVisible(false);
-//		            	    	related_2.setVisible(false);
-//		            	    	related_3.setVisible(false);
+//	            		  	relatedWordBut.setVisible(true);
+//	            			related_1.setVisible(false);
+//	            	    	related_2.setVisible(false);
+//	            	    	related_3.setVisible(false);
 		            		  
 		            		  
     	                	textBut_1.setVisible(true);
     	                	textBut_2.setVisible(true);
     	                	textBut_3.setVisible(true);
     	                	textBut_4.setVisible(true);
+    	                	
+//    	                	relatedImg.setVisible(true);
+//    	                	relatedLabel.setVisible(true);
+
+    	                	
+    	                	
     	                	mainApp.getData().clear();
     	            	}
     	            }                
@@ -359,6 +415,218 @@ public class DictionaryController {
 			e.printStackTrace();
 		}	
     }
+    
+    private void initialAffixesFiles() {
+    	initialWord_initialFiles();
+    	initialWord_medial_1Files();
+    	initialWord_medial_2Files();
+    	initialWord_suffixFiles();
+    	initialWord_without_affixesFiles();
+    }
+    
+    private void initialWord_initialFiles() {
+    	
+    	String file = Constant.word_initial_Path;
+		FileInputStream fstream;
+		word_initial.clear();
+		try {
+			fstream = new FileInputStream(file);
+			Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+			BufferedReader br = new BufferedReader(chars);
+			String strLine;			
+			//Read File Line By Line
+			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
+				word_initial.put(strLine.replaceAll("\\p{C}", "").trim(),"");
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private void initialWord_medial_1Files() {
+    	
+    	String file = Constant.word_medial_1_Path;
+		FileInputStream fstream;
+		word_medial_1.clear();
+		try {
+			fstream = new FileInputStream(file);
+			Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+			BufferedReader br = new BufferedReader(chars);
+			String strLine;			
+			//Read File Line By Line
+			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
+				word_medial_1.put(strLine.replaceAll("\\p{C}", "").trim(),"");
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private void initialWord_medial_2Files() {
+    	
+    	String file = Constant.word_medial_2_Path;
+		FileInputStream fstream;
+		word_medial_2.clear();
+		try {
+			fstream = new FileInputStream(file);
+			Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+			BufferedReader br = new BufferedReader(chars);
+			String strLine;			
+			//Read File Line By Line
+			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
+				word_medial_2.put(strLine.replaceAll("\\p{C}", "").trim(),"");
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private void initialWord_suffixFiles() {
+    	
+    	String file = Constant.word_suffix_Path;
+		FileInputStream fstream;
+		word_suffix.clear();
+		try {
+			fstream = new FileInputStream(file);
+			Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+			BufferedReader br = new BufferedReader(chars);
+			String strLine;			
+			//Read File Line By Line
+			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
+				word_suffix.put(strLine.replaceAll("\\p{C}", "").trim(),"");
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private void initialWord_without_affixesFiles() {
+    	
+    	String file = Constant.word_without_affixes_Path;
+		FileInputStream fstream;
+		word_without_affixes.clear();
+		try {
+			fstream = new FileInputStream(file);
+			Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+			BufferedReader br = new BufferedReader(chars);
+			String strLine;			
+			//Read File Line By Line
+			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
+				String[] outstring = strLine.split("     ");
+				word_without_affixes.put(outstring[0].replaceAll("\\p{C}", "").trim(),"");
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+    private boolean checkAffixes(String word_residue) {
+    	
+    	if(word_without_affixes.containsKey(word_residue)) {		
+    		return false;
+    	}
+    	return true;
+    }
+    
+    private String searchLongestPrefixString(String inputString, Hashtable<String, String> hashTable) {
+    	
+    	System.out.println("inputTextString = "+inputString);
+    	String longestString = "";
+    	
+    	for (int i=0; i< inputString.length(); i++) {
+    		
+    		char current = inputString.charAt(i);
+    		
+    		if(current == 'ˀ'|| current == ':') {
+    			continue;
+    		}
+    		longestString = longestString + inputString.charAt(i);
+    		if(!hashTable.containsKey(longestString)) {
+    			return inputString.substring(0, i);
+    		} else {
+    			System.out.println("loop = "+longestString);
+    		}
+    			
+    	}
+    	
+    	return "";
+    }
+    
+    @FXML
+    public void relatedFunction() {
+    	relatedPane.setVisible(true);
+    	sep_1.setVisible(true);
+    	sep_2.setVisible(true);
+    	Prefix_label.setVisible(true);
+    	Suffix_label.setVisible(true);
+    	Prefix_checkBox_1.setVisible(true);
+    	Prefix_checkBox_1.setSelected(true);
+    	
+    	String word_initial_string = searchLongestPrefixString(inputText.getText(),word_initial);
+    	System.out.println("word_initial_string = "+word_initial_string);
+    	if(!word_initial_string.equals(""))
+    		Prefix_checkBox_1.setText(word_initial_string);
+    	else
+    		Prefix_checkBox_1.setText("No Prefix");
+    	
+    	
+    	
+    	Prefix_checkBox_2.setVisible(false);
+    	Prefix_checkBox_3.setVisible(false);
+
+    	
+//  	  private Separator sep_1, sep_2, sep_3, sep_4;
+//  	  @FXML
+//  	  private Label relatedLabel;
+//  	  @FXML
+//  	  private CheckBox Prefix_checkBox_1;
+//  	  @FXML
+//  	  private CheckBox Prefix_checkBox_2;
+//  	  @FXML
+//  	  private CheckBox Prefix_checkBox_3;
+//  	  @FXML
+//  	  private CheckBox Suffix_checkBox;
+//  	  @FXML
+//  	  private Label Prefix_label;
+//  	  @FXML
+//  	  private Label Suffix_label;
+    	
+    	
+    }
+    
+//    private void testFiles() {
+//    	
+//    	System.out.println("---------");
+//    	for (String key : word_initial.keySet()) {
+//    		   System.out.println("key: " + key);
+//    		}
+//    	System.out.println("---------");
+//    }
     
     /**
      * Is called by the main application to give a reference back to itself.
@@ -488,6 +756,7 @@ public class DictionaryController {
     	inputText.positionCaret(currentString.length()+1);
     }
     
+   
     @FXML
     public void searchButtonAction() {	
 
@@ -496,6 +765,9 @@ public class DictionaryController {
 //    	related_2.setVisible(false);
 //    	related_3.setVisible(false);   	
        	String currentInput = inputText.getText();
+
+       		
+       		
        	if(currentInput.length() == 0) return;
 		if(englishBut.selectedProperty().getValue()) {
 
@@ -523,6 +795,14 @@ public class DictionaryController {
 			}	
 		} else {
 			
+	       	if(checkAffixes(currentInput)) {
+	       		relatedImg.setVisible(true);
+	       		relatedLabel.setVisible(true);
+	       	} else {
+	       		relatedImg.setVisible(false);
+	       		relatedLabel.setVisible(false);
+	       	}
+				
 			for(int i=0; i<dictionaryCayugaList.size();i++) {
 				
 				String words = dictionaryCayugaList.get(i).toString();
