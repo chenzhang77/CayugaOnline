@@ -46,11 +46,11 @@
          <children>
             <Label fx:id="Prefix_label" text="Prefix:" />
             <Region prefHeight="18.0" prefWidth="19.0" />
-            <CheckBox fx:id="Prefix_checkBox_1" mnemonicParsing="false" text="CheckBox" />
+            <CheckBox fx:id="Prefix_checkBox_1" mnemonicParsing="false" onMouseClicked="#prefixCheckBox_1" text="CheckBox" />
             <Region prefHeight="18.0" prefWidth="19.0" />
-            <CheckBox fx:id="Prefix_checkBox_2" mnemonicParsing="false" text="CheckBox" />
+            <CheckBox fx:id="Prefix_checkBox_2" mnemonicParsing="false" onMouseClicked="#prefixCheckBox_2" text="CheckBox" />
             <Region prefHeight="18.0" prefWidth="19.0" />
-            <CheckBox fx:id="Prefix_checkBox_3" mnemonicParsing="false" text="CheckBox" />
+            <CheckBox fx:id="Prefix_checkBox_3" mnemonicParsing="false" onMouseClicked="#prefixCheckBox_3" text="CheckBox" />
             <Region prefHeight="18.0" prefWidth="19.0" />
             <Region prefHeight="18.0" prefWidth="19.0" />
             <Label fx:id="Suffix_label" text="Suffix:">

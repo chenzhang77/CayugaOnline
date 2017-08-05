@@ -619,6 +619,76 @@ public class DictionaryController {
     	
     }
     
+    @FXML
+    public void prefixCheckBox_1() {
+    	if(Prefix_checkBox_1.isSelected()) {
+    		Prefix_checkBox_2.setVisible(false);
+        	Prefix_checkBox_3.setVisible(false);
+        	
+           	String currentInput = inputText.getText();	
+           	if(currentInput.length() == 0) return;
+        	SearchByString(currentInput);
+    	} else {
+    		Prefix_checkBox_2.setVisible(true);
+    		Prefix_checkBox_3.setVisible(false);
+    		
+    		String currentInput = inputText.getText();	
+           	if(currentInput.length() == 0) return;
+           	int length_initial = Prefix_checkBox_1.getText().length();
+    		
+        	String word_medial_string = searchLongestPrefixString(currentInput.substring(length_initial),word_medial_1);
+        	System.out.println("word_initial_string = "+word_medial_string);
+        	if(!word_medial_string.equals("")) {
+        		Prefix_checkBox_2.setSelected(true);
+        		Prefix_checkBox_2.setText(word_medial_string);
+        		SearchByString("*"+currentInput.substring(length_initial));
+        	}
+        		
+        	else
+        		Prefix_checkBox_2.setVisible(false);
+    		
+    		
+    	}
+    }
+    
+    @FXML
+    public void prefixCheckBox_2() {
+    	if(Prefix_checkBox_2.isSelected()) {
+        	Prefix_checkBox_3.setVisible(false);
+        	
+           	String currentInput = inputText.getText();	
+           	if(currentInput.length() == 0) return;	
+           	int length_initial = Prefix_checkBox_1.getText().length();
+        	SearchByString("*"+currentInput.substring(length_initial));
+        	
+    	} else {
+    		
+    		String currentInput = inputText.getText();	
+           	if(currentInput.length() == 0) return;
+           	int length_initial = Prefix_checkBox_1.getText().length();
+           	int length_medial = Prefix_checkBox_2.getText().length();
+    		
+        	String word_medial2_string = searchLongestPrefixString(currentInput.substring(length_initial+length_medial),word_medial_2);
+        	System.out.println("word_initial_string = "+word_medial2_string);
+        	if(!word_medial2_string.equals("")) {
+        		Prefix_checkBox_3.setSelected(true);
+        		Prefix_checkBox_3.setVisible(true);
+        		Prefix_checkBox_3.setText(word_medial2_string);
+        		SearchByString("*"+currentInput.substring(length_initial+length_medial));
+        	}
+        		
+        	else
+        		Prefix_checkBox_3.setVisible(false);
+    		
+    		
+    	}
+    }
+    
+    @FXML
+    public void prefixCheckBox_3() {
+    	
+    }
+    
 //    private void testFiles() {
 //    	
 //    	System.out.println("---------");
@@ -760,16 +830,15 @@ public class DictionaryController {
     @FXML
     public void searchButtonAction() {	
 
-    	mainApp.getData().clear();
-//    	related_1.setVisible(false);
-//    	related_2.setVisible(false);
-//    	related_3.setVisible(false);   	
-       	String currentInput = inputText.getText();
-
-       		
-       		
+    	
+       	String currentInput = inputText.getText();	
        	if(currentInput.length() == 0) return;
-		if(englishBut.selectedProperty().getValue()) {
+       	SearchByString(currentInput);
+    }
+    
+    private void SearchByString(String currentInput) {
+    	mainApp.getData().clear();	
+    	if(englishBut.selectedProperty().getValue()) {
 
 			for(int i=0; i<dictionaryEnglishList.size();i++) {			
 				String words = dictionaryEnglishList.get(i).toString();		
