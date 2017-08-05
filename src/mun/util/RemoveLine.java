@@ -29,7 +29,7 @@ public class RemoveLine {
 	public void removeLine(String cayuga,String english) {
 		
 		String outsingleStirng = english+"     "+cayuga+"\n";
-		System.out.println("out="+outsingleStirng);
+		//System.out.println("out="+outsingleStirng);
 		try {
 	      File inputFile = new File(Constant.dictionaryPath);
           if (!inputFile.isFile()) {
@@ -60,7 +60,7 @@ public class RemoveLine {
   					bw.append(strLine);            	
   				}                  
                 else {
-                	System.out.println("3="+outsingleStirng);
+                	//System.out.println("3="+outsingleStirng);
                 }
   			}
   			bw.close();

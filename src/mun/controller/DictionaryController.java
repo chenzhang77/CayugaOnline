@@ -112,8 +112,6 @@ public class DictionaryController {
 	  @FXML
 	  private HBox relatedPane;
 	  @FXML
-	  private Separator sep_1, sep_2, sep_3, sep_4;
-	  @FXML
 	  private Label relatedLabel;
 	  @FXML
 	  private CheckBox Prefix_checkBox_1;
@@ -127,8 +125,7 @@ public class DictionaryController {
 	  private Label Prefix_label;
 	  @FXML
 	  private Label Suffix_label;
-	  
-	  
+	   
 //	  @FXML
 //	  private Button showButton;  
 //	  @FXML
@@ -138,27 +135,16 @@ public class DictionaryController {
 	  
 	  private MainApp mainApp;  
 	  private ArrayList<String> dictionaryEnglishList = new ArrayList<>();
-	  private ArrayList<String> dictionaryCayugaList = new ArrayList<>();
-	  
-	  
+	  private ArrayList<String> dictionaryCayugaList = new ArrayList<>();	 	  
 	  private Hashtable<String, String> word_initial = new Hashtable<String, String>();
 	  private Hashtable<String, String> word_medial_1 = new Hashtable<String, String>();
 	  private Hashtable<String, String> word_medial_2 = new Hashtable<String, String>();
 	  private Hashtable<String, String> word_suffix = new Hashtable<String, String>();
-	  private Hashtable<String, String> word_without_affixes = new Hashtable<String, String>();
-	  
-	  //private ArrayList<String> word_initial = new ArrayList<>();
-//	  private ArrayList<String> word_medial_1 = new ArrayList<>();
-//	  private ArrayList<String> word_medial_2 = new ArrayList<>();
-//	  private ArrayList<String> word_suffix = new ArrayList<>();
-//	  private ArrayList<String> word_without_affixes = new ArrayList<>();
-	  
-	  
+	  private Hashtable<String, String> word_without_affixes = new Hashtable<String, String>(); 
 	  private String firstItem = "";
 	  private String inputTextString ="";
 	  
-	  private ArrayList<String> aa = new ArrayList<>();
-  
+	  private ArrayList<String> aa = new ArrayList<>();  
 	  public DictionaryController() {
 		  
 		  
@@ -211,22 +197,25 @@ public class DictionaryController {
     	AutoCompletionTextFieldBinding<String> autoTF = new AutoCompletionTextFieldBinding(inputText, new Callback<AutoCompletionBinding.ISuggestionRequest, ArrayList<String>>() {
     	    @Override
     	    public ArrayList<String> call(AutoCompletionBinding.ISuggestionRequest param) {
+    	       	relatedImg.setVisible(false);
+    	   		relatedLabel.setVisible(false);
+    	       	relatedPane.setVisible(false);
     	    	
     	    	aa = new ArrayList<>();
-    	    	String inputString = param.getUserText();  	    	
+    	    	String inputString = param.getUserText().toLowerCase();  	    	
     	    	inputTextString = inputString;
     	    	inputString = inputString.replace("*", ".*");
 
     	    	if(inputString.length() != 0 && inputString != null) {    	
     	    		if(englishBut.selectedProperty().getValue())
 	        	    	for(String item :dictionaryEnglishList) {
-	        	    		if(item.matches("^"+inputString+".*$")){
+	        	    		if(item.toLowerCase().matches("^"+inputString+".*$")){
 	        	    			aa.add(item);
 	        	    		}	        			
 	        	    	}
     	    		else
             	    	for(String item :dictionaryCayugaList) {
-            	    		if(item.matches("^"+inputString+".*$")){
+            	    		if(item.toLowerCase().matches("^"+inputString+".*$")){
             	    			aa.add(item);
             	    		}          	    			
             	    	}
@@ -272,120 +261,39 @@ public class DictionaryController {
       	englishBut.setToggleGroup(group);
     	englishBut.setSelected(true);
     	cayugaBut.setToggleGroup(group);
-//    	relatedWordBut.setVisible(false);
-//    	final ToggleGroup group2 = new ToggleGroup();
-//    	related_1.setToggleGroup(group2);
-//    	related_2.setToggleGroup(group2);
-//    	related_3.setToggleGroup(group2);
-//    	related_1.setVisible(false);
-//    	related_2.setVisible(false);
-//    	related_3.setVisible(false);
     	textBut_1.setVisible(false);
     	textBut_2.setVisible(false);
     	textBut_3.setVisible(false);
-    	textBut_4.setVisible(false);
-    	
+    	textBut_4.setVisible(false); 	
     	relatedImg.setVisible(false);
     	relatedPane.setVisible(false);
-    	sep_1.setVisible(false);
-    	sep_2.setVisible(false);
-    	sep_3.setVisible(false);
-    	sep_4.setVisible(false);
     	relatedLabel.setVisible(false);
-    	
-
-    	
-    	group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
     		
+    	group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){    		
     	    public void changed(ObservableValue<? extends Toggle> ov,
-    	        Toggle old_toggle, Toggle new_toggle) {
-    	    	
+    	        Toggle old_toggle, Toggle new_toggle) {    	    	
     	            if (group.getSelectedToggle() != null) {
     	            	if(englishBut.selectedProperty().getValue()) {
     	                	textBut_1.setVisible(false);
     	                	textBut_2.setVisible(false);
     	                	textBut_3.setVisible(false);
-    	                	textBut_4.setVisible(false);
-    	                	
+    	                	textBut_4.setVisible(false);   	                	
     	                	relatedImg.setVisible(false);
     	                	relatedPane.setVisible(false);
-    	                	sep_1.setVisible(false);
-    	                	sep_2.setVisible(false);
-    	                	sep_3.setVisible(false);
-    	                	sep_4.setVisible(false);
     	                	relatedLabel.setVisible(false);
-    	                	
-//    	                	relatedWordBut.setVisible(false);
-//    	                	related_1.setVisible(false);
-//    	                	related_2.setVisible(false);
-//    	                	related_3.setVisible(false);
-    	                	
-    	                	
     	                	mainApp.getData().clear();
-    	                	inputText.clear();
-    	                	
-
-//    	            		  showButton.setVisible(false);
-//    	            		  deleteButton.setVisible(false);
-    	                	
+    	                	inputText.clear();   	                	
     	            	} else {
-    	            		inputText.clear();
-//		            		showButton.setVisible(false);
-//		            		deleteButton.setVisible(false);
-		            		  
-//	            		  	relatedWordBut.setVisible(true);
-//	            			related_1.setVisible(false);
-//	            	    	related_2.setVisible(false);
-//	            	    	related_3.setVisible(false);
-		            		  
-		            		  
+    	            		inputText.clear();	  
     	                	textBut_1.setVisible(true);
     	                	textBut_2.setVisible(true);
     	                	textBut_3.setVisible(true);
     	                	textBut_4.setVisible(true);
-    	                	
-//    	                	relatedImg.setVisible(true);
-//    	                	relatedLabel.setVisible(true);
-
-    	                	
-    	                	
     	                	mainApp.getData().clear();
     	            	}
     	            }                
     	        }
-    	});
-    	
-    	
-//    	group2.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
-//    		
-//    	    public void changed(ObservableValue<? extends Toggle> ov,
-//    	        Toggle old_toggle, Toggle new_toggle) {
-//    	    	
-//    	    	
-//	    	    	relatedWordBut.requestFocus();
-//		            if (group2.getSelectedToggle() != null) {
-//		            	mainApp.getData().clear();
-//		            	String currentInput;
-//		            	if(related_1.selectedProperty().getValue()) {
-//		            		currentInput = related_1.getText();
-//		                	
-//		            	} else if (related_2.selectedProperty().getValue()) {
-//		            		currentInput = related_2.getText();
-//		            	} else {
-//		            		currentInput = related_3.getText();
-//		            	}		            	
-//		        		for(int i=0; i<dictionaryCayugaList.size();i++) {		    			
-//			    			if(dictionaryCayugaList.get(i).toString().matches(".*"+currentInput+".*")) {
-//			    				//System.out.println("coming in update dictionaryCayugaList");
-//			    				Dictionary tempData = new Dictionary();
-//			    				tempData.setEnglishCol(dictionaryEnglishList.get(i));
-//			    				tempData.setCayugaCol(dictionaryCayugaList.get(i));
-//			    				mainApp.getData().add(tempData);
-//			    			}
-//		        		}
-//		            }                
-//	    	   }
-//    	}); 	
+    	});	
     }
     
     private void initialArrayList() {
@@ -533,7 +441,14 @@ public class DictionaryController {
 			//Read File Line By Line
 			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
 				String[] outstring = strLine.split("     ");
-				word_without_affixes.put(outstring[0].replaceAll("\\p{C}", "").trim(),"");
+				
+				String matches = outstring[0].replaceAll("\\p{C}", "").trim();				
+				StringBuilder sb = new StringBuilder(matches);
+				for(int a=0; a<sb.length();a++) {					
+					if(sb.charAt(a)=='ˀ'||sb.charAt(a)==':') sb.deleteCharAt(a);					
+				}
+				matches = sb.toString();				
+				word_without_affixes.put(matches,"");
 			}
 			br.close();
 		} catch (FileNotFoundException e) {
@@ -547,7 +462,14 @@ public class DictionaryController {
     
     private boolean checkAffixes(String word_residue) {
     	
-    	if(word_without_affixes.containsKey(word_residue)) {		
+		String matches = word_residue;				
+		StringBuilder sb = new StringBuilder(matches);
+		for(int a=0; a<sb.length();a++) {					
+			if(sb.charAt(a)=='ˀ'||sb.charAt(a)==':') sb.deleteCharAt(a);					
+		}
+		matches = sb.toString();
+    	
+    	if(word_without_affixes.containsKey(matches)) {		
     		return false;
     	}
     	return true;
@@ -557,49 +479,83 @@ public class DictionaryController {
     	
     	System.out.println("inputTextString = "+inputString);
     	String longestString = "";
+    	int longestIndex = 0;
     	
-    	for (int i=0; i< inputString.length(); i++) {
-    		
-    		char current = inputString.charAt(i);
-    		
+    	for (int i=0; i< inputString.length(); i++) {   		
+    		char current = inputString.charAt(i);    		
     		if(current == 'ˀ'|| current == ':') {
+    			if(longestIndex == i) longestIndex = i+1;
     			continue;
     		}
     		longestString = longestString + inputString.charAt(i);
-    		if(!hashTable.containsKey(longestString)) {
-    			return inputString.substring(0, i);
-    		} else {
-    			System.out.println("loop = "+longestString);
+    		if(hashTable.containsKey(longestString.toLowerCase())) longestIndex = i+1;   			
+    	}	
+    	return inputString.substring(0,longestIndex);
+    }
+    
+    private String searchLongestSuffixString(String inputString, Hashtable<String, String> hashTable) {
+    	
+    	System.out.println("suffix inputTextString = "+inputString);
+    	String longestString = ""; 
+    	int longestIndex = inputString.length();
+    	for (int i=inputString.length()-1; i >= 0; i--) {  		
+    		char current = inputString.charAt(i);    		
+    		if(current == 'ˀ'|| current == ':') {
+    			if(longestIndex == i+1)  longestIndex = i;
+    			continue;
     		}
-    			
+    		longestString = inputString.charAt(i) + longestString;
+    		if(hashTable.containsKey(longestString.toLowerCase())) {
+    			longestIndex = i;
+    		}
+    					
+    	}
+    	String returnString = inputString.substring(longestIndex);
+    	int flag = 0;
+    	for(int i=0; i<returnString.length(); i++) {
+    		char current = returnString.charAt(i);    		
+    		if(current == 'ˀ'|| current == ':') {
+    			flag++;
+    			continue;
+    		}else break;
     	}
     	
-    	return "";
+    	return returnString.substring(flag);
     }
     
     @FXML
     public void relatedFunction() {
     	relatedPane.setVisible(true);
-    	sep_1.setVisible(true);
-    	sep_2.setVisible(true);
     	Prefix_label.setVisible(true);
     	Suffix_label.setVisible(true);
     	Prefix_checkBox_1.setVisible(true);
-    	Prefix_checkBox_1.setSelected(true);
-    	
+    	Prefix_checkBox_1.setSelected(true);   	
     	String word_initial_string = searchLongestPrefixString(inputText.getText(),word_initial);
-    	System.out.println("word_initial_string = "+word_initial_string);
-    	if(!word_initial_string.equals(""))
+    	if(!word_initial_string.equals("")){
+
+    		Prefix_checkBox_1.setDisable(false);
     		Prefix_checkBox_1.setText(word_initial_string);
-    	else
+    	}
+    	else {
+    		Prefix_checkBox_1.setDisable(true);
+    		Prefix_checkBox_1.setSelected(false);
     		Prefix_checkBox_1.setText("No Prefix");
-    	
-    	
-    	
+    	}
+    			
     	Prefix_checkBox_2.setVisible(false);
     	Prefix_checkBox_3.setVisible(false);
-
     	
+    	String word_suffix_string = searchLongestSuffixString(inputText.getText(),word_suffix);
+    	if(!word_suffix_string.equals("")){
+    		Suffix_checkBox.setSelected(true);
+    		Suffix_checkBox.setDisable(false);
+    		Suffix_checkBox.setText(word_suffix_string);
+    	}
+    	else {
+    		Suffix_checkBox.setText("No Suffix");
+    		Suffix_checkBox.setDisable(true);
+    	}
+    		
 //  	  private Separator sep_1, sep_2, sep_3, sep_4;
 //  	  @FXML
 //  	  private Label relatedLabel;
@@ -614,79 +570,108 @@ public class DictionaryController {
 //  	  @FXML
 //  	  private Label Prefix_label;
 //  	  @FXML
-//  	  private Label Suffix_label;
-    	
-    	
+//  	  private Label Suffix_label;  	
     }
     
     @FXML
     public void prefixCheckBox_1() {
+    	
+       	String currentInput = inputText.getText();	
+       	if(currentInput.length() == 0) return;
+       	int suffix_length = !Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
     	if(Prefix_checkBox_1.isSelected()) {
     		Prefix_checkBox_2.setVisible(false);
-        	Prefix_checkBox_3.setVisible(false);
-        	
-           	String currentInput = inputText.getText();	
-           	if(currentInput.length() == 0) return;
-        	SearchByString(currentInput);
+        	Prefix_checkBox_3.setVisible(false);       	
+        	if(suffix_length == 0)SearchByString(currentInput.substring(0, currentInput.length()).trim());
+        	else SearchByString(currentInput.substring(0, currentInput.length()-suffix_length).trim()+"*");
     	} else {
     		Prefix_checkBox_2.setVisible(true);
-    		Prefix_checkBox_3.setVisible(false);
-    		
-    		String currentInput = inputText.getText();	
-           	if(currentInput.length() == 0) return;
-           	int length_initial = Prefix_checkBox_1.getText().length();
-    		
-        	String word_medial_string = searchLongestPrefixString(currentInput.substring(length_initial),word_medial_1);
-        	System.out.println("word_initial_string = "+word_medial_string);
+    		Prefix_checkBox_3.setVisible(false);    		
+           	int length_initial = Prefix_checkBox_1.getText().length();   
+           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial, currentInput.length()).trim());  
+           	else SearchByString("*"+currentInput.substring(length_initial, currentInput.length() - suffix_length).trim()+"*");           	
+        	String word_medial_string = searchLongestPrefixString(currentInput.substring(length_initial),word_medial_1);      	
         	if(!word_medial_string.equals("")) {
         		Prefix_checkBox_2.setSelected(true);
-        		Prefix_checkBox_2.setText(word_medial_string);
-        		SearchByString("*"+currentInput.substring(length_initial));
-        	}
-        		
+        		Prefix_checkBox_2.setText(word_medial_string);       		
+        	}        		
         	else
-        		Prefix_checkBox_2.setVisible(false);
-    		
-    		
+        		Prefix_checkBox_2.setVisible(false);   		
     	}
     }
     
     @FXML
     public void prefixCheckBox_2() {
+    	
+       	String currentInput = inputText.getText();	
+       	if(currentInput.length() == 0) return;
+       	int length_initial = Prefix_checkBox_1.getText().length();
+    	int suffix_length = !Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
     	if(Prefix_checkBox_2.isSelected()) {
-        	Prefix_checkBox_3.setVisible(false);
-        	
-           	String currentInput = inputText.getText();	
-           	if(currentInput.length() == 0) return;	
-           	int length_initial = Prefix_checkBox_1.getText().length();
-        	SearchByString("*"+currentInput.substring(length_initial));
-        	
-    	} else {
-    		
-    		String currentInput = inputText.getText();	
-           	if(currentInput.length() == 0) return;
-           	int length_initial = Prefix_checkBox_1.getText().length();
-           	int length_medial = Prefix_checkBox_2.getText().length();
-    		
+        	Prefix_checkBox_3.setVisible(false);       	
+        	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial).trim()); 
+        	else SearchByString("*"+currentInput.substring(length_initial,currentInput.length() - suffix_length).trim()+"*"); 
+    	} else {    		
+           	int length_medial = Prefix_checkBox_2.getText().length();   		        	
+           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial).trim());
+           	else SearchByString("*"+currentInput.substring(length_initial+length_medial,currentInput.length() - suffix_length).trim()+"*");        	        	
         	String word_medial2_string = searchLongestPrefixString(currentInput.substring(length_initial+length_medial),word_medial_2);
-        	System.out.println("word_initial_string = "+word_medial2_string);
         	if(!word_medial2_string.equals("")) {
         		Prefix_checkBox_3.setSelected(true);
         		Prefix_checkBox_3.setVisible(true);
-        		Prefix_checkBox_3.setText(word_medial2_string);
-        		SearchByString("*"+currentInput.substring(length_initial+length_medial));
-        	}
-        		
+        		Prefix_checkBox_3.setText(word_medial2_string);       		
+        	}  		
         	else
-        		Prefix_checkBox_3.setVisible(false);
-    		
-    		
+        		Prefix_checkBox_3.setVisible(false);		
     	}
     }
     
     @FXML
     public void prefixCheckBox_3() {
-    	
+		String currentInput = inputText.getText();	
+       	if(currentInput.length() == 0) return;
+       	int length_initial = Prefix_checkBox_1.getText().length();
+       	int length_medial1 = Prefix_checkBox_2.getText().length();
+       	int suffix_length = !Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length() : 0;
+    	if(Prefix_checkBox_3.isSelected()) {     
+    		if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1).trim());
+    		else	SearchByString("*"+currentInput.substring(length_initial+length_medial1,currentInput.length() - suffix_length).trim() +"*");        	
+    	} else {   		
+           	int length_medial2 = Prefix_checkBox_3.getText().length();
+           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2).trim());
+           	else SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2,currentInput.length() - suffix_length).trim() +"*");
+    	}
+    }
+    
+    @FXML
+    public void suffixCheckBox() {
+    	String currentInput = inputText.getText();
+    	if(currentInput.length() == 0) return;	
+	 	int length_initial = Prefix_checkBox_1.isSelected()?0:Prefix_checkBox_1.getText().length();
+       	int length_medial1 = Prefix_checkBox_2.isSelected() || !Prefix_checkBox_2.isVisible()?0:Prefix_checkBox_2.getText().length();
+       	int length_medial2 = Prefix_checkBox_3.isSelected() || !Prefix_checkBox_3.isVisible()?0:Prefix_checkBox_3.getText().length();
+       	String word_residue = currentInput.substring(length_initial+length_medial1+length_medial2).trim();
+       	System.out.println("word_residue = " + word_residue);
+    	if(Suffix_checkBox.isSelected()) {   		
+           	SearchByString("*"+word_residue);
+//    		if(checkAffixes(word_residue)){
+//    			if(Prefix_checkBox_3.isSelected() && !Prefix_checkBox_2.isSelected() && !Prefix_checkBox_1.isSelected()) Prefix_checkBox_3.setVisible(true);
+//    			else if (Prefix_checkBox_2.isSelected() && !Prefix_checkBox_1.isSelected()) Prefix_checkBox_2.setVisible(true);
+//    			else if (Prefix_checkBox_1.isSelected()) {
+//    				String word_initial_string = searchLongestPrefixString(inputText.getText(),word_initial);
+//    				Prefix_checkBox_1.setText(word_initial_string);
+//    			}
+//    		}
+    	} else {
+    		word_residue = word_residue.substring(0, word_residue.length()-Suffix_checkBox.getText().length()).trim();
+    		SearchByString("*"+word_residue+"*"); 
+//    		if(!checkAffixes(word_residue)){
+//    			if(Prefix_checkBox_3.isSelected()) Prefix_checkBox_3.setVisible(false);
+//    			else if (Prefix_checkBox_2.isSelected()) Prefix_checkBox_2.setVisible(false);
+//    			else if (Prefix_checkBox_1.isSelected()) Prefix_checkBox_1.setText("No Prefix");
+//    		}
+//    		
+    	}
     }
     
 //    private void testFiles() {
@@ -711,17 +696,17 @@ public class DictionaryController {
     
     /**
      * Called when the user clicks the new button. Opens a dialog to edit
-     * details for a new person.
+     * details for a new dictionary.
      */
     @FXML
     private void handleNewData() {
-//    	Dictionary tempData = new Dictionary();
-//        boolean okClicked = mainApp.showAddItemDialog(tempData);
-//        if (okClicked) {
-//        	dictionaryEnglishList.add(tempData.getEnglishCol());
-//        	dictionaryCayugaList.add(tempData.getCayugaCol());
-//            mainApp.getData().add(tempData);
-//        }     
+    	Dictionary tempData = new Dictionary();
+        boolean okClicked = mainApp.showAddItemDialog(tempData);
+        if (okClicked) {
+        	dictionaryEnglishList.add(tempData.getEnglishCol());
+        	dictionaryCayugaList.add(tempData.getCayugaCol());
+            mainApp.getData().add(tempData);
+        }     
     }
     
     @FXML
@@ -734,38 +719,37 @@ public class DictionaryController {
     
     public void showAction(ActionEvent ae) {
     	    	
-//    	Dictionary tempData = dictionaryTable.getSelectionModel().getSelectedItem();
-//	    if (tempData !=null) {	    		   
-//	    	String english = tempData.getEnglishCol();
-//	    	String cayuga = tempData.getCayugaCol();
-//	    	mainApp.showUpdateItemDialog(tempData);	    		   
-//           for(int j=0; j<dictionaryEnglishList.size();j++) {
-//        	   if(dictionaryEnglishList.get(j).toString().equals(english) 
-//        			   &&dictionaryCayugaList.get(j).toString().equals(cayuga))  {
-//        		   dictionaryEnglishList.set(j, tempData.getEnglishCol());
-//        		   dictionaryCayugaList.set(j, tempData.getCayugaCol());           		   
-//        	   }      	   
-//           }
-//	    } else {
-//	    	Alert alert = new Alert(AlertType.INFORMATION);
-//	    	alert.setTitle("Information Dialog");
-//	    	alert.setHeaderText(null);
-//	    	alert.setContentText("Please select one row !");
-//	    	alert.showAndWait();
-//	    }
+    	Dictionary tempData = dictionaryTable.getSelectionModel().getSelectedItem();
+	    if (tempData !=null) {	    		   
+	    	String english = tempData.getEnglishCol();
+	    	String cayuga = tempData.getCayugaCol();
+	    	mainApp.showUpdateItemDialog(tempData);	    		   
+           for(int j=0; j<dictionaryEnglishList.size();j++) {
+        	   if(dictionaryEnglishList.get(j).toString().equals(english) 
+        			   &&dictionaryCayugaList.get(j).toString().equals(cayuga))  {
+        		   dictionaryEnglishList.set(j, tempData.getEnglishCol());
+        		   dictionaryCayugaList.set(j, tempData.getCayugaCol());           		   
+        	   }      	   
+           }
+	    } else {
+	    	Alert alert = new Alert(AlertType.INFORMATION);
+	    	alert.setTitle("Information Dialog");
+	    	alert.setHeaderText(null);
+	    	alert.setContentText("Please select one row !");
+	    	alert.showAndWait();
+	    }
     }
     
-    public void deleteAction(ActionEvent ae) {
+    @FXML
+    public void deleteAction() {
     	
     	   int selectedIndex = dictionaryTable.getSelectionModel().getSelectedIndex();
-    	   Dictionary tempData = dictionaryTable.getSelectionModel().getSelectedItem();
-    	   
+    	   Dictionary tempData = dictionaryTable.getSelectionModel().getSelectedItem();  	   
     	    if (selectedIndex >= 0) {
     	    	Alert alert = new Alert(AlertType.CONFIRMATION);
     	    	alert.setTitle("Confirmation Dialog");
     	    	alert.setHeaderText("Delete");
     	    	alert.setContentText("Are you sure to delete this row from the database?");
-
     	    	Optional<ButtonType> result = alert.showAndWait();
     	    	if (result.get() == ButtonType.OK){
     	    		RemoveLine rl = new RemoveLine();
@@ -790,13 +774,11 @@ public class DictionaryController {
     	    	alert.showAndWait();
     	    }	
     }
-    
-           
+              
     @FXML
     public void MouseMoveText() {
     	mainScene.requestFocus();
-    }
-    
+    }    
     @FXML
     public void textButAction_1(ActionEvent ae){
     	inputText.requestFocus();
@@ -824,24 +806,24 @@ public class DictionaryController {
     	String currentString = inputText.getText();
     	inputText.setText(currentString+"ę");
     	inputText.positionCaret(currentString.length()+1);
-    }
-    
-   
+    }  
     @FXML
-    public void searchButtonAction() {	
-
-    	
-       	String currentInput = inputText.getText();	
+    public void searchButtonAction() {	 	
+       	String currentInput = inputText.getText().toLowerCase();	
        	if(currentInput.length() == 0) return;
+       	relatedImg.setVisible(false);
+   		relatedLabel.setVisible(false);
+       	relatedPane.setVisible(false);
+       	
        	SearchByString(currentInput);
-    }
-    
+    }   
     private void SearchByString(String currentInput) {
     	mainApp.getData().clear();	
+    	System.out.println("currentInput = " + currentInput);
+    	currentInput = currentInput.toLowerCase();
     	if(englishBut.selectedProperty().getValue()) {
-
 			for(int i=0; i<dictionaryEnglishList.size();i++) {			
-				String words = dictionaryEnglishList.get(i).toString();		
+				String words = dictionaryEnglishList.get(i).toString().toLowerCase();		
 				StringBuilder words_sb = new StringBuilder(words);
 				for(int a=0; a<words_sb.length();a++) {					
 					if(words_sb.charAt(a)==')'||words_sb.charAt(a)=='(') words_sb.deleteCharAt(a);				
@@ -849,8 +831,7 @@ public class DictionaryController {
 				words = words_sb.toString();
 				words = " "+words+" ";
 				StringBuilder sb = new StringBuilder(currentInput);
-				for(int a=0; a<sb.length();a++) {
-					
+				for(int a=0; a<sb.length();a++) {					
 					if(sb.charAt(a)==')'||sb.charAt(a)=='(') sb.deleteCharAt(a);					
 				}
 				String matches = sb.toString();
@@ -862,19 +843,16 @@ public class DictionaryController {
 					mainApp.getData().add(tempData);
 				}
 			}	
-		} else {
-			
+		} else {			
 	       	if(checkAffixes(currentInput)) {
 	       		relatedImg.setVisible(true);
 	       		relatedLabel.setVisible(true);
 	       	} else {
 	       		relatedImg.setVisible(false);
 	       		relatedLabel.setVisible(false);
-	       	}
-				
-			for(int i=0; i<dictionaryCayugaList.size();i++) {
-				
-				String words = dictionaryCayugaList.get(i).toString();
+	       	}				
+			for(int i=0; i<dictionaryCayugaList.size();i++) {				
+				String words = dictionaryCayugaList.get(i).toString().toLowerCase();
 				StringBuilder words_sb = new StringBuilder(words);
 				for(int a=0; a<words_sb.length();a++) {					
 					if(words_sb.charAt(a)=='ˀ'||words_sb.charAt(a)==':') words_sb.deleteCharAt(a);					
@@ -889,7 +867,6 @@ public class DictionaryController {
 				matches = sb.toString();
 				matches = createRegularExpression(matches);			
 				if(words.toString().matches(matches)) {
-					//System.out.println("coming in update dictionaryCayugaList");
 					Dictionary tempData = new Dictionary();
 					tempData.setEnglishCol(dictionaryEnglishList.get(i));
 					tempData.setCayugaCol(dictionaryCayugaList.get(i));
@@ -901,8 +878,7 @@ public class DictionaryController {
     
     public String createRegularExpression(String input) {
     	
-		String matches = input;
-		
+		String matches = input;		
 		StringBuilder sb = new StringBuilder(matches);
 		int begin = 0;
 		int mid = 0;

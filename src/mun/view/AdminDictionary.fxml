@@ -39,7 +39,7 @@
          </children>
       </Pane>
       <Separator layoutY="509.0" prefHeight="8.0" prefWidth="1020.0" />
-      <Button fx:id="deleteButton" layoutX="954.0" layoutY="521.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0" />
+      <Button fx:id="deleteButton" layoutX="954.0" layoutY="521.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onMouseClicked="#deleteAction" prefHeight="32.0" prefWidth="32.0" />
       <Button fx:id="relatedImg" layoutX="21.0" layoutY="515.0" maxHeight="45.0" maxWidth="45.0" minHeight="45.0" minWidth="45.0" mnemonicParsing="false" onMouseClicked="#relatedFunction" prefHeight="45.0" prefWidth="45.0" />
       <Label fx:id="relatedLabel" layoutX="77.0" layoutY="523.0" onMouseClicked="#relatedFunction" prefHeight="27.0" prefWidth="111.0" text="Related words" />
       <HBox fx:id="relatedPane" layoutX="219.0" layoutY="529.0" prefHeight="20.0" prefWidth="624.0">
@@ -58,13 +58,9 @@
                   <Font name="System Bold" size="13.0" />
                </font></Label>
             <Region prefHeight="18.0" prefWidth="19.0" />
-            <CheckBox fx:id="Suffix_checkBox" mnemonicParsing="false" text="CheckBox" />
+            <CheckBox fx:id="Suffix_checkBox" mnemonicParsing="false" onMouseClicked="#suffixCheckBox" text="CheckBox" />
          </children>
       </HBox>
-      <Button fx:id="addbutton" layoutX="907.0" layoutY="522.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="31.0" text="Button" />
-      <Separator fx:id="sep_1" layoutX="219.0" layoutY="555.0" prefHeight="3.0" prefWidth="552.0" />
-      <Separator fx:id="sep_2" layoutX="611.0" layoutY="555.0" prefHeight="3.0" prefWidth="163.0" />
-      <Separator fx:id="sep_3" layoutX="372.0" layoutY="555.0" prefHeight="3.0" prefWidth="111.0" />
-      <Separator fx:id="sep_4" layoutX="483.0" layoutY="555.0" prefHeight="3.0" prefWidth="98.0" />
+      <Button fx:id="addbutton" layoutX="907.0" layoutY="522.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" onMouseClicked="#handleNewData" prefHeight="31.0" prefWidth="31.0" text="Button" />
    </children>
 </AnchorPane>
