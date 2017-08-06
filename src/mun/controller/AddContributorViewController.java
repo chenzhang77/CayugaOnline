@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
 import mun.util.AnimationGenerator;
 import mun.util.ImageEditor;
 
-public class ContributorViewController implements Initializable{
+public class AddContributorViewController implements Initializable{
 
     @FXML
     private TextField txField;
@@ -37,7 +37,7 @@ public class ContributorViewController implements Initializable{
     private final ImageEditor imageEditor;
     private final AnimationGenerator animationGenerator;
     
-    public ContributorViewController() {
+    public AddContributorViewController() {
         imageEditor = new ImageEditor();
         animationGenerator = new AnimationGenerator();
     }

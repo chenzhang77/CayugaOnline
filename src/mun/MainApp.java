@@ -25,7 +25,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import mun.controller.LoginViewController;
-import mun.controller.DictionaryController;
 import mun.controller.NewDataController;
 import mun.controller.UpdateDataController;
 import mun.model.Dictionary;

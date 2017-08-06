@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="575.0" maxWidth="855.0" minHeight="575.0" minWidth="855.0" prefHeight="575.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="100.0" layoutY="100.0" maxHeight="420.0" maxWidth="150.0" minHeight="420.0" minWidth="150.0" prefHeight="420.0" prefWidth="150.0">
+         <children>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                        <Label maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0" text="cayuga-dictionary.txt" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="270.0" layoutY="100.0" maxHeight="420.0" maxWidth="150.0" minHeight="420.0" minWidth="150.0" prefHeight="420.0" prefWidth="150.0">
+         <children>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                        <Button maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Import" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="440.0" layoutY="100.0" maxHeight="420.0" maxWidth="150.0" minHeight="420.0" minWidth="150.0" prefHeight="420.0" prefWidth="150.0">
+         <children>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                        <Button maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Export" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox layoutX="610.0" layoutY="100.0" maxHeight="420.0" maxWidth="150.0" minHeight="420.0" minWidth="150.0" prefHeight="420.0" prefWidth="150.0">
+         <children>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                        <Button maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Overwrite" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                  <Region maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" />
+                  <HBox maxHeight="40.0" maxWidth="150.0" minHeight="40.0" minWidth="150.0" prefHeight="40.0" prefWidth="150.0">
+                     <children>
+                        <Region prefHeight="40.0" prefWidth="37.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <Separator layoutX="39.0" layoutY="240.0" prefHeight="5.0" prefWidth="732.0" />
+      <Separator layoutX="39.0" layoutY="310.0" prefHeight="5.0" prefWidth="732.0" />
+   </children>
+</AnchorPane>

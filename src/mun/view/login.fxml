@@ -39,7 +39,7 @@
                      </cursor>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label fx:id="registerLabel" onMouseEntered="#mouseMovedRegisterLabel" onMouseExited="#mouseExitedRegisterLabel" text="Guest" textFill="#155dda">
+                  <Label fx:id="registerLabel" onMouseClicked="#guest" onMouseEntered="#mouseMovedRegisterLabel" onMouseExited="#mouseExitedRegisterLabel" text="Guest" textFill="#155dda">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>

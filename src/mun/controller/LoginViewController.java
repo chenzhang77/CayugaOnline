@@ -114,8 +114,8 @@ public class LoginViewController implements Initializable {
     }
 
     private boolean loginSuccessful() {
-    	return true;
-        //return txField.getText().equals("admin") && pwField.getText().equals("admin");
+    	//return true;
+        return txField.getText().equals("admin") || txField.getText().equals("contributor");
     }
 
     private void setOnKeyPressed() {
@@ -127,40 +127,89 @@ public class LoginViewController implements Initializable {
         });
     }
 
+    @FXML
+    private void guest() {
+    	animateWhenGuestLogin();
+    }
+    
     private void animateWhenLoginSuccess() {
-        try {
-//            Parent main = FXMLLoader.load(getClass().getResource("sample.fxml"));view/LayoutView.fxml
-          FXMLLoader loader = new FXMLLoader();
-          loader.setLocation(MainApp.class.getResource("view/AdminLayout.fxml"));
-          BorderPane mainView = (BorderPane) loader.load();
-          AdminViewController controller = loader.getController();
-          controller.setMainApp(mainApp);
-              
-      	FXMLLoader loader2 = new FXMLLoader();
-        loader2.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
-        AnchorPane dictionary = (AnchorPane) loader2.load();
-
-        DictionaryController controller2 = loader2.getController();
-        controller2.setMainApp(mainApp);
+    	
+    	if(txField.getText().equals("admin")) {
+    		try {
+    			FXMLLoader loader = new FXMLLoader();
+    			loader.setLocation(MainApp.class.getResource("view/AdminLayout.fxml"));
+    			BorderPane mainView = (BorderPane) loader.load();
+    			AdminViewController controller = loader.getController();
+    			controller.setMainApp(mainApp);              
+    	      	FXMLLoader loader2 = new FXMLLoader();
+    	        loader2.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
+    	        AnchorPane dictionary = (AnchorPane) loader2.load();
+    	        DictionaryController controller2 = loader2.getController();
+    	        controller2.setMainApp(mainApp);       
+    	        controller.stackPane.getChildren().remove(0, controller.stackPane.getChildren().size());
+    	        controller.stackPane.getChildren().add(dictionary);          
+    			animationGenerator.applyFadeAnimationOn(root, 1000, 1.0f, 0f, event -> {
+    				mainView.setOpacity(0f);              	
+    			    rootLayout.setCenter(mainView);
+    			    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
+    			});
+    	        }catch(IOException ex) {
+    	            ex.printStackTrace();
+    	        }
+    	}else {
+    		try {
+    			FXMLLoader loader = new FXMLLoader();
+    			loader.setLocation(MainApp.class.getResource("view/ContributorLayout.fxml"));
+    			BorderPane mainView = (BorderPane) loader.load();
+    			ContributorViewController controller = loader.getController();
+    			controller.setMainApp(mainApp);              
+    	      	FXMLLoader loader2 = new FXMLLoader();
+    	        loader2.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
+    	        AnchorPane dictionary = (AnchorPane) loader2.load();
+    	        DictionaryController controller2 = loader2.getController();
+    	        controller2.setMainApp(mainApp);       
+    	        controller.stackPane.getChildren().remove(0, controller.stackPane.getChildren().size());
+    	        controller.stackPane.getChildren().add(dictionary);          
+    			animationGenerator.applyFadeAnimationOn(root, 1000, 1.0f, 0f, event -> {
+    				mainView.setOpacity(0f);              	
+    			    rootLayout.setCenter(mainView);
+    			    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
+    			});
+    	        }catch(IOException ex) {
+    	            ex.printStackTrace();
+    	        }
+    	}
+    	
+    	
         
-        
-        controller.stackPane.getChildren().remove(0, controller.stackPane.getChildren().size());
-        controller.stackPane.getChildren().add(dictionary);
-          
-          
-		animationGenerator.applyFadeAnimationOn(root, 1000, 1.0f, 0f, event -> {
-			mainView.setOpacity(0f);              	
-		    rootLayout.setCenter(mainView);
-		    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
-		});
-        }catch(IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
+    private void animateWhenGuestLogin() {
+        try {        	
+	    	FXMLLoader loader = new FXMLLoader();
+	    	loader.setLocation(MainApp.class.getResource("view/GuestLayout.fxml"));
+	    	BorderPane mainView = (BorderPane) loader.load();
+	    	GuestViewController controller = loader.getController();
+	    	controller.setMainApp(mainApp);             
+			FXMLLoader loader2 = new FXMLLoader();
+			loader2.setLocation(MainApp.class.getResource("view/GuestDictionary.fxml"));
+			AnchorPane dictionary = (AnchorPane) loader2.load();		
+			DictionaryController controller2 = loader2.getController();
+			controller2.setMainApp(mainApp);				
+			controller.stackPane.getChildren().remove(0, controller.stackPane.getChildren().size());
+			controller.stackPane.getChildren().add(dictionary);		  		  
+			animationGenerator.applyFadeAnimationOn(root, 1000, 1.0f, 0f, event -> {
+				mainView.setOpacity(0f);              	
+			    rootLayout.setCenter(mainView);
+			    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
+			});
+			}catch(IOException ex) {
+			    ex.printStackTrace();
+			}
+    }
+    
     private void animateWhenBadLogin() {
-        try {
-        	
+        try {        	
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/login.fxml"));
             GridPane login = (GridPane) loader.load();

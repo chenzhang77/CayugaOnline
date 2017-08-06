@@ -29,14 +29,14 @@ import javafx.scene.layout.VBox;
 import mun.MainApp;
 import mun.util.*;
 
-public class AdminViewController implements Initializable{
+public class GuestViewController implements Initializable{
 
     @FXML
     public StackPane stackPane;
     @FXML
     private BorderPane borderPane;
     @FXML
-    protected ImageView dictionaryImage, menuButton, syn, contributor, file, about, logOut ;
+    protected ImageView dictionaryImage, menuButton, syn, about, logOut ;
     @FXML
     private Label title;
     @FXML
@@ -63,7 +63,7 @@ public class AdminViewController implements Initializable{
     private final AnimationGenerator animationGenerator;
     private final ImageEditor imageEditor;
     
-    public AdminViewController() {
+    public GuestViewController() {
         animationGenerator = new AnimationGenerator();
         imageEditor = new ImageEditor();
     }
@@ -97,8 +97,6 @@ public class AdminViewController implements Initializable{
         imageEditor.setImageOn(syn, "/buttons/Globe.png", 35, 18);
         imageEditor.setImageOn(dictionaryImage, "/buttons/book.jpg", 150, 150);
         imageEditor.setRectangularClipOf(dictionaryImage, 15, 15);
-        imageEditor.setImageOn(contributor, "/buttons/Settings-50.png", 35, 18);
-        imageEditor.setImageOn(file, "/buttons/Share-50.png", 35, 18);
         imageEditor.setImageOn(about, "/buttons/Info-50.png", 35, 18);
         imageEditor.setImageOn(logOut, "/buttons/Shutdown-52.png", 35, 18);
     }
@@ -169,43 +167,8 @@ public class AdminViewController implements Initializable{
         }
     }
     
-    @FXML
-    private void contributorSelected() {
-        try {
-        	closeAnimation();
-        	title.setText("Manage Contributor");
-        	FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/contributor.fxml"));
-            AnchorPane about = (AnchorPane) loader.load();
-                   	 
-            stackPane.getChildren().remove(0, stackPane.getChildren().size());
-            stackPane.getChildren().add(about);
-            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    
-    @FXML
-    private void fileSelected() {
-        try {
-        	closeAnimation();
-        	title.setText("File Update");
-        	FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/file.fxml"));
-            AnchorPane about = (AnchorPane) loader.load();
-              
-        	 
-            stackPane.getChildren().remove(0, stackPane.getChildren().size());
-            stackPane.getChildren().add(about);
-            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    
+
+      
     @FXML
     private void aboutSelected() {
         try {
