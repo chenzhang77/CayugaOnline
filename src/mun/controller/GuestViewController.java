@@ -150,7 +150,7 @@ public class GuestViewController implements Initializable{
         	closeAnimation();
         	title.setText("Cayuga Dictionary");
         	FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/GuestDictionary.fxml"));
             AnchorPane dictionary = (AnchorPane) loader.load();
  
             DictionaryController controller = loader.getController();
