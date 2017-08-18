@@ -77,7 +77,6 @@ public class MainApp extends Application {
       // Give the controller access to the main app.
       LoginViewController controller = loader.getController();
       controller.setMainApp(this);
-
   } catch (IOException e) {
       e.printStackTrace();
   }
