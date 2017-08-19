@@ -29,7 +29,7 @@
                      </VBox.margin>
                   </Label>
                   <Region HBox.hgrow="ALWAYS" />
-                  <Label fx:id="registerLabel" onMouseEntered="#mouseMovedRegisterLabel" onMouseExited="#mouseExitedRegisterLabel" text="Reset" textFill="#155dda">
+                  <Label fx:id="registerLabel" onMouseClicked="#reset" onMouseEntered="#mouseMovedRegisterLabel" onMouseExited="#mouseExitedRegisterLabel" text="Reset" textFill="#155dda">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

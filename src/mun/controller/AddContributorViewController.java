@@ -12,16 +12,26 @@
 */
 package mun.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import mun.MainApp;
 import mun.util.AnimationGenerator;
 import mun.util.ImageEditor;
+import mun.util.NetworkConnection;
 
 public class AddContributorViewController implements Initializable{
 
@@ -36,10 +46,17 @@ public class AddContributorViewController implements Initializable{
 	
     private final ImageEditor imageEditor;
     private final AnimationGenerator animationGenerator;
+    private MainApp mainApp;  	
+    private BorderPane rootLayout;
     
     public AddContributorViewController() {
         imageEditor = new ImageEditor();
         animationGenerator = new AnimationGenerator();
+    }
+    
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        this.rootLayout = mainApp.getBorderPane();
     }
     
 	@Override
@@ -72,5 +89,24 @@ public class AddContributorViewController implements Initializable{
     @FXML
     private void login() {
 
+//		NetworkConnection networkConnectionObj = new NetworkConnection();   	
+//		if(!networkConnectionObj.networkConnection) {
+//			System.out.println("animateWhenBadLogin");
+//			animateWhenBadLogin();
+//			return;
+//		} 
+		animateWhenBadLogin();
     }
+    
+    @FXML
+    private void reset() { 	
+    	txField.setText(null);
+    	pwField.setText(null);
+    	pwField1.setText(null);
+    }
+    
+    private void animateWhenBadLogin() {
+    	mainApp.showNewContributorFeedback();	 
+    }
+    
 }

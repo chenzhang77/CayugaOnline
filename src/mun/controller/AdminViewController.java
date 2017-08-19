@@ -176,10 +176,14 @@ public class AdminViewController implements Initializable{
         	title.setText("Manage Contributor");
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/contributor.fxml"));
-            AnchorPane about = (AnchorPane) loader.load();
-                   	 
+            AnchorPane contributor = (AnchorPane) loader.load();
+            
+            
+            AddContributorViewController controller = loader.getController();
+            controller.setMainApp(this.mainApp);
+            
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
-            stackPane.getChildren().add(about);
+            stackPane.getChildren().add(contributor);
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
         } catch (IOException e) {
             e.printStackTrace();

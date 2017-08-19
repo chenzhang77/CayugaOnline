@@ -112,23 +112,19 @@ public class LoginViewController implements Initializable {
         animationGenerator.applyFadeAnimationOn(registerLabel, 500, 0.7f, 1.0f, null);
     }
 
-//    @FXML
-//    private void login() {
-////        if(loginSuccessful())
-////            animateWhenLoginSuccess();
-////        else
-////            animateWhenBadLogin();
-//    		loginSuccessful();
-//    }
-    
     @FXML
     private void login() {
-    		
+    	
+    		NetworkConnection networkConnectionObj = new NetworkConnection();   	
+    		if(!networkConnectionObj.networkConnection) {
+    			System.out.println("animateWhenBadLogin");
+    			animateWhenBadLogin();
+    			return;
+    		}    	
     		User userObj = new User();
     		userObj.setUserName(txField.getText());
     		userObj.setPassword(pwField.getText());
-    		userObj = DBConnection.getUserRole(userObj);
-    		
+    		userObj = DBConnection.getUserRole(userObj);   		
     		if(userObj.getRole() ==2) {
     			try {
         			FXMLLoader loader = new FXMLLoader();
@@ -148,11 +144,10 @@ public class LoginViewController implements Initializable {
         			    rootLayout.setCenter(mainView);
         			    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
         			});
-        	        }catch(IOException ex) {
+        		}catch(IOException ex) {
         	            ex.printStackTrace();
-        	        }
-    			
-    		}else if (userObj.getRole() ==1) {
+        	    }    			
+    		} else if (userObj.getRole() ==1) {
     			try {
         			FXMLLoader loader = new FXMLLoader();
         			loader.setLocation(MainApp.class.getResource("view/AdminLayout.fxml"));
@@ -171,21 +166,19 @@ public class LoginViewController implements Initializable {
         			    rootLayout.setCenter(mainView);
         			    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
         			});
-        	        }catch(IOException ex) {
+        	     }catch(IOException ex) {
         	            ex.printStackTrace();
-        	        }
-    		}else {
+        	     }
+    		} else {
     			try {        	
     	        	FXMLLoader loader = new FXMLLoader();
     	            loader.setLocation(MainApp.class.getResource("view/login.fxml"));
     	            GridPane login = (GridPane) loader.load();
     	            LoginViewController controller = loader.getController();
-    	            controller.setMainApp(mainApp);
-    	            
+    	            controller.setMainApp(mainApp);    	            
     	            StackPane temp = new StackPane();
     	            temp.setMaxSize(100, 100);
-    	            temp.getChildren().add(new ImageView(new Image("buttons/memeber.jpg")));
-    	         
+    	            temp.getChildren().add(new ImageView(new Image("buttons/memeber.jpg")));    	         
     	            animationGenerator.applyFadeAnimationOn(login, 1000, 1.0f, 0f, event -> {
     	                temp.setOpacity(0f);
     	                rootLayout.setCenter(temp);
@@ -193,9 +186,8 @@ public class LoginViewController implements Initializable {
     	                	login.setOpacity(0f);              	
     	                    rootLayout.setCenter(login);
     	                    animationGenerator.applyFadeAnimationOn(login, 1000, 0f, 1.0f, null);
+    	                });    	                    
     	            });
-    	                    
-    	        });
     	        }catch (IOException ex) {
     	            ex.printStackTrace();
     	        }
@@ -286,9 +278,9 @@ public class LoginViewController implements Initializable {
 			    rootLayout.setCenter(mainView);
 			    animationGenerator.applyFadeAnimationOn(mainView, 1000, 0f, 1.0f, null);
 			});
-			}catch(IOException ex) {
+		}catch(IOException ex) {
 			    ex.printStackTrace();
-			}
+		}
     }
     
     private void animateWhenBadLogin() {
@@ -298,20 +290,17 @@ public class LoginViewController implements Initializable {
             GridPane login = (GridPane) loader.load();
             LoginViewController controller = loader.getController();
             controller.setMainApp(mainApp);
-            
             StackPane temp = new StackPane();
             temp.setMaxSize(100, 100);
-            temp.getChildren().add(new ImageView(new Image("buttons/memeber.jpg")));
-         
+            temp.getChildren().add(new ImageView(new Image("buttons/noInternet.jpeg")));        
             animationGenerator.applyFadeAnimationOn(login, 1000, 1.0f, 0f, event -> {
                 temp.setOpacity(0f);
                 rootLayout.setCenter(temp);
-                animationGenerator.applyFadeAnimationOn(temp, 1000, 0f, 1.0f, event1 -> {                	
+                animationGenerator.applyFadeAnimationOn(temp, 3000, 0f, 1.0f, event1 -> {                	
                 	login.setOpacity(0f);              	
                     rootLayout.setCenter(login);
                     animationGenerator.applyFadeAnimationOn(login, 1000, 0f, 1.0f, null);
-            });
-                    
+            });                    
         });
         }catch (IOException ex) {
             ex.printStackTrace();
