@@ -206,7 +206,7 @@ public class AdminViewController implements Initializable{
             
             AddContributorViewController controller = loader.getController();
             controller.setMainApp(this.mainApp);
-            
+            controller.setStackPane(stackPane);
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
             stackPane.getChildren().add(contributor);
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
