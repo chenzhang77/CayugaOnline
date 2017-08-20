@@ -48,6 +48,7 @@ public class AddContributorViewController implements Initializable{
     private final AnimationGenerator animationGenerator;
     private MainApp mainApp;  	
     private BorderPane rootLayout;
+    public StackPane stackPane;
     
     public AddContributorViewController() {
         imageEditor = new ImageEditor();
@@ -57,6 +58,10 @@ public class AddContributorViewController implements Initializable{
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
         this.rootLayout = mainApp.getBorderPane();
+    }
+    
+    public void setStackPane(StackPane stackPane) {
+    		this.stackPane = stackPane;
     }
     
 	@Override
@@ -103,6 +108,27 @@ public class AddContributorViewController implements Initializable{
     	txField.setText(null);
     	pwField.setText(null);
     	pwField1.setText(null);
+    }
+    
+    @FXML
+    private void edit() {
+    	
+	    	try {
+	    		FXMLLoader loader = new FXMLLoader();
+	        loader.setLocation(MainApp.class.getResource("view/manageContributor.fxml"));
+	        AnchorPane contributor = (AnchorPane) loader.load();
+	        
+	        
+	        AddContributorViewController controller = loader.getController();
+	        controller.setMainApp(this.mainApp);
+	        
+	        stackPane.getChildren().remove(0, stackPane.getChildren().size());
+	        stackPane.getChildren().add(contributor);
+	        animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+    	
     }
     
     private void animateWhenBadLogin() {
