@@ -130,6 +130,31 @@ public class AdminViewController implements Initializable{
     }
     
     @FXML
+    private void sync() {
+        try {
+        	System.out.println("Sync");
+        	closeAnimation();
+        	title.setText("Sync");
+        	FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/Sync.fxml"));
+            AnchorPane dictionary = (AnchorPane) loader.load();
+// 
+//            SyncViewController controller = loader.getController();
+
+                 
+            stackPane.getChildren().remove(0, stackPane.getChildren().size());
+            stackPane.getChildren().add(dictionary);
+            
+            
+            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+
+    
+    @FXML
     private void logoutSelected() {
         try {
         	FXMLLoader loader = new FXMLLoader();
