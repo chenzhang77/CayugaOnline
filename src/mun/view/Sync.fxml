@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="575.0" maxWidth="855.0" minHeight="575.0" minWidth="855.0" prefHeight="575.0" prefWidth="855.0" stylesheets="@add.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.SyncViewController">
+   <children>
+      <Label fx:id="UpdateFiles" layoutX="101.0" layoutY="252.0" prefHeight="37.0" prefWidth="157.0" text="Update file:">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ProgressBar fx:id="progressBar" layoutX="315.0" layoutY="260.0" prefHeight="20.0" prefWidth="384.0" progress="0.0" />
+      <ProgressIndicator fx:id="progressIndicator" layoutX="491.0" layoutY="191.0" progress="0.0" />
+      <Label fx:id="statusLabel" layoutX="141.0" layoutY="298.0" prefHeight="17.0" prefWidth="192.0" text="file name" />
+   </children>
+</AnchorPane>
