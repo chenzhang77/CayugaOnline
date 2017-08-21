@@ -139,9 +139,9 @@ public class AdminViewController implements Initializable{
             loader.setLocation(MainApp.class.getResource("view/Sync.fxml"));
             AnchorPane dictionary = (AnchorPane) loader.load();
 // 
-//            SyncViewController controller = loader.getController();
-
-                 
+            SyncViewController controller = loader.getController();
+            controller.setMenuButton(menuButton);
+            menuButton.setDisable(true);
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
             stackPane.getChildren().add(dictionary);
             
@@ -178,16 +178,11 @@ public class AdminViewController implements Initializable{
         	title.setText("Cayuga Dictionary");
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
-            AnchorPane dictionary = (AnchorPane) loader.load();
- 
+            AnchorPane dictionary = (AnchorPane) loader.load(); 
             DictionaryController controller = loader.getController();
-            controller.setMainApp(mainApp);
-            
-            
+            controller.setMainApp(mainApp);                       
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
-            stackPane.getChildren().add(dictionary);
-            
-            
+            stackPane.getChildren().add(dictionary);           
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
         } catch (IOException e) {
             e.printStackTrace();
