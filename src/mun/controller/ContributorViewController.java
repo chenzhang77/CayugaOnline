@@ -121,6 +121,30 @@ public class ContributorViewController implements Initializable{
     }
     
     @FXML
+    private void sync() {
+        try {
+        	System.out.println("Sync");
+        	closeAnimation();
+        	title.setText("Sync");
+        	FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/SyncDownload.fxml"));
+            AnchorPane dictionary = (AnchorPane) loader.load();
+// 
+            SyncDownloadViewController controller = loader.getController();
+            controller.setMenuButton(menuButton);
+            menuButton.setDisable(true);
+            stackPane.getChildren().remove(0, stackPane.getChildren().size());
+            stackPane.getChildren().add(dictionary);
+            
+            
+            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    @FXML
     private void setOnMenuClick() { 	
         if(isOpened)
             closeAnimation();

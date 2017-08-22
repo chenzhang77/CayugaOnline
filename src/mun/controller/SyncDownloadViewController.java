@@ -24,7 +24,7 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
 import mun.util.*;
 
-public class SyncViewController implements Initializable{
+public class SyncDownloadViewController implements Initializable{
 
 	@FXML
 	ProgressBar progressBar = new ProgressBar(0);
@@ -32,14 +32,13 @@ public class SyncViewController implements Initializable{
 	ProgressIndicator progressIndicator = new ProgressIndicator(0);
 	@FXML
 	Label statusLabel = new Label();
-	private UploadTask uploadTask;
+	private DownloadTask downloadTask;
 	
 	private ImageView menuButton;
 	
 	
 	public void setMenuButton(ImageView menuButton) {
 		this.menuButton = menuButton;
-		System.out.println("Coming");
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -48,26 +47,26 @@ public class SyncViewController implements Initializable{
 		  if(menuButton == null) System.out.println("Empty");
           progressBar.setProgress(0);
           progressIndicator.setProgress(0);
-          uploadTask = new UploadTask();
+          downloadTask = new DownloadTask();
           progressBar.progressProperty().unbind();
-          progressBar.progressProperty().bind(uploadTask.progressProperty());
+          progressBar.progressProperty().bind(downloadTask.progressProperty());
           progressIndicator.progressProperty().unbind();
-          progressIndicator.progressProperty().bind(uploadTask.progressProperty());
+          progressIndicator.progressProperty().bind(downloadTask.progressProperty());
           statusLabel.textProperty().unbind();
-          statusLabel.textProperty().bind(uploadTask.messageProperty());
-          uploadTask.addEventHandler(WorkerStateEvent.WORKER_STATE_SUCCEEDED, //
+          statusLabel.textProperty().bind(downloadTask.messageProperty());
+          downloadTask.addEventHandler(WorkerStateEvent.WORKER_STATE_SUCCEEDED, //
                   new EventHandler<WorkerStateEvent>() {
 
                       @Override
                       public void handle(WorkerStateEvent t) {
                           //List<File> copied = copyTask.getValue();
                           statusLabel.textProperty().unbind();
-                          statusLabel.setText("Upload Successed");
+                          statusLabel.setText("Download Successed");
                           menuButton.setDisable(false);
   
                       }
                   });
           // Start the Task.
-          new Thread(uploadTask).start();
+          new Thread(downloadTask).start();
       }
 }

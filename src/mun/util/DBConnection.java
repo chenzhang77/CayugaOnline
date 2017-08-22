@@ -12,13 +12,15 @@
 */
 package mun.util;
 
+import java.util.List;
+
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
 public class DBConnection {
 
 	//static Sql2o sql2o = new Sql2o("jdbc:mysql://localhost:3306/cayugaOnline?autoReconnect=false&useSSL=false", "root", "123");
-	static Sql2o sql2o = new Sql2o("jdbc:mysql://mysql3000.mochahost.com:3306/cjdyck_cayugaOnline?autoReconnect=false&useSSL=false", "cjdyck_chen", "chen123");
+	static Sql2o sql2o = new Sql2o("jdbc:mysql://mysql3000.mochahost.com:3306/cjdyck_cayugaOnline?autoReconnect=false&useSSL=false&autocommit=false", "cjdyck_chen", "chen123");
 	public static User getUserRole(User userObj){
 
         String sql = "SELECT role FROM User where name='"+userObj.getUserName()+"' and password='"+userObj.getPassword()+"'";
@@ -28,6 +30,42 @@ public class DBConnection {
         		userObj.setRole(con.createQuery(sql).executeScalar(Integer.class));
         	}
         	return userObj;
+        }
+    }
+	
+	public static boolean updateUserRole(User previousUserObj, User userObj){
+
+        String updateSql = "Update User set name'="+userObj.getUserName()+"'and password='"+userObj.getPassword()+"' where name='"+previousUserObj.getUserName()+"' and password='"+previousUserObj.getPassword()+"'";
+        System.out.println(updateSql);
+        try (Connection con = sql2o.open()) {
+            con.createQuery(updateSql).executeUpdate();
+            return true;
+        }catch(Exception e) {
+        	return false;
+        }
+    }
+	
+	public static boolean insertUserRole(User userObj){
+
+        String insertSql = "Insert into User (name,password) values ('"+userObj.getUserName()+"', '"+userObj.getPassword()+"')";
+        System.out.println(insertSql);
+        try (Connection con = sql2o.open()) {
+            con.createQuery(insertSql)
+        	    .executeUpdate();
+            return true;
+        }catch(Exception e) {
+        	return false;
+        }
+    }
+	
+	public static List<User> userRoleList(User userObj){
+
+        String sql = "SELECT role FROM User";
+        System.out.println(sql);
+        try(Connection con = sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(User.class);
+        }catch(Exception e) {
+        	return null;
         }
     }
 	

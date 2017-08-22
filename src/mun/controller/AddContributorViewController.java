@@ -30,8 +30,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import mun.MainApp;
 import mun.util.AnimationGenerator;
+import mun.util.DBConnection;
 import mun.util.ImageEditor;
 import mun.util.NetworkConnection;
+import mun.util.User;
 
 public class AddContributorViewController implements Initializable{
 
@@ -99,8 +101,18 @@ public class AddContributorViewController implements Initializable{
 //			System.out.println("animateWhenBadLogin");
 //			animateWhenBadLogin();
 //			return;
-//		} 
-		animateWhenBadLogin();
+//		}
+    	
+    	if(pwField.getText().equals(pwField1.getText())) {
+    		User userObj = new User();
+    		userObj.setUserName(txField.getText());
+    		userObj.setPassword(pwField.getText());
+    		DBConnection.insertUserRole(userObj);
+    	} else {
+    		animateWhenBadLogin();
+    	}
+    	
+		
     }
     
     @FXML

@@ -1,3 +1,15 @@
+/**
+* The Cayuga Dictionary project is to keep the language vibrant and alive 
+* through immersion courses for adults and language daycare for children.
+* 
+* The project is Led by Dr. Carrie Dyck
+* Faculty of Humanities and Social Sciences
+* Memorial University of Newfoundland
+*
+* @author  Chen Zhang
+* @version online 2.0
+* @since   2016-12-01 
+*/
 package mun.util;
 
 import java.io.File;
@@ -13,8 +25,7 @@ import org.apache.commons.net.ftp.FTPClient;
 
 import javafx.concurrent.Task;
  
-// Copy all file in C:/Windows
-public class CopyTask extends Task<List<File>> {
+public class UploadTask extends Task<List<File>> {
  
     @Override
     protected List<File> call() throws Exception {
@@ -78,55 +89,5 @@ public class CopyTask extends Task<List<File>> {
             }
         }
     }
-    
-//    public void upload() {
-//        String server = "www.cayugadictionary.ca";
-//        int port = 21;
-//        String user = "cjdyck";
-//        String pass = "thog3pi7";
-// 
-//        FTPClient ftpClient = new FTPClient();
-//        try {
-// 
-//            ftpClient.connect(server, port);
-//            ftpClient.login(user, pass);
-//            ftpClient.enterLocalPassiveMode();
-//            ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-// 
-//            File dictionaryFile = new File("/Users/cz5670/Desktop/words_without_affixes.txt");
-//            String dictionaryFileRemoteFile = "Report.doc";
-//            InputStream inputStream = new FileInputStream(dictionaryFile);
-// 
-//            System.out.println("Start uploading second file");
-//            OutputStream outputStream = ftpClient.storeFileStream(dictionaryFileRemoteFile);
-//            byte[] bytesIn = new byte[4096];
-//            int read = 0;
-// 
-//            while ((read = inputStream.read(bytesIn)) != -1) {
-//            	System.out.println("read = " + read);
-//                outputStream.write(bytesIn, 0, read);
-//            }
-//            inputStream.close();
-//            outputStream.close();
-// 
-//            boolean completed = ftpClient.completePendingCommand();
-//            if (completed) {
-//                System.out.println("The second file is uploaded successfully.");
-//            }
-// 
-//        } catch (IOException ex) {
-//            System.out.println("Error: " + ex.getMessage());
-//            ex.printStackTrace();
-//        } finally {
-//            try {
-//                if (ftpClient.isConnected()) {
-//                    ftpClient.logout();
-//                    ftpClient.disconnect();
-//                }
-//            } catch (IOException ex) {
-//                ex.printStackTrace();
-//            }
-//        }
-//    }
  
 }
