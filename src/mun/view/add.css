@@ -12,6 +12,10 @@
 	-fx-background-color: #c1dce0;
 }
 
+.backcolor{
+	-fx-background-color: white;
+}
+
 #leftPane {
 	-fx-background-color: white;/*#dabe90; #ea6c00*/
 }

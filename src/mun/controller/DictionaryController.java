@@ -175,8 +175,8 @@ public class DictionaryController {
 		        }
     	});
 
-     	lastColumn.setCellValueFactory(cellData -> cellData.getValue().CayugaColProperty());
-     	lastColumn.setCellFactory(new Callback<TableColumn<Dictionary, String>, TableCell<Dictionary, String>>() {
+    lastColumn.setCellValueFactory(cellData -> cellData.getValue().CayugaColProperty());
+    lastColumn.setCellFactory(new Callback<TableColumn<Dictionary, String>, TableCell<Dictionary, String>>() {
 			@Override
 		     public TableCell<Dictionary, String> call(
 		                TableColumn<Dictionary, String> param) {
@@ -223,19 +223,19 @@ public class DictionaryController {
     	});
 
     	autoTF.setMinWidth(457);
-	  	autoTF.setOnAutoCompleted(new EventHandler(){
-				@Override
-				public void handle(Event event) {
-					// TODO Auto-generated method stub
-					firstItem = aa.get(0);
-					if(inputText.getText().equalsIgnoreCase(firstItem)){
-						inputText.setText(inputTextString);
-						firstItem = "";
-						inputTextString = "";
-						onEnter(null);
-					}
-				}		
-	    	});
+  	autoTF.setOnAutoCompleted(new EventHandler(){
+			@Override
+			public void handle(Event event) {
+				// TODO Auto-generated method stub
+				firstItem = aa.get(0);
+				if(inputText.getText().equalsIgnoreCase(firstItem)){
+					inputText.setText(inputTextString);
+					firstItem = "";
+					inputTextString = "";
+					onEnter(null);
+				}
+			}		
+    	});
 
       dictionaryTable.setRowFactory( tv -> {
       TableRow<Dictionary> row = new TableRow<>();
@@ -253,7 +253,7 @@ public class DictionaryController {
     private void initialButtons() {
     	
     	final ToggleGroup group = new ToggleGroup();
-      	englishBut.setToggleGroup(group);
+    englishBut.setToggleGroup(group);
     	englishBut.setSelected(true);
     	cayugaBut.setToggleGroup(group);
     	textBut_1.setVisible(false);

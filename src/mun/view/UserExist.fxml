@@ -4,23 +4,27 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="200.0" maxWidth="300.0" minHeight="200.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" styleClass="pane" stylesheets="@add.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.NewDataController">
+<AnchorPane maxHeight="202.0" maxWidth="300.0" minHeight="164.0" minWidth="300.0" prefHeight="164.0" prefWidth="300.0" styleClass="backcolor" stylesheets="@add.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.AddContributorFeedback">
    <children>
-      <ImageView fitHeight="53.0" fitWidth="53.0" layoutX="239.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <Pane layoutY="117.0" prefHeight="47.0" prefWidth="300.0" styleClass="pane">
+         <children>
+            <Button layoutX="117.0" layoutY="11.0" mnemonicParsing="false" onMouseClicked="#handleCancel" text="OK" />
+         </children></Pane>
+      <ImageView fitHeight="53.0" fitWidth="53.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@smallLogo.png" />
          </image>
       </ImageView>
-      <Button layoutX="117.0" layoutY="160.0" mnemonicParsing="false" text="OK" />
-      <Text layoutX="75.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Exist" wrappingWidth="149.21875">
+      <Text layoutX="101.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User Exist" wrappingWidth="98.21875">
          <font>
-            <Font size="30.0" />
+            <Font size="20.0" />
          </font>
       </Text>
-      <ImageView fitHeight="55.0" fitWidth="66.0" layoutX="117.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="55.0" fitWidth="66.0" layoutX="117.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@Delete-50.png" />
          </image>

@@ -13,6 +13,7 @@
 package mun.controller;
 
 import mun.MainApp;
+import mun.model.User;
 import mun.util.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

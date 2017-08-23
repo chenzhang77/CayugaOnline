@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 import mun.controller.LoginViewController;
 import mun.controller.NewDataController;
 import mun.controller.UpdateDataController;
+import mun.controller.AddContributorFeedback;
 import mun.model.Dictionary;
 
 public class MainApp extends Application {
@@ -176,26 +177,23 @@ public class MainApp extends Application {
         }
     }
     
-    public void showNewContributorFeedback() {
+    public void showUserExist() {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/UpdateData.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/UserExist.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Dictionary");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
             // Set the Dictionary into the controller.
-            UpdateDataController controller = loader.getController();
+            AddContributorFeedback controller = loader.getController();
             controller.setDialogStage(dialogStage);
-
-
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();
 
@@ -204,4 +202,83 @@ public class MainApp extends Application {
 
         }
     }
+    
+    public void showEmptyUsernamePassword() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/ConfirmNameAndPassword.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the Dictionary into the controller.
+            AddContributorFeedback controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+    
+    public void showConfirmPassword() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/ConfirmPassword.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the Dictionary into the controller.
+            AddContributorFeedback controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+    
+    public void showSuccess() {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/Success.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the Dictionary into the controller.
+            AddContributorFeedback controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+    
 }

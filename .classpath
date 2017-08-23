@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="lib/lucene-grouping-3.2.0.jar"/>
 	<classpathentry kind="lib" path="lib/sql2o-1.5.4.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.43-bin.jar"/>
+	<classpathentry kind="lib" path="lib/commons-net-3.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

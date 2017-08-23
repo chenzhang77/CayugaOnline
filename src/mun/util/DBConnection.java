@@ -17,6 +17,8 @@ import java.util.List;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import mun.model.User;
+
 public class DBConnection {
 
 	//static Sql2o sql2o = new Sql2o("jdbc:mysql://localhost:3306/cayugaOnline?autoReconnect=false&useSSL=false", "root", "123");
@@ -47,7 +49,9 @@ public class DBConnection {
 	
 	public static boolean insertUserRole(User userObj){
 
-        String insertSql = "Insert into User (name,password) values ('"+userObj.getUserName()+"', '"+userObj.getPassword()+"')";
+		User userObjInDB = getUserRole(userObj);
+		if(userObjInDB.getRole() != 0) return false;		
+        String insertSql = "Insert into User (name,password,role) values ('"+userObj.getUserName()+"', '"+userObj.getPassword()+"',1)";
         System.out.println(insertSql);
         try (Connection con = sql2o.open()) {
             con.createQuery(insertSql)

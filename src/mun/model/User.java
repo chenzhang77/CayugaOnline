@@ -10,10 +10,14 @@
 * @version online 2.0
 * @since   2016-12-01 
 */
-package mun.util;
+package mun.model;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 public class User {
 	
+	private StringProperty userNameCol;
 	private String userName;
 	private String password;
 	private int role = 0;
@@ -35,6 +39,19 @@ public class User {
 	}
 	public void setRole(int role) {
 		this.role = role;
+	}
+	
+	public void setUserNameCol(String username) {
+		this.userNameCol = new SimpleStringProperty(username);
+//		this.userNameCol.set(username);
+	}
+	
+	public String getUserNameCol() {
+		return userNameCol.get();
+	}
+	
+	public StringProperty userNameColProperty() {
+		return userNameCol;
 	}
 
 

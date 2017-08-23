@@ -54,7 +54,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="944.0" layoutY="21.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="944.0" layoutY="21.0" onMouseClicked="#edit" opacity="0.55" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@edit.png" />
          </image>

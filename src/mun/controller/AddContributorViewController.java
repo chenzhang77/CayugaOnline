@@ -29,11 +29,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import mun.MainApp;
+import mun.model.User;
 import mun.util.AnimationGenerator;
 import mun.util.DBConnection;
 import mun.util.ImageEditor;
 import mun.util.NetworkConnection;
-import mun.util.User;
 
 public class AddContributorViewController implements Initializable{
 
@@ -96,44 +96,37 @@ public class AddContributorViewController implements Initializable{
     @FXML
     private void login() {
 
-//		NetworkConnection networkConnectionObj = new NetworkConnection();   	
-//		if(!networkConnectionObj.networkConnection) {
-//			System.out.println("animateWhenBadLogin");
-//			animateWhenBadLogin();
-//			return;
-//		}
-    	
-    	if(pwField.getText().equals(pwField1.getText())) {
-    		User userObj = new User();
-    		userObj.setUserName(txField.getText());
-    		userObj.setPassword(pwField.getText());
-    		DBConnection.insertUserRole(userObj);
-    	} else {
-    		animateWhenBadLogin();
-    	}
-    	
-		
+	    	if(pwField.getText().equals("") || pwField1.getText().equals("") || txField.getText().equals("")) {
+	    		mainApp.showEmptyUsernamePassword();
+	    	}else if(pwField.getText().equals(pwField1.getText())) {
+	    		User userObj = new User();
+	    		userObj.setUserName(txField.getText());
+	    		userObj.setPassword(pwField.getText());
+	    		if(!DBConnection.insertUserRole(userObj)) {
+	    			mainApp.showUserExist();
+	    		} else {
+	    			mainApp.showSuccess();
+	    		}	    		
+	    	} else {
+	    		mainApp.showConfirmPassword();
+	    	}		
     }
     
     @FXML
     private void reset() { 	
-    	txField.setText(null);
-    	pwField.setText(null);
-    	pwField1.setText(null);
+    		txField.setText(null);
+    		pwField.setText(null);
+    		pwField1.setText(null);
     }
     
     @FXML
-    private void edit() {
-    	
+    private void edit() {  	
 	    	try {
 	    		FXMLLoader loader = new FXMLLoader();
 	        loader.setLocation(MainApp.class.getResource("view/manageContributor.fxml"));
-	        AnchorPane contributor = (AnchorPane) loader.load();
-	        
-	        
-	        AddContributorViewController controller = loader.getController();
-	        controller.setMainApp(this.mainApp);
-	        
+	        AnchorPane contributor = (AnchorPane) loader.load();	        
+	        ManageViewController controller = loader.getController();
+	        controller.setMainApp(this.mainApp);	        
 	        stackPane.getChildren().remove(0, stackPane.getChildren().size());
 	        stackPane.getChildren().add(contributor);
 	        animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
@@ -144,7 +137,7 @@ public class AddContributorViewController implements Initializable{
     }
     
     private void animateWhenBadLogin() {
-    	mainApp.showNewContributorFeedback();	 
+    	//mainApp.showNewContributorFeedback();	 
     }
     
 }
