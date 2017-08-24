@@ -78,8 +78,7 @@ public class DBConnection {
         String insertSql = "Delete From User where userName='"+userObj.getUserName()+"'";
         System.out.println(insertSql);
         try (Connection con = sql2o.open()) {
-            con.createQuery(insertSql)
-        	    .executeUpdate();
+            con.createQuery(insertSql).executeUpdate();
             return true;
         }catch(Exception e) {
         	return false;

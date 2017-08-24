@@ -12,6 +12,7 @@
 */
 package mun.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.concurrent.WorkerStateEvent;
@@ -22,15 +23,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
+import mun.MainApp;
 import mun.util.*;
 
 public class FileController implements Initializable{
 
+    private MainApp mainApp;  	
+    private BorderPane rootLayout;
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 	}
 	
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+        this.rootLayout = mainApp.getBorderPane();
+    }
 	@FXML
 	public void importWordInitial() {
 		
@@ -53,7 +64,20 @@ public class FileController implements Initializable{
 	}
 	@FXML
 	public void importDictionary() {
-		
+    	System.out.println("import");
+    	FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+                "TXT files (cayuga-english.txt)", "cayuga-english.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show save file dialog
+        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+//        if (file != null) {
+//            new ImportDictionary(file,dictionaryEnglishList,dictionaryCayugaList);
+//            initialArrayList();
+//            mainApp.getData().clear();
+//        	inputText.clear();
+//        }
 	}
 	
 	@FXML
@@ -78,7 +102,17 @@ public class FileController implements Initializable{
 	}
 	@FXML
 	public void exportDictionary() {
-		
+    	System.out.println("export");
+        FileChooser fileChooser = new FileChooser();  
+        
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*cayuga-english.txt)", "*cayuga-english.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("cayuga-english");
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
+        if(file != null){
+        	new ExportDictionary(file);    
+        }  
 	}
 	
 	@FXML

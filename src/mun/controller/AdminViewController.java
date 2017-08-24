@@ -219,7 +219,8 @@ public class AdminViewController implements Initializable{
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/file.fxml"));
             AnchorPane about = (AnchorPane) loader.load();
-              
+            FileController controller = loader.getController();
+            controller.setMainApp(this.mainApp);
         	 
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
             stackPane.getChildren().add(about);
