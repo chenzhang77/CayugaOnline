@@ -1007,34 +1007,34 @@ public class DictionaryController {
        	}
     }
     
-    public void exportDictionary() {
-    	System.out.println("export");
-        FileChooser fileChooser = new FileChooser();  
-        
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*cayuga-english.txt)", "*cayuga-english.txt");
-        fileChooser.getExtensionFilters().add(extFilter);
-        fileChooser.setInitialFileName("cayuga-english");
-        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
-        if(file != null){
-        	new ExportDictionary(file);    
-        }     
-    }
-    
-    public void importDictionary() {
-    	System.out.println("import");
-    	FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-                "TXT files (cayuga-english.txt)", "cayuga-english.txt");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        // Show save file dialog
-        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
-        if (file != null) {
-            new ImportDictionary(file,dictionaryEnglishList,dictionaryCayugaList);
-            initialArrayList();
-            mainApp.getData().clear();
-        	inputText.clear();
-        }
-    }
+//    public void exportDictionary() {
+//    	System.out.println("export");
+//        FileChooser fileChooser = new FileChooser();  
+//        
+//        //Set extension filter
+//        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*cayuga-english.txt)", "*cayuga-english.txt");
+//        fileChooser.getExtensionFilters().add(extFilter);
+//        fileChooser.setInitialFileName("cayuga-english");
+//        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
+//        if(file != null){
+//        	new ExportDictionary(file);    
+//        }     
+//    }
+//    
+//    public void importDictionary() {
+//    	System.out.println("import");
+//    	FileChooser fileChooser = new FileChooser();
+//        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
+//                "TXT files (cayuga-english.txt)", "cayuga-english.txt");
+//        fileChooser.getExtensionFilters().add(extFilter);
+//
+//        // Show save file dialog
+//        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+//        if (file != null) {
+//            new ImportDictionary(file,dictionaryEnglishList,dictionaryCayugaList);
+//            initialArrayList();
+//            mainApp.getData().clear();
+//        	inputText.clear();
+//        }
+//    }
 }

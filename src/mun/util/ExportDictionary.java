@@ -25,7 +25,7 @@ import java.nio.charset.StandardCharsets;
 
 public class ExportDictionary {
 
-	public ExportDictionary(File outputfile) {
+	public ExportDictionary(File outputfile,String fileName) {
 		
 		
 		try {
@@ -33,7 +33,7 @@ public class ExportDictionary {
 	          FileOutputStream fos = new FileOutputStream(outputfile,false);
 	          OutputStreamWriter bw = new OutputStreamWriter(fos, "UTF-16");
 	          
-	          String file = Constant.dictionaryPath;
+	          String file = fileName;
 	          FileInputStream fstream;
 	          try {
 	  			fstream = new FileInputStream(file);
