@@ -12,8 +12,16 @@
 */
 package mun.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.EventHandler;
@@ -31,16 +39,44 @@ import mun.util.*;
 public class FileController implements Initializable{
 
     private MainApp mainApp;  	
-    private BorderPane rootLayout;
-    
+	private ArrayList<String> dictionaryEnglishList = new ArrayList<>();
+	private ArrayList<String> dictionaryCayugaList = new ArrayList<>();	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		initialArrayList();
 	}
 	
+	
+    private void initialArrayList() {
+    	
+    	String file = Constant.dictionaryPath;
+		FileInputStream fstream;
+		dictionaryCayugaList.clear();
+		dictionaryEnglishList.clear();
+		try {
+			fstream = new FileInputStream(file);
+			Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+			BufferedReader br = new BufferedReader(chars);
+			String strLine;			
+			//Read File Line By Line
+			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
+				
+				String[] outstring = strLine.split("     ");
+				dictionaryCayugaList.add(outstring[0].replaceAll("\\p{C}", "").trim());
+				dictionaryEnglishList.add(outstring[1]);
+			}
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+    }
+    
     public void setMainApp(MainApp mainApp) {
         this.mainApp = mainApp;
-        this.rootLayout = mainApp.getBorderPane();
     }
 	@FXML
 	public void importWordInitial() {
@@ -72,12 +108,10 @@ public class FileController implements Initializable{
 
         // Show save file dialog
         File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
-//        if (file != null) {
-//            new ImportDictionary(file,dictionaryEnglishList,dictionaryCayugaList);
-//            initialArrayList();
-//            mainApp.getData().clear();
-//        	inputText.clear();
-//        }
+        if (file != null) {
+            new ImportDictionary(file,dictionaryEnglishList,dictionaryCayugaList);
+            mainApp.getData().clear();
+        }
 	}
 	
 	@FXML
@@ -89,7 +123,7 @@ public class FileController implements Initializable{
 		
 	}
 	@FXML
-	public void importWordMedia2l() {
+	public void exportWordMedial2() {
 		
 	}
 	@FXML

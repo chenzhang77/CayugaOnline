@@ -98,4 +98,8 @@ public class ImportDictionary {
 		
 	}
 	
+	public ImportDictionary(File inputfile) {
+		
+	}
+	
 }
