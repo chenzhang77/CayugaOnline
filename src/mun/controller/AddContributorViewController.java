@@ -38,10 +38,10 @@ import mun.util.NetworkConnection;
 public class AddContributorViewController implements Initializable{
 
     @FXML
-    private TextField txField;
+    public TextField txField;
 
     @FXML
-    private PasswordField pwField, pwField1;
+    public PasswordField pwField, pwField1;
     
     @FXML
     private Label loginLabel, registerLabel;
@@ -51,6 +51,7 @@ public class AddContributorViewController implements Initializable{
     private MainApp mainApp;  	
     private BorderPane rootLayout;
     public StackPane stackPane;
+    public User previousUserObj;
     
     public AddContributorViewController() {
         imageEditor = new ImageEditor();
@@ -113,6 +114,26 @@ public class AddContributorViewController implements Initializable{
     }
     
     @FXML
+    private void update() {
+
+	    	if(pwField.getText().equals("") || pwField1.getText().equals("") || txField.getText().equals("")) {
+	    		mainApp.showEmptyUsernamePassword();
+	    	}else if(pwField.getText().equals(pwField1.getText())) {
+	    		User userObj = new User();
+	    		userObj.setUserName(txField.getText());
+	    		userObj.setPassword(pwField.getText());
+	    		if(!DBConnection.updateUserRole(previousUserObj,userObj)) {
+	    			mainApp.showUserExist();
+	    		} else {
+	    			mainApp.showSuccess();
+	    		}	    		
+	    	} else {
+	    		mainApp.showConfirmPassword();
+	    	}		
+    }
+    
+    
+    @FXML
     private void reset() { 	
     		txField.setText(null);
     		pwField.setText(null);
@@ -126,7 +147,8 @@ public class AddContributorViewController implements Initializable{
 	        loader.setLocation(MainApp.class.getResource("view/manageContributor.fxml"));
 	        AnchorPane contributor = (AnchorPane) loader.load();	        
 	        ManageViewController controller = loader.getController();
-	        controller.setMainApp(this.mainApp);	        
+	        controller.setMainApp(this.mainApp);	      
+	        controller.setStackPane(stackPane);
 	        stackPane.getChildren().remove(0, stackPane.getChildren().size());
 	        stackPane.getChildren().add(contributor);
 	        animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);

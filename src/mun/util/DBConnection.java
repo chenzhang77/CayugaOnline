@@ -25,7 +25,7 @@ public class DBConnection {
 	static Sql2o sql2o = new Sql2o("jdbc:mysql://mysql3000.mochahost.com:3306/cjdyck_cayugaOnline?autoReconnect=false&useSSL=false&autocommit=false", "cjdyck_chen", "chen123");
 	public static User getUserRole(User userObj){
 
-        String sql = "SELECT role FROM User where name='"+userObj.getUserName()+"' and password='"+userObj.getPassword()+"'";
+        String sql = "SELECT role FROM User where userName='"+userObj.getUserName()+"' and password='"+userObj.getPassword()+"'";
         System.out.println(sql);
         try (Connection con = sql2o.open()) {
         	if(con.createQuery(sql).executeScalar(Integer.class) !=null) {
@@ -37,7 +37,7 @@ public class DBConnection {
 	
 	public static boolean updateUserRole(User previousUserObj, User userObj){
 
-        String updateSql = "Update User set name'="+userObj.getUserName()+"'and password='"+userObj.getPassword()+"' where name='"+previousUserObj.getUserName()+"' and password='"+previousUserObj.getPassword()+"'";
+        String updateSql = "Update User set userName='"+userObj.getUserName()+"', password='"+userObj.getPassword()+"' where userName='"+previousUserObj.getUserName()+"' and password='"+previousUserObj.getPassword()+"'";
         System.out.println(updateSql);
         try (Connection con = sql2o.open()) {
             con.createQuery(updateSql).executeUpdate();
@@ -51,7 +51,7 @@ public class DBConnection {
 
 		User userObjInDB = getUserRole(userObj);
 		if(userObjInDB.getRole() != 0) return false;		
-        String insertSql = "Insert into User (name,password,role) values ('"+userObj.getUserName()+"', '"+userObj.getPassword()+"',1)";
+        String insertSql = "Insert into User (userName,password,role) values ('"+userObj.getUserName()+"', '"+userObj.getPassword()+"',2)";
         System.out.println(insertSql);
         try (Connection con = sql2o.open()) {
             con.createQuery(insertSql)
@@ -62,9 +62,9 @@ public class DBConnection {
         }
     }
 	
-	public static List<User> userRoleList(User userObj){
+	public static List<User> userRoleList(){
 
-        String sql = "SELECT role FROM User";
+        String sql = "SELECT userName,password,role FROM User";
         System.out.println(sql);
         try(Connection con = sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(User.class);
@@ -73,5 +73,17 @@ public class DBConnection {
         }
     }
 	
+	public static boolean deleteUserRole(User userObj){
+
+        String insertSql = "Delete From User where userName='"+userObj.getUserName()+"'";
+        System.out.println(insertSql);
+        try (Connection con = sql2o.open()) {
+            con.createQuery(insertSql)
+        	    .executeUpdate();
+            return true;
+        }catch(Exception e) {
+        	return false;
+        }
+    }
 	
 }
