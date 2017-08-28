@@ -26,13 +26,10 @@ import java.nio.charset.StandardCharsets;
 public class ExportDictionary {
 
 	public ExportDictionary(File outputfile,String fileName) {
-		
-		
+				
 		try {
-
 	          FileOutputStream fos = new FileOutputStream(outputfile,false);
-	          OutputStreamWriter bw = new OutputStreamWriter(fos, "UTF-16");
-	          
+	          OutputStreamWriter bw = new OutputStreamWriter(fos, "UTF-16");	          
 	          String file = fileName;
 	          FileInputStream fstream;
 	          try {

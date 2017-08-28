@@ -39,7 +39,7 @@ public class AboutViewController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		imageEditor.setImageOn(portrait, "/buttons/dyck.jpg", 130, 130);
-		imageEditor.setImageOn(book, "/buttons/book.jpg", 130, 130);
+//		imageEditor.setImageOn(portrait, "/buttons/dyck.jpg", 130, 130);
+//		imageEditor.setImageOn(book, "/buttons/book.jpg", 130, 130);
 	}
 }
