@@ -529,6 +529,7 @@ public class DictionaryController {
     	if(!word_initial_string.equals("")){
 
     		Prefix_checkBox_1.setDisable(false);
+    		Prefix_checkBox_1.setSelected(false);
     		Prefix_checkBox_1.setText(word_initial_string);
     	}
     	else {
@@ -542,7 +543,7 @@ public class DictionaryController {
     	
     	String word_suffix_string = searchLongestSuffixString(inputText.getText(),word_suffix);
     	if(!word_suffix_string.equals("")){
-    		Suffix_checkBox.setSelected(true);
+    		Suffix_checkBox.setSelected(false);
     		Suffix_checkBox.setDisable(false);
     		Suffix_checkBox.setText(word_suffix_string);
     	}
@@ -573,26 +574,26 @@ public class DictionaryController {
     	
        	String currentInput = inputText.getText();	
        	if(currentInput.length() == 0) return;
-       	int suffix_length = !Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
-    	if(Prefix_checkBox_1.isSelected()) {
-    		Prefix_checkBox_2.setVisible(false);
-        	Prefix_checkBox_3.setVisible(false);       	
-        	if(suffix_length == 0)SearchByString(currentInput.substring(0, currentInput.length()).trim());
-        	else SearchByString(currentInput.substring(0, currentInput.length()-suffix_length).trim()+"*");
-    	} else {
-    		Prefix_checkBox_2.setVisible(true);
-    		Prefix_checkBox_3.setVisible(false);    		
+       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
+	    	if(!Prefix_checkBox_1.isSelected()) {
+	    		Prefix_checkBox_2.setVisible(false);
+	        	Prefix_checkBox_3.setVisible(false);       	
+	        	if(suffix_length == 0)SearchByString(currentInput.substring(0, currentInput.length()).trim());
+	        	else SearchByString(currentInput.substring(0, currentInput.length()-suffix_length).trim()+"*");
+	    	} else {
+	    		Prefix_checkBox_2.setVisible(true);
+	    		Prefix_checkBox_3.setVisible(false);    		
            	int length_initial = Prefix_checkBox_1.getText().length();   
            	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial, currentInput.length()).trim());  
            	else SearchByString("*"+currentInput.substring(length_initial, currentInput.length() - suffix_length).trim()+"*");           	
-        	String word_medial_string = searchLongestPrefixString(currentInput.substring(length_initial),word_medial_1);      	
-        	if(!word_medial_string.equals("")) {
-        		Prefix_checkBox_2.setSelected(true);
-        		Prefix_checkBox_2.setText(word_medial_string);       		
-        	}        		
-        	else
-        		Prefix_checkBox_2.setVisible(false);   		
-    	}
+	        	String word_medial_string = searchLongestPrefixString(currentInput.substring(length_initial),word_medial_1);      	
+	        	if(!word_medial_string.equals("")) {
+	        		Prefix_checkBox_2.setSelected(false);
+	        		Prefix_checkBox_2.setText(word_medial_string);       		
+	        	}        		
+	        	else
+	        		Prefix_checkBox_2.setVisible(false);   		
+	    	}
     }
     
     @FXML
@@ -601,24 +602,24 @@ public class DictionaryController {
        	String currentInput = inputText.getText();	
        	if(currentInput.length() == 0) return;
        	int length_initial = Prefix_checkBox_1.getText().length();
-    	int suffix_length = !Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
-    	if(Prefix_checkBox_2.isSelected()) {
-        	Prefix_checkBox_3.setVisible(false);       	
-        	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial).trim()); 
-        	else SearchByString("*"+currentInput.substring(length_initial,currentInput.length() - suffix_length).trim()+"*"); 
-    	} else {    		
-           	int length_medial = Prefix_checkBox_2.getText().length();   		        	
-           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial).trim());
-           	else SearchByString("*"+currentInput.substring(length_initial+length_medial,currentInput.length() - suffix_length).trim()+"*");        	        	
-        	String word_medial2_string = searchLongestPrefixString(currentInput.substring(length_initial+length_medial),word_medial_2);
-        	if(!word_medial2_string.equals("")) {
-        		Prefix_checkBox_3.setSelected(true);
-        		Prefix_checkBox_3.setVisible(true);
-        		Prefix_checkBox_3.setText(word_medial2_string);       		
-        	}  		
-        	else
-        		Prefix_checkBox_3.setVisible(false);		
-    	}
+       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
+	    	if(!Prefix_checkBox_2.isSelected()) {
+	        	Prefix_checkBox_3.setVisible(false);       	
+	        	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial).trim()); 
+	        	else SearchByString("*"+currentInput.substring(length_initial,currentInput.length() - suffix_length).trim()+"*"); 
+	    	} else {    		
+	           	int length_medial = Prefix_checkBox_2.getText().length();   		        	
+	           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial).trim());
+	           	else SearchByString("*"+currentInput.substring(length_initial+length_medial,currentInput.length() - suffix_length).trim()+"*");        	        	
+	        	String word_medial2_string = searchLongestPrefixString(currentInput.substring(length_initial+length_medial),word_medial_2);
+	        	if(!word_medial2_string.equals("")) {
+	        		Prefix_checkBox_3.setSelected(false);
+	        		Prefix_checkBox_3.setVisible(true);
+	        		Prefix_checkBox_3.setText(word_medial2_string);       		
+	        	}  		
+	        	else
+	        		Prefix_checkBox_3.setVisible(false);		
+	    	}
     }
     
     @FXML
@@ -627,15 +628,15 @@ public class DictionaryController {
        	if(currentInput.length() == 0) return;
        	int length_initial = Prefix_checkBox_1.getText().length();
        	int length_medial1 = Prefix_checkBox_2.getText().length();
-       	int suffix_length = !Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length() : 0;
-    	if(Prefix_checkBox_3.isSelected()) {     
-    		if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1).trim());
-    		else	SearchByString("*"+currentInput.substring(length_initial+length_medial1,currentInput.length() - suffix_length).trim() +"*");        	
-    	} else {   		
-           	int length_medial2 = Prefix_checkBox_3.getText().length();
-           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2).trim());
-           	else SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2,currentInput.length() - suffix_length).trim() +"*");
-    	}
+       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length() : 0;
+	    	if(Prefix_checkBox_3.isSelected()) {     
+	    		if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1).trim());
+	    		else	SearchByString("*"+currentInput.substring(length_initial+length_medial1,currentInput.length() - suffix_length).trim() +"*");        	
+	    	} else {   		
+	           	int length_medial2 = Prefix_checkBox_3.getText().length();
+	           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2).trim());
+	           	else SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2,currentInput.length() - suffix_length).trim() +"*");
+	    	}
     }
     
     @FXML
@@ -668,15 +669,6 @@ public class DictionaryController {
 //    		
     	}
     }
-    
-//    private void testFiles() {
-//    	
-//    	System.out.println("---------");
-//    	for (String key : word_initial.keySet()) {
-//    		   System.out.println("key: " + key);
-//    		}
-//    	System.out.println("---------");
-//    }
     
     /**
      * Is called by the main application to give a reference back to itself.
