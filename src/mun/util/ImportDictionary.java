@@ -81,17 +81,17 @@ public class ImportDictionary {
 	  				String strLine;	  					  				
 	  	  			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {	  	  				
 	  	  				String[] outstring = strLine.split("     ");
-	  	  					if(hashTable.contains(outstring[0].replaceAll("\\p{C}", "").trim())) {
-	  	  						hashTable.remove(outstring[0].replaceAll("\\p{C}", "").trim());	  	  					
-	  	  					}	  	  					
-	  	  				String outsingleStirng = String.format("%s     %s%s",outstring[0].replaceAll("\\p{C}", "").trim(),outstring[1].replaceAll("\\p{C}", "").trim(),System.getProperty("line.separator"));
+	  	  				System.out.println(outstring[0].replaceAll("\\p{C}", "").trim());
+  	  					if(hashTable.containsKey(outstring[0].replaceAll("\\p{C}", "").trim())) {
+  	  						hashTable.remove(outstring[0].replaceAll("\\p{C}", "").trim());	  	  					
+  	  					}	  	  					
+	  	  				String outsingleStirng = String.format("%s     %s",outstring[0].replaceAll("\\p{C}", "").trim(),System.getProperty("line.separator"));
 	  					bw.append(outsingleStirng);	  	  					  	  
 	  	  			}
 	  	  			Iterator<String> keySet = hashTable.keySet().iterator();
 	  	  			while(keySet.hasNext()) {
 	  	  				String key = (String) keySet.next();
-	  	  				String value = (String)hashTable.get(key);
-	  					String outsingleStirng = String.format("%s     %s%s",key,value,System.getProperty("line.separator"));
+	  					String outsingleStirng = String.format("%s     %s",key,System.getProperty("line.separator"));
 	  					bw.append(outsingleStirng);	
 	  	  			}	  					  					  				
 	  				bw.close();
@@ -122,7 +122,7 @@ public class ImportDictionary {
 	  				String strLine;	  					  				
 	  	  			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {	  	  				
 	  	  				String[] outstring = strLine.split("     ");
-	  	  					if(hashTable.contains(outstring[0].replaceAll("\\p{C}", "").trim())) {
+	  	  					if(hashTable.containsKey(outstring[0].replaceAll("\\p{C}", "").trim())) {
 	  	  						hashTable.remove(outstring[0].replaceAll("\\p{C}", "").trim());	  	  					
 	  	  					}	  	  					
 	  	  				String outsingleStirng = String.format("%s     %s%s",outstring[0].replaceAll("\\p{C}", "").trim(),outstring[1].replaceAll("\\p{C}", "").trim(),System.getProperty("line.separator"));
@@ -150,6 +150,36 @@ public class ImportDictionary {
 	}
 	
 	public ImportDictionary(File inputfile, String fileName) {
+		try {
+			String file = fileName;
+			FileOutputStream fos = new FileOutputStream(file,false);
+			OutputStreamWriter bw = new OutputStreamWriter(fos, "UTF-16");	          	          
+			FileInputStream fstream;
+			try {
+  				fstream = new FileInputStream(inputfile);
+  				Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+  				BufferedReader br = new BufferedReader(chars);
+  				String strLine;	  					  				
+  	  			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {	  	  				
+  	  				String[] outstring = strLine.split("     ");
+  	  				String outsingleStirng = String.format("%s     %s",outstring[0].replaceAll("\\p{C}", "").trim(),System.getProperty("line.separator"));
+  	  				bw.append(outsingleStirng);	
+  	  			}	 					  					  					  				
+  				bw.close();
+  				br.close();
+			} catch (FileNotFoundException e) {
+  			// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+  			// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+      }catch (IOException ex) {
+          ex.printStackTrace();
+      }	
+	}
+	
+	public ImportDictionary(File inputfile, String fileName,String suffix) {
 		try {
 			String file = fileName;
 			FileOutputStream fos = new FileOutputStream(file,false);

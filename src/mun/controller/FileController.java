@@ -80,7 +80,7 @@ public class FileController implements Initializable{
     }
     
     private void initialWord_initialFiles() { 	
-	    	String file = Constant.word_initial_Path;
+	    String file = Constant.word_initial_Path;
 		FileInputStream fstream;
 		word_initial.clear();
 		try {
@@ -102,8 +102,7 @@ public class FileController implements Initializable{
 		}
     }
     
-    private void initialWord_medial_1Files() {
-    	
+    private void initialWord_medial_1Files() {    	
     	String file = Constant.word_medial_1_Path;
 		FileInputStream fstream;
 		word_medial_1.clear();
@@ -127,7 +126,7 @@ public class FileController implements Initializable{
     }
     
     private void initialWord_medial_2Files() {    	
-	    	String file = Constant.word_medial_2_Path;
+	    String file = Constant.word_medial_2_Path;
 		FileInputStream fstream;
 		word_medial_2.clear();
 		try {
@@ -149,8 +148,7 @@ public class FileController implements Initializable{
 		}
     }
     
-    private void initialWord_suffixFiles() {
-    	
+    private void initialWord_suffixFiles() { 	
     	String file = Constant.word_suffix_Path;
 		FileInputStream fstream;
 		word_suffix.clear();
@@ -174,7 +172,7 @@ public class FileController implements Initializable{
     }
     
     private void initialWord_without_affixesFiles() {  	
-	    	String file = Constant.word_without_affixes_Path;
+	    String file = Constant.word_without_affixes_Path;
 		FileInputStream fstream;
 		word_without_affixes.clear();
 		try {
@@ -184,13 +182,9 @@ public class FileController implements Initializable{
 			String strLine;			
 			//Read File Line By Line
 			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {
-				String[] outstring = strLine.split("     ");
-				
+				String[] outstring = strLine.split("     ");				
 				String matches = outstring[0].replaceAll("\\p{C}", "").trim();				
 				StringBuilder sb = new StringBuilder(matches);
-				for(int a=0; a<sb.length();a++) {					
-					if(sb.charAt(a)=='ˀ'||sb.charAt(a)==':') sb.deleteCharAt(a);					
-				}
 				matches = sb.toString();				
 				word_without_affixes.put(matches,outstring[1].replaceAll("\\p{C}", "").trim());
 			}
@@ -210,42 +204,71 @@ public class FileController implements Initializable{
 	
     @FXML
 	public void importWordInitial() {
-	    	FileChooser fileChooser = new FileChooser();
-	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-	            "TXT files (cayuga-english.txt)", "cayuga-english.txt");
-	    fileChooser.getExtensionFilters().add(extFilter);
-	
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (word_initial.txt)", "word_initial.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
 	    // Show save file dialog
 	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
 	    if (file != null) {
-	        new ImportDictionary(file,dictionaryEnglishList,dictionaryCayugaList,Constant.word_initial_Path);
+	        new ImportDictionary(file,word_initial,Constant.word_initial_Path);
+	        mainApp.getData().clear();
+	    }
+	}
+    	
+	@FXML
+	public void importWordMedial() {
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (word_medial-1.txt)", "word_medial-1.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,word_medial_1,Constant.word_medial_1_Path);
 	        mainApp.getData().clear();
 	    }
 	}
 	@FXML
-	public void importWordMedial() {
-		
-	}
-	@FXML
 	public void importWordMedial2() {
-		
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (word_medial-2.txt)", "word_medial-2.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,word_medial_2,Constant.word_medial_2_Path);
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void importSuffix() {
-		
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (suffix_list.txt)", "suffix_list.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,word_suffix,Constant.word_suffix_Path);
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void importWithout() {
-		
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (words_without_affixes.txt)", "words_without_affixes.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,word_without_affixes,Constant.word_without_affixes_Path,"");
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void importDictionary() {
-	    	System.out.println("import");
-	    	FileChooser fileChooser = new FileChooser();
-	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-	            "TXT files (cayuga-english.txt)", "cayuga-english.txt");
-	    fileChooser.getExtensionFilters().add(extFilter);
-	
+	    System.out.println("import");
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (cayuga-english.txt)", "cayuga-english.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
 	    // Show save file dialog
 	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
 	    if (file != null) {
@@ -254,31 +277,76 @@ public class FileController implements Initializable{
 	    }
 	}
 	
+		
 	@FXML
 	public void exportWordInitial() {
-		
+    	System.out.println("exportWordInitial");
+        FileChooser fileChooser = new FileChooser();         
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*word_initial.txt)", "*word_initial.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("word_initial");
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
+        if(file != null){
+        	new ExportDictionary(file,Constant.word_initial_Path);    
+        } 
 	}
 	@FXML
 	public void exportWordMedial() {
-		
+    	System.out.println("exportWordMedial");
+        FileChooser fileChooser = new FileChooser();         
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*word_medial-1.txt)", "*word_medial-1.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("word_medial-1");
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
+        if(file != null){
+        	new ExportDictionary(file,Constant.word_medial_1_Path);    
+        } 
 	}
 	@FXML
 	public void exportWordMedial2() {
-		
+    	System.out.println("exportWordMedial2");
+        FileChooser fileChooser = new FileChooser();          
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*word_medial-2.txt)", "*word_medial-2.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("word_medial-2");
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
+        if(file != null){
+        	new ExportDictionary(file,Constant.word_medial_2_Path);    
+        } 
 	}
 	@FXML
 	public void exportSuffix() {
-		
+    	System.out.println("exportSuffix");
+        FileChooser fileChooser = new FileChooser();          
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*suffix_list.txt)", "*suffix_list.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("suffix_list");
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
+        if(file != null){
+        	new ExportDictionary(file,Constant.word_suffix_Path);    
+        } 
 	}
 	@FXML
 	public void exportWithout() {
-		
+    	System.out.println("exportWithout");
+        FileChooser fileChooser = new FileChooser();          
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*words_without_affixes.txt)", "*words_without_affixes.txt");
+        fileChooser.getExtensionFilters().add(extFilter);
+        fileChooser.setInitialFileName("words_without_affixes");
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
+        if(file != null){
+        	new ExportDictionary(file,Constant.word_without_affixes_Path);    
+        } 
 	}
 	@FXML
 	public void exportDictionary() {
-    	System.out.println("export");
-        FileChooser fileChooser = new FileChooser();  
-        
+    	System.out.println("exportDictionary");
+        FileChooser fileChooser = new FileChooser();          
         //Set extension filter
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*cayuga-english.txt)", "*cayuga-english.txt");
         fileChooser.getExtensionFilters().add(extFilter);
@@ -288,43 +356,79 @@ public class FileController implements Initializable{
         	new ExportDictionary(file,Constant.dictionaryPath);    
         }  
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 	@FXML
 	public void overwriteWordInitial() {
-		
+	    System.out.println("overwriteWordInitial");
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (word_initial.txt)", "word_initial.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,Constant.word_initial_Path);
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void overwriteWordMedial() {
-		
+	    System.out.println("overwriteWordMedial");
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*word_medial-1.txt)", "*word_medial-1.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,Constant.word_medial_1_Path);
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void overwriteWordMedial2() {
-		
+	    System.out.println("overwriteWordMedial2");
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*word_medial-2.txt)", "*word_medial-2.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,Constant.word_medial_2_Path);
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void overwriteSuffix() {
-		
+	    System.out.println("overwriteSuffix");
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (suffix_list.txt)", "suffix_list.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,Constant.word_suffix_Path);
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void overwriteWithout() {
-		
+	    System.out.println("overwriteWithout");
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (words_without_affixes.txt)", "words_without_affixes.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
+	    // Show save file dialog
+	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
+	    if (file != null) {
+	        new ImportDictionary(file,Constant.word_without_affixes_Path,"");
+	        mainApp.getData().clear();
+	    }
 	}
 	@FXML
 	public void overwriteDictionary() {
-	    	System.out.println("import");
-	    	FileChooser fileChooser = new FileChooser();
-	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-	            "TXT files (cayuga-english.txt)", "cayuga-english.txt");
-	    fileChooser.getExtensionFilters().add(extFilter);
-	
+	    System.out.println("overwriteDictionary");
+	    FileChooser fileChooser = new FileChooser();
+	    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (cayuga-english.txt)", "cayuga-english.txt");
+	    fileChooser.getExtensionFilters().add(extFilter);	
 	    // Show save file dialog
 	    File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
 	    if (file != null) {
