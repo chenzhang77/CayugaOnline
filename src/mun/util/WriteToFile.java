@@ -12,13 +12,17 @@
 */
 package mun.util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 
 public class WriteToFile {
 	
@@ -39,11 +43,6 @@ public class WriteToFile {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param english
-	 * @param cayuga
-	 */
 	public void addNewItem(String english,String cayuga) {
 		
 		if(bw != null) {
@@ -64,4 +63,56 @@ public class WriteToFile {
 		}	
 	}
 	
+
+	public void addNewItemAndComments(String english,String cayuga,String comments) {
+		
+		if(bw != null) {
+			
+			//String outsingleStirng = english+"     "+cayuga;
+			String outsingleStirng = String.format("%s     %s     %s%s",english,cayuga,comments,System.getProperty("line.separator"));
+			//System.out.println(outsingleStirng);
+			try {
+				//bw.write("\n");
+				bw.append(outsingleStirng);
+				//bw.write(outsingleStirng);
+				//bw.write("\n");
+				bw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}	
+	}
+	
+	public String findComments(String english,String cayuga) {
+		System.out.println("findComments");
+		try {         
+	      	String file = Constant.dictionaryPath;
+	  		FileInputStream fstream;
+	  		try {
+	  			fstream = new FileInputStream(file);
+	  			Reader chars = new InputStreamReader(fstream, StandardCharsets.UTF_16);
+	  			BufferedReader br = new BufferedReader(chars);
+	  			String strLine;
+	  			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {  
+	  				//System.out.println(strLine);
+	  				String[] outstring = strLine.split("     ");
+	  				if(outstring.length ==3) System.out.println(strLine);
+	  				if(outstring[0].replaceAll("\\p{C}", "").trim().compareTo(cayuga.replaceAll("\\p{C}", "").trim()) == 0 && outstring[1].replaceAll("\\p{C}", "").trim().compareTo(english.replaceAll("\\p{C}", "").trim()) == 0) {
+	  					return outstring[2];      	
+	  				}
+	  			}
+	  			br.close();
+	  		} catch (FileNotFoundException e) {
+	  			// TODO Auto-generated catch block
+	  			e.printStackTrace();
+	  		} catch (IOException e) {
+	  			// TODO Auto-generated catch block
+	  			e.printStackTrace();
+	  		}
+	      }catch (Exception ex) {
+	          ex.printStackTrace();
+	      }
+			return null;
+	}	
 }

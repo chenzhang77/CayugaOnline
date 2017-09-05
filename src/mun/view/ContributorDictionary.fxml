@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainScene" maxHeight="565.0" maxWidth="850.0" minHeight="565.0" minWidth="850.0" prefHeight="570.0" prefWidth="865.0" stylesheets="@table.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.DictionaryController">
+<AnchorPane fx:id="mainScene" maxHeight="565.0" maxWidth="850.0" minHeight="565.0" minWidth="850.0" prefHeight="570.0" prefWidth="865.0" stylesheets="@table.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.ContributorDictionaryController">
    <children>
       <TableView fx:id="dictionaryTable" maxHeight="880.0" minHeight="407.0" prefHeight="415.0" prefWidth="1020.0" styleClass="background" AnchorPane.bottomAnchor="55.0" AnchorPane.topAnchor="95.0">
         <columns>
@@ -39,10 +39,9 @@
          </children>
       </Pane>
       <Separator layoutY="509.0" prefHeight="8.0" prefWidth="1020.0" />
-      <Button fx:id="deleteButton" layoutX="954.0" layoutY="521.0" maxHeight="32.0" maxWidth="32.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onMouseClicked="#deleteAction" prefHeight="32.0" prefWidth="32.0" />
       <Button fx:id="relatedImg" layoutX="21.0" layoutY="515.0" maxHeight="45.0" maxWidth="45.0" minHeight="45.0" minWidth="45.0" mnemonicParsing="false" onMouseClicked="#relatedFunction" prefHeight="45.0" prefWidth="45.0" />
       <Label fx:id="relatedLabel" layoutX="77.0" layoutY="523.0" onMouseClicked="#relatedFunction" prefHeight="27.0" prefWidth="111.0" text="Related words" />
-      <HBox fx:id="relatedPane" layoutX="195.0" layoutY="529.0" prefHeight="20.0" prefWidth="648.0">
+      <HBox fx:id="relatedPane" layoutX="202.0" layoutY="528.0" prefHeight="20.0" prefWidth="648.0">
          <children>
             <Label fx:id="Prefix_label" prefHeight="17.0" prefWidth="74.0" text="Prefix:" />
             <CheckBox fx:id="Prefix_checkBox_1" mnemonicParsing="false" onMouseClicked="#prefixCheckBox_1" prefHeight="17.0" prefWidth="106.0" text="CheckBox" />
@@ -52,12 +51,13 @@
             <Label fx:id="Suffix_label" text="Suffix:">
                <font>
                   <Font name="System Bold" size="13.0" />
-               </font></Label>
+               </font>
+            </Label>
             <CheckBox fx:id="Suffix_checkBox" mnemonicParsing="false" onMouseClicked="#suffixCheckBox" text="CheckBox" />
             <Region prefHeight="18.0" prefWidth="19.0" />
          </children>
       </HBox>
-      <Button fx:id="addbutton" layoutX="907.0" layoutY="522.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" onMouseClicked="#handleNewData" prefHeight="31.0" prefWidth="31.0" text="Button" />
-      <Label fx:id="similarityButton" layoutX="818.0" layoutY="529.0" onMouseClicked="#similarLetterFunction" text="Similarity" />
+      <Button fx:id="addbutton" layoutX="960.0" layoutY="522.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" onMouseClicked="#handleNewData" prefHeight="31.0" prefWidth="31.0" text="Button" />
+      <Label fx:id="similarityButton" layoutX="836.0" layoutY="530.0" onMouseClicked="#similarLetterFunction" text="Similarity" />
    </children>
 </AnchorPane>

@@ -127,6 +127,27 @@ public class GuestViewController implements Initializable{
             openAnimation();
     }
     
+    
+    @FXML
+    private void sync() {
+        try {
+        	System.out.println("Sync");
+        	closeAnimation();
+        	title.setText("Sync");
+        	FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/SyncDownload.fxml"));
+            AnchorPane dictionary = (AnchorPane) loader.load();
+            SyncDownloadViewController controller = loader.getController();
+            controller.setMenuButton(menuButton);
+            menuButton.setDisable(true);
+            stackPane.getChildren().remove(0, stackPane.getChildren().size());
+            stackPane.getChildren().add(dictionary);                   
+            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     @FXML
     private void logoutSelected() {
         try {
@@ -154,13 +175,9 @@ public class GuestViewController implements Initializable{
             AnchorPane dictionary = (AnchorPane) loader.load();
  
             DictionaryController controller = loader.getController();
-            controller.setMainApp(mainApp);
-            
-            
+            controller.setMainApp(mainApp);                       
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
-            stackPane.getChildren().add(dictionary);
-            
-            
+            stackPane.getChildren().add(dictionary);                      
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
         } catch (IOException e) {
             e.printStackTrace();
@@ -177,35 +194,13 @@ public class GuestViewController implements Initializable{
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/about.fxml"));
             AnchorPane about = (AnchorPane) loader.load();
-              
-//        	loader.setLocation(MainApp.class.getResource("view/login.fxml"));
-//            GridPane about = (GridPane) loader.load();
-        	 
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
             stackPane.getChildren().add(about);
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
-//            LoginViewController controller = loader.getController();
-//            controller.setMainApp(mainApp);
-//            animationGenerator.applyFadeAnimationOn(borderPane, 2000, 1.0f, 0f, event -> {
-//            	about.setOpacity(0f);              	
-//                rootLayout.setCenter(about);
-//            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-//    @FXML
-//    private void profileSelected() {
-//        try {
-//            closeAnimation();
-//            title.setText("Profile");
-//            Parent profileView = FXMLLoader.load(getClass().getResource("profile.fxml"));
-//            stackPane.getChildren().remove(0, stackPane.getChildren().size());
-//            stackPane.getChildren().add(profileView);
-//            animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
-//        }catch (IOException ioe) {
-//            ioe.printStackTrace();
-//        }
-//    }
+
 
 }

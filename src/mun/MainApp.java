@@ -48,6 +48,7 @@ public class MainApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 	    this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Cayuga Dictionary");
+        primaryStage.setResizable(false);
         initRootLayout();
         showLoginView();
 	}
@@ -57,7 +58,7 @@ public class MainApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
+ 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -66,22 +67,20 @@ public class MainApp extends Application {
         }
     }
     
-    public void showLoginView() {
-    	
+    public void showLoginView() {  	
       try {
-      // Load login overview.
-      FXMLLoader loader = new FXMLLoader();
-      loader.setLocation(MainApp.class.getResource("view/login.fxml"));
-      GridPane loginOverview = (GridPane) loader.load();
-      // Set login overview into the center of root layout.
-      rootLayout.setCenter(loginOverview);
-      // Give the controller access to the main app.
-      LoginViewController controller = loader.getController();
-      controller.setMainApp(this);
-  } catch (IOException e) {
-      e.printStackTrace();
-  }
-    	
+	      // Load login overview.
+	      FXMLLoader loader = new FXMLLoader();
+	      loader.setLocation(MainApp.class.getResource("view/login.fxml"));
+	      GridPane loginOverview = (GridPane) loader.load();
+	      // Set login overview into the center of root layout.
+	      rootLayout.setCenter(loginOverview);
+	      // Give the controller access to the main app.
+	      LoginViewController controller = loader.getController();
+	      controller.setMainApp(this);
+	  } catch (IOException e) {
+	      e.printStackTrace();
+	  }   	
     }
     
     public BorderPane getBorderPane() {
@@ -146,7 +145,67 @@ public class MainApp extends Application {
             return false;
         }
     }
-//    
+    public boolean showAddItemDialogContributor(Dictionary dictionary) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/AddDataContributor.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Add Dictionary");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the Dictionary into the controller.
+            NewDataController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setDictionary(dictionary);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Dictionary showUpdateItemDialogContributor(Dictionary dictionary, String comments) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/UpdateDataContributor.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Dictionary");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the Dictionary into the controller.
+            UpdateDataController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setDictionaryAndComments(dictionary,comments);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.oldDictionary();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    
     public Dictionary showUpdateItemDialog(Dictionary dictionary) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.

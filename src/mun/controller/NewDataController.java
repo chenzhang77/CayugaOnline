@@ -21,6 +21,7 @@ import mun.util.WriteToFile;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class NewDataController {
 
@@ -28,7 +29,8 @@ public class NewDataController {
     private TextField firstField;
     @FXML
     private TextField lastField;
-    
+    @FXML
+    private TextArea commentsText;  
     
     @FXML
     private Button textButAdd_1;
@@ -104,6 +106,22 @@ public class NewDataController {
                 okClicked = true;               
                 WriteToFile wf = new WriteToFile();
                 wf.addNewItem(firstField.getText(),lastField.getText());                                  
+                dialogStage.close();
+      
+
+        }
+    }
+    
+    @FXML
+    private void handleOkContributor() {
+    	
+        if (isInputValid()) {
+        	
+            	dictionary.setEnglishCol(lastField.getText());
+            	dictionary.setCayugaCol(firstField.getText());
+                okClicked = true;               
+                WriteToFile wf = new WriteToFile();
+                wf.addNewItemAndComments(firstField.getText(),lastField.getText(),"ADD: "+commentsText.getText());                                  
                 dialogStage.close();
       
 

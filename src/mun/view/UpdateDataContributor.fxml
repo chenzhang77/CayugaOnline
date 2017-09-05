@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -9,16 +14,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="440.0" prefWidth="600.0" styleClass="pane" stylesheets="@add.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.UpdateDataController">
+<AnchorPane prefHeight="440.0" prefWidth="600.0" styleClass="pane" stylesheets="@add.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.UpdateDataController">
    <children>
-      <Label layoutX="24.0" layoutY="167.0" text="Cayuga">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
       <TextField fx:id="firstField" layoutX="50.0" layoutY="199.0" prefHeight="36.0" prefWidth="500.0" promptText="Cayuga words" />
       <TextField fx:id="lastField" layoutX="50.0" layoutY="100.0" prefHeight="37.0" prefWidth="500.0" promptText="English words" />
-      <Button fx:id="update_button" layoutX="356.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleOk" text="Update" />
+      <Button fx:id="update_button" layoutX="356.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleOkContributor" text="Update" />
       <Button fx:id="cancel_button" layoutX="465.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
       <Button fx:id="textButAdd_4" layoutX="498.0" layoutY="161.0" mnemonicParsing="false" onAction="#textButAction_4" onMouseEntered="#MouseMoveText" prefHeight="28.0" prefWidth="53.0" text="ę" />
       <Button fx:id="textButAdd_3" layoutX="378.0" layoutY="161.0" mnemonicParsing="false" onAction="#textButAction_3" onMouseEntered="#MouseMoveText" prefHeight="27.0" prefWidth="48.0" text=":" />
@@ -33,7 +33,7 @@
             <Image url="@smallLogo.png" />
          </image>
       </ImageView>
-      <TextArea layoutX="50.0" layoutY="254.0" prefHeight="90.0" prefWidth="500.0" promptText="Comments">
+      <TextArea fx:id="commentsText" layoutX="50.0" layoutY="254.0" prefHeight="90.0" prefWidth="500.0" promptText="Comments">
          <font>
             <Font size="16.0" />
          </font>

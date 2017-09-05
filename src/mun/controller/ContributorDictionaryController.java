@@ -18,6 +18,8 @@ import mun.util.Constant;
 import mun.util.ExportDictionary;
 import mun.util.ImportDictionary;
 import mun.util.RemoveLine;
+import mun.util.WriteToFile;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,8 +34,6 @@ import java.util.Hashtable;
 import java.util.Optional;
 import impl.org.controlsfx.autocompletion.AutoCompletionTextFieldBinding;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.AutoCompletionBinding.AutoCompletionEvent;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -55,9 +55,6 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -65,7 +62,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
-public class DictionaryController {
+public class ContributorDictionaryController {
 
 	
 	  @FXML
@@ -82,14 +79,6 @@ public class DictionaryController {
 	  private RadioButton englishBut;
 	  @FXML
 	  private RadioButton cayugaBut; 
-//	  @FXML
-//	  private RadioButton related_1;
-//	  @FXML
-//	  private RadioButton related_2; 
-//	  @FXML
-//	  private RadioButton related_3;   
-//	  @FXML
-//	  private Button relatedWordBut;
 	  @FXML
 	  private Button searchBut;
 	  @FXML
@@ -106,9 +95,11 @@ public class DictionaryController {
 	  private Button textBut_3;
 	  @FXML
 	  private Button textBut_4;
+	  
 	  @FXML
 	  private Label similarityButton;
 	  private boolean similaritySelected;
+	  
 	  
 	  @FXML
 	  private Button relatedImg;  
@@ -128,9 +119,7 @@ public class DictionaryController {
 	  private Label Prefix_label;
 	  @FXML
 	  private Label Suffix_label;
-	  
-	 
-	  
+	   
 //	  @FXML
 //	  private Button showButton;  
 //	  @FXML
@@ -150,7 +139,7 @@ public class DictionaryController {
 	  private String inputTextString ="";
 	  
 	  private ArrayList<String> aa = new ArrayList<>();  
-	  public DictionaryController() {
+	  public ContributorDictionaryController() {
 		  
 		  
 	  }
@@ -177,7 +166,7 @@ public class DictionaryController {
 		     public TableCell<Dictionary, String> call(
 		                TableColumn<Dictionary, String> param) {
 		            TableCell<Dictionary, String> cell = new TableCell<>();
-		            Text text = new Text("term of addess for a maternal grandmotherterm of addess for a maternal grandmother");
+		            Text text = new Text("term of addess for a maternal grandmother");
 		            cell.setGraphic(text);
 		            text.wrappingWidthProperty().bind(cell.widthProperty());
 		            text.textProperty().bind(cell.itemProperty());
@@ -185,13 +174,13 @@ public class DictionaryController {
 		        }
     	});
 
-    	lastColumn.setCellValueFactory(cellData -> cellData.getValue().CayugaColProperty());
-    	lastColumn.setCellFactory(new Callback<TableColumn<Dictionary, String>, TableCell<Dictionary, String>>() {
+    lastColumn.setCellValueFactory(cellData -> cellData.getValue().CayugaColProperty());
+    lastColumn.setCellFactory(new Callback<TableColumn<Dictionary, String>, TableCell<Dictionary, String>>() {
 			@Override
 		     public TableCell<Dictionary, String> call(
 		                TableColumn<Dictionary, String> param) {
 		            TableCell<Dictionary, String> cell = new TableCell<>();
-		            Text text = new Text("term of addess for a maternal grandmotherterm of addess for a maternal grandmother");
+		            Text text = new Text("term of addess for a maternal grandmother");
 		            cell.setGraphic(text);
 		            text.wrappingWidthProperty().bind(cell.widthProperty());
 		            text.textProperty().bind(cell.itemProperty());
@@ -234,41 +223,10 @@ public class DictionaryController {
 
     	autoTF.setMinWidth(457);
     	
-//    	mainScene.setOnKeyPressed(event -> {
-//            if(event.getCode().equals(KeyCode.ENTER))
-//            	System.out.println("dddd");
-//            });
-//    	mainScene.setOnMouseClicked(event ->{
-//    		System.out.println("setOnMouseClicked");
-//    	});
-//    	
-//    	
-//    	autoTF.addEventHandler(Event.ANY, new EventHandler<Event>(){
-//
+//  	autoTF.setOnAutoCompleted(new EventHandler(){
 //			@Override
 //			public void handle(Event event) {
 //				// TODO Auto-generated method stub
-//				if(event.getEventType() == MouseEvent.MOUSE_CLICKED){
-//					System.out.println("work well!!!");
-//				}
-//				System.out.println(event.getEventType());
-//				System.out.println("work outside!");
-//				//if(event.getClass() == Event.ANY)
-//				
-//				
-//			}
-//    		
-//    	});
-//    	autoTF.setOnAutoCompleted(new EventHandler(){
-//			@Override
-//			public void handle(Event event) {
-//				// TODO Auto-generated method stub
-////				AutoCompletionEvent event2 = (AutoCompletionEvent)event;
-//			
-////				if(event2.getCode().equals(KeyCode.ENTER)){
-////					System.out.println("work !!!");
-////				}
-////				
 //				firstItem = aa.get(0);
 //				if(inputText.getText().equalsIgnoreCase(firstItem)){
 //					inputText.setText(inputTextString);
@@ -291,15 +249,11 @@ public class DictionaryController {
       });
     	
     }
-     
-//    private void setOnKeyPressed() {
-//
-//    }
-    
+        
     private void initialButtons() {
     	
     	final ToggleGroup group = new ToggleGroup();
-    	englishBut.setToggleGroup(group);
+    englishBut.setToggleGroup(group);
     	englishBut.setSelected(true);
     	cayugaBut.setToggleGroup(group);
     	textBut_1.setVisible(false);
@@ -326,8 +280,7 @@ public class DictionaryController {
     	                	relatedPane.setVisible(false);
     	                	relatedLabel.setVisible(false);
     	                	mainApp.getData().clear();
-    	                	inputText.clear();   	
-    	                	
+    	                	inputText.clear();   
     	                	
     	                	similarityButton.setVisible(false);
     	                	similaritySelected = false;
@@ -338,7 +291,6 @@ public class DictionaryController {
     	                	textBut_3.setVisible(true);
     	                	textBut_4.setVisible(true);
     	                	mainApp.getData().clear();
-    	                	
     	                	
     	                	similarityButton.setVisible(false);
     	                	similaritySelected = false;
@@ -578,12 +530,13 @@ public class DictionaryController {
     @FXML
     public void relatedFunction() {
     	
-    	
     	Prefix_label.setText("Prefix:");
     	similaritySelected = false;
     	Suffix_checkBox.setVisible(true);
     	similarityButton.setVisible(true);
     	mainApp.getData().clear();	
+    	
+    	
     	
     	relatedPane.setVisible(true);
     	Prefix_label.setVisible(true);
@@ -705,15 +658,17 @@ public class DictionaryController {
     	
     }
     
+    
     @FXML
     public void prefixCheckBox_1() {
     	
-    	if(similaritySelected) {
+      	if(similaritySelected) {
     		similaritySearch();
-    	}else{   	
-	       	String currentInput = inputText.getText();	
-	       	if(currentInput.length() == 0) return;
-	       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
+    	}else{ 
+    	
+       	String currentInput = inputText.getText();	
+       	if(currentInput.length() == 0) return;
+       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
 	    	if(!Prefix_checkBox_1.isSelected()) {
 	    		Prefix_checkBox_2.setVisible(false);
 	        	Prefix_checkBox_3.setVisible(false);       	
@@ -738,13 +693,13 @@ public class DictionaryController {
     
     @FXML
     public void prefixCheckBox_2() {
-    	if(similaritySelected) {
+      	if(similaritySelected) {
     		similaritySearch();
     	}else{ 
-	       	String currentInput = inputText.getText();	
-	       	if(currentInput.length() == 0) return;
-	       	int length_initial = Prefix_checkBox_1.getText().length();
-	       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
+       	String currentInput = inputText.getText();	
+       	if(currentInput.length() == 0) return;
+       	int length_initial = Prefix_checkBox_1.getText().length();
+       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length():0;
 	    	if(!Prefix_checkBox_2.isSelected()) {
 	        	Prefix_checkBox_3.setVisible(false);       	
 	        	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial).trim()); 
@@ -767,14 +722,14 @@ public class DictionaryController {
     
     @FXML
     public void prefixCheckBox_3() {
-    	if(similaritySelected) {
+      	if(similaritySelected) {
     		similaritySearch();
     	}else{ 
-    		String currentInput = inputText.getText();	
-           	if(currentInput.length() == 0) return;
-           	int length_initial = Prefix_checkBox_1.getText().length();
-           	int length_medial1 = Prefix_checkBox_2.getText().length();
-           	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length() : 0;
+		String currentInput = inputText.getText();	
+       	if(currentInput.length() == 0) return;
+       	int length_initial = Prefix_checkBox_1.getText().length();
+       	int length_medial1 = Prefix_checkBox_2.getText().length();
+       	int suffix_length = Suffix_checkBox.isSelected() && !Suffix_checkBox.isDisable() ? Suffix_checkBox.getText().length() : 0;
 	    	if(Prefix_checkBox_3.isSelected()) {     
 	    		if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1).trim());
 	    		else	SearchByString("*"+currentInput.substring(length_initial+length_medial1,currentInput.length() - suffix_length).trim() +"*");        	
@@ -783,7 +738,7 @@ public class DictionaryController {
 	           	if(suffix_length == 0) SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2).trim());
 	           	else SearchByString("*"+currentInput.substring(length_initial+length_medial1+length_medial2,currentInput.length() - suffix_length).trim() +"*");
 	    	}
-    	}		
+    	}
     }
     
     private void similaritySearch() {
@@ -936,7 +891,7 @@ public class DictionaryController {
     @FXML
     private void handleNewData() {
     	Dictionary tempData = new Dictionary();
-        boolean okClicked = mainApp.showAddItemDialog(tempData);
+        boolean okClicked = mainApp.showAddItemDialogContributor(tempData);
         if (okClicked) {
         	dictionaryEnglishList.add(tempData.getEnglishCol());
         	dictionaryCayugaList.add(tempData.getCayugaCol());
@@ -958,7 +913,18 @@ public class DictionaryController {
 	    if (tempData !=null) {	    		   
 	    	String english = tempData.getEnglishCol();
 	    	String cayuga = tempData.getCayugaCol();
-	    	mainApp.showUpdateItemDialog(tempData);	    		   
+	    	
+	    	
+	    	System.out.println("english = " + english);
+	    	System.out.println("cayuga = " + cayuga);
+	    	
+	    	WriteToFile wf = new WriteToFile();
+            String comments = wf.findComments(english, cayuga); 
+            
+            System.out.println("comment = " + comments);
+            
+            
+	    	mainApp.showUpdateItemDialogContributor(tempData,comments);	 	    	
            for(int j=0; j<dictionaryEnglishList.size();j++) {
         	   if(dictionaryEnglishList.get(j).toString().equals(english) 
         			   &&dictionaryCayugaList.get(j).toString().equals(cayuga))  {
@@ -1008,8 +974,7 @@ public class DictionaryController {
     	    	alert.setContentText("Please select one row !");
     	    	alert.showAndWait();
     	    }	
-    }
-              
+    }           
     @FXML
     public void MouseMoveText() {
     	mainScene.requestFocus();
@@ -1078,10 +1043,7 @@ public class DictionaryController {
 					mainApp.getData().add(tempData);
 				}
 			}	
-		} else {
-			
-			similarityButton.setVisible(true);
-			
+		} else {			
 	       	if(checkAffixes(currentInput)) {
 	       		relatedImg.setVisible(true);
 	       		relatedLabel.setVisible(true);
@@ -1213,16 +1175,13 @@ public class DictionaryController {
        	int total = 0;
     	int length = currentInput.length();
        	int subStringLength = length-1;
-       	ArrayList<String> newList = new ArrayList<>(dictionaryCayugaList);
-       	
-       	
+       	ArrayList<String> newList = new ArrayList<>(dictionaryCayugaList);       	
        	for(int i =subStringLength; i>=2; i--) {
        		if(total >=3) break;      		
        		for(int j=0; j+i<=length; j++) {    			
        			if(total >=3) break;    			
        			String sub  = currentInput.substring(length-j-i,length-j);		
-       			for(int d=0; d<newList.size();d++) {
-       				
+       			for(int d=0; d<newList.size();d++) {  			
 	    			if(newList.get(d).toString().matches(".*"+sub+".*") && !newList.get(d).toString().matches(".*"+currentInput+".*")) {    				
 	    				if(total == 0) {
 	    					newList.remove(d);
@@ -1230,53 +1189,27 @@ public class DictionaryController {
 //	    					related_1.setVisible(true);
 	    					total++;
 	    					break;
-	    				} else if(total == 1) {
+	    				}
+	    				else if(total == 1) {
 	    					newList.remove(d);
 //	    					related_2.setText(sub);
 //	    					related_2.setVisible(true);
 	    					total++;
 	    					break;
-	    				} else if(total == 2) {
+	    				}
+	    				else if(total == 2) {
 	    					newList.remove(d);
 //	    					related_3.setText(sub);
 //	    					related_3.setVisible(true);
 	    					total++;
 	    					break;
-	    				} else {break;}		
+	    				} else {	
+	    					break;
+	    				}		
 	    			}
        			}		
        		}       		
        	}
     }
     
-//    public void exportDictionary() {
-//    	System.out.println("export");
-//        FileChooser fileChooser = new FileChooser();  
-//        
-//        //Set extension filter
-//        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*cayuga-english.txt)", "*cayuga-english.txt");
-//        fileChooser.getExtensionFilters().add(extFilter);
-//        fileChooser.setInitialFileName("cayuga-english");
-//        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());      
-//        if(file != null){
-//        	new ExportDictionary(file);    
-//        }     
-//    }
-//    
-//    public void importDictionary() {
-//    	System.out.println("import");
-//    	FileChooser fileChooser = new FileChooser();
-//        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter(
-//                "TXT files (cayuga-english.txt)", "cayuga-english.txt");
-//        fileChooser.getExtensionFilters().add(extFilter);
-//
-//        // Show save file dialog
-//        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());       
-//        if (file != null) {
-//            new ImportDictionary(file,dictionaryEnglishList,dictionaryCayugaList);
-//            initialArrayList();
-//            mainApp.getData().clear();
-//        	inputText.clear();
-//        }
-//    }
 }

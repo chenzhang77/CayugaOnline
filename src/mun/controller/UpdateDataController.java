@@ -26,13 +26,16 @@ import mun.util.WriteToFile;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 
 public class UpdateDataController {
 
     @FXML
     private TextField firstField;
     @FXML
-    private TextField lastField;   
+    private TextField lastField;  
+    @FXML
+    private TextArea commentsText;   
     @FXML
     private Button textButAdd_1;
     @FXML
@@ -41,7 +44,7 @@ public class UpdateDataController {
     private Button textButAdd_3;
     @FXML
     private Button textButAdd_4;
-	  
+    
     private Stage dialogStage;
     private Dictionary dictionary;
     private boolean okClicked = false;
@@ -51,37 +54,28 @@ public class UpdateDataController {
      * after the fxml file has been loaded.
      */
     @FXML
-    private void initialize() {
-    	
-    	firstField.setText(" ");
-    	
+    private void initialize() {   	
+    	firstField.setText(" ");   	
     }
 
-    /**
-     * Sets the stage of this dialog.
-     * 
-     * @param dialogStage
-     */
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
     
-    /**
-     * Sets the dictionary to be edited in the dialog.
-     * 
-     * @param dictionary
-     */
     public void setDictionary(Dictionary dictionary) {
         this.dictionary = dictionary;
         lastField.setText(dictionary.getEnglishCol());
         firstField.setText(dictionary.getCayugaCol());
     }
+    
+    public void setDictionaryAndComments(Dictionary dictionary,String comments) {
+        this.dictionary = dictionary;
+        lastField.setText(dictionary.getEnglishCol());
+        firstField.setText(dictionary.getCayugaCol());
+        String prefix = comments.split(":")[0];    
+        commentsText.setText(comments.substring(prefix.length()+1));
+    }
 
-    /**
-     * Returns true if the user clicked OK, false otherwise.
-     * 
-     * @return
-     */
     public boolean isOkClicked() {
         return okClicked;
     }
@@ -93,21 +87,30 @@ public class UpdateDataController {
     	return dic;
     }
     
-    /**
-     * Called when the user clicks ok.
-     */
     @FXML
-    private void handleOk() {
-    	
-        if (isInputValid()) {
-        	
+    private void handleOk() {   	
+        if (isInputValid()) {      	
         	RemoveLine rl = new RemoveLine();
         	rl.removeLine(dictionary.getCayugaCol(),dictionary.getEnglishCol());
- 
         	dictionary.setEnglishCol(lastField.getText());
         	dictionary.setCayugaCol(firstField.getText());     
-        	 WriteToFile wf = new WriteToFile();
-             wf.addNewItem(firstField.getText(),lastField.getText());   
+        	WriteToFile wf = new WriteToFile();
+            wf.addNewItem(firstField.getText(),lastField.getText());   
+        	dialogStage.close();
+        }
+    }
+    
+    
+    @FXML
+    private void handleOkContributor() {   	
+        if (isInputValid()) {   
+        	System.out.println("handleOkContributor");
+        	RemoveLine rl = new RemoveLine();
+        	rl.removeLine(dictionary.getCayugaCol(),dictionary.getEnglishCol());
+        	dictionary.setEnglishCol(lastField.getText());
+        	dictionary.setCayugaCol(firstField.getText());     
+        	WriteToFile wf = new WriteToFile();
+            wf.addNewItemAndComments(firstField.getText(),lastField.getText(),"UPDATE: "+commentsText.getText());   
         	dialogStage.close();
         }
     }
@@ -120,24 +123,14 @@ public class UpdateDataController {
         dialogStage.close();
     }
     
-    /**
-     * Validates the user input in the text fields.
-     * 
-     * @return true if the input is valid
-     */
     private boolean isInputValid() {
         String errorMessage = "";
-
         if (firstField.getText() == null || firstField.getText().length() == 0) {
             errorMessage += "No valid english input!"; 
-            //firstField.setText(errorMessage);
         }
         if (lastField.getText() == null || lastField.getText().length() == 0) {
             errorMessage += "No valid cayuga input!"; 
-            //lastField.setText(errorMessage);
         }
-        
-
         if (errorMessage.length() == 0) {
             return true;
         } else {

@@ -129,14 +129,11 @@ public class ContributorViewController implements Initializable{
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/SyncDownload.fxml"));
             AnchorPane dictionary = (AnchorPane) loader.load();
-// 
             SyncDownloadViewController controller = loader.getController();
             controller.setMenuButton(menuButton);
             menuButton.setDisable(true);
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
-            stackPane.getChildren().add(dictionary);
-            
-            
+            stackPane.getChildren().add(dictionary);                   
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
         } catch (IOException e) {
             e.printStackTrace();
@@ -175,17 +172,12 @@ public class ContributorViewController implements Initializable{
         	closeAnimation();
         	title.setText("Cayuga Dictionary");
         	FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
-            AnchorPane dictionary = (AnchorPane) loader.load();
- 
-            DictionaryController controller = loader.getController();
-            controller.setMainApp(mainApp);
-            
-            
+            loader.setLocation(MainApp.class.getResource("view/ContributorDictionary.fxml"));
+            AnchorPane dictionary = (AnchorPane) loader.load(); 
+            ContributorDictionaryController controller = loader.getController();
+            controller.setMainApp(mainApp);                        
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
-            stackPane.getChildren().add(dictionary);
-            
-            
+            stackPane.getChildren().add(dictionary);                       
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
         } catch (IOException e) {
             e.printStackTrace();
@@ -200,9 +192,11 @@ public class ContributorViewController implements Initializable{
         	title.setText("File Update");
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/fileContributor.fxml"));
-            AnchorPane about = (AnchorPane) loader.load();
-              
-        	 
+            AnchorPane about = (AnchorPane) loader.load(); 
+            FileController controller = loader.getController();
+            controller.setMainApp(this.mainApp);
+            
+            
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
             stackPane.getChildren().add(about);
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
@@ -219,11 +213,7 @@ public class ContributorViewController implements Initializable{
         	title.setText("About");
         	FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/about.fxml"));
-            AnchorPane about = (AnchorPane) loader.load();
-              
-//        	loader.setLocation(MainApp.class.getResource("view/login.fxml"));
-//            GridPane about = (GridPane) loader.load();
-        	 
+            AnchorPane about = (AnchorPane) loader.load(); 
             stackPane.getChildren().remove(0, stackPane.getChildren().size());
             stackPane.getChildren().add(about);
             animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);

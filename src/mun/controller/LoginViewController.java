@@ -134,9 +134,9 @@ public class LoginViewController implements Initializable {
         			ContributorViewController controller = loader.getController();
         			controller.setMainApp(mainApp);              
         	      	FXMLLoader loader2 = new FXMLLoader();
-        	        loader2.setLocation(MainApp.class.getResource("view/AdminDictionary.fxml"));
+        	        loader2.setLocation(MainApp.class.getResource("view/ContributorDictionary.fxml"));
         	        AnchorPane dictionary = (AnchorPane) loader2.load();
-        	        DictionaryController controller2 = loader2.getController();
+        	        ContributorDictionaryController controller2 = loader2.getController();
         	        controller2.setMainApp(mainApp);       
         	        controller.stackPane.getChildren().remove(0, controller.stackPane.getChildren().size());
         	        controller.stackPane.getChildren().add(dictionary);          
