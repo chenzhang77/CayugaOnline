@@ -135,9 +135,9 @@ public class AddContributorViewController implements Initializable{
     
     @FXML
     private void reset() { 	
-    		txField.setText(null);
-    		pwField.setText(null);
-    		pwField1.setText(null);
+    		txField.setText("");
+    		pwField.setText("");
+    		pwField1.setText("");
     }
     
     @FXML

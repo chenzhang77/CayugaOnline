@@ -97,9 +97,10 @@ public class WriteToFile {
 	  			while ((strLine = br.readLine()) != null && !strLine.trim().isEmpty())   {  
 	  				//System.out.println(strLine);
 	  				String[] outstring = strLine.split("     ");
-	  				if(outstring.length ==3) System.out.println(strLine);
-	  				if(outstring[0].replaceAll("\\p{C}", "").trim().compareTo(cayuga.replaceAll("\\p{C}", "").trim()) == 0 && outstring[1].replaceAll("\\p{C}", "").trim().compareTo(english.replaceAll("\\p{C}", "").trim()) == 0) {
-	  					return outstring[2];      	
+	  				if(outstring.length ==3) {
+		  				if(outstring[0].replaceAll("\\p{C}", "").trim().compareTo(cayuga.replaceAll("\\p{C}", "").trim()) == 0 && outstring[1].replaceAll("\\p{C}", "").trim().compareTo(english.replaceAll("\\p{C}", "").trim()) == 0) {
+		  					return outstring[2];      	
+		  				}
 	  				}
 	  			}
 	  			br.close();

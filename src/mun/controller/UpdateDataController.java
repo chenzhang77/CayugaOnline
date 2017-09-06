@@ -72,8 +72,14 @@ public class UpdateDataController {
         this.dictionary = dictionary;
         lastField.setText(dictionary.getEnglishCol());
         firstField.setText(dictionary.getCayugaCol());
-        String prefix = comments.split(":")[0];    
-        commentsText.setText(comments.substring(prefix.length()+1));
+        String prefix;
+        if(comments !=null) {
+        		prefix = comments.split(":")[0]; 
+        		commentsText.setText(comments.substring(prefix.length()+1));
+        }
+        else {
+        		commentsText.setText("");
+        }        
     }
 
     public boolean isOkClicked() {

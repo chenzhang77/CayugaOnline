@@ -55,13 +55,11 @@ public class ManageViewController implements Initializable{
 		@FXML
 		private TableColumn<User, String> contributorFirsteColumn;
 	    private MainApp mainApp;  	
-	    private BorderPane rootLayout;
+
 	    public StackPane stackPane;
 	    private final AnimationGenerator animationGenerator;
 		private ObservableList<User> adminnObserver = FXCollections.observableArrayList();
-		private ObservableList<User> contributorObserver = FXCollections.observableArrayList(); 
-		
-		
+		private ObservableList<User> contributorObserver = FXCollections.observableArrayList(); 		
 		public ManageViewController() {
 			animationGenerator = new AnimationGenerator();
 		}	
@@ -70,13 +68,10 @@ public class ManageViewController implements Initializable{
 		}
 		public ObservableList<User> getContributorObserver() {
 			return contributorObserver;
-		}
-		
+		}		
 	    public void setMainApp(MainApp mainApp) {
 	        this.mainApp = mainApp;
-	        this.rootLayout = mainApp.getBorderPane();
-	    }
-	    
+	    }	    
 	    public void setStackPane(StackPane stackPane) {
     			this.stackPane = stackPane;
 	    }
@@ -86,13 +81,10 @@ public class ManageViewController implements Initializable{
 			adminTable.setItems(adminnObserver);
 			contributorTable.setItems(contributorObserver);
 			adminFirsteColumn.setCellValueFactory(cellData -> cellData.getValue().userNameColProperty());
-			contributorFirsteColumn.setCellValueFactory(cellData -> cellData.getValue().userNameColProperty());
-			
-			
+			contributorFirsteColumn.setCellValueFactory(cellData -> cellData.getValue().userNameColProperty());						
 			List<User> userRoleList = DBConnection.userRoleList();
 			Iterator iterator = userRoleList.iterator();
-			while(iterator.hasNext()) {
-				
+			while(iterator.hasNext()) {				
 				User userObj = (User) iterator.next();
 				if(userObj.getRole() == 1) adminnObserver.add(userObj);
 				else if (userObj.getRole() == 2) contributorObserver.add(userObj);
@@ -110,31 +102,27 @@ public class ManageViewController implements Initializable{
 	        		  update (userObj);	  
 	              }       
 	          });
-	          return row ;
+	          		return row ;
 	          });
 			
 			contributorTable.setRowFactory( tv -> {
 		          TableRow<User> row = new TableRow<>();
 		          row.setOnMouseClicked(event -> {
 		        	  if(event.getClickCount() == 1 && (! row.isEmpty()) ) {    		  	  
-		        	  }else if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+		        	  } else if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
 		        		  User userObj = contributorTable.getSelectionModel().getSelectedItem();
 		        		   update (userObj);  
 		              }       
 		          });
-		          return row ;
+		          	return row ;
 		          });
-
 		}
 
 		@FXML
-		private void delete () {
-			
-			
+		private void delete () {			
 		   int selectedIndex = contributorTable.getSelectionModel().getSelectedIndex();
 	    	   User userObj = contributorTable.getSelectionModel().getSelectedItem(); 
-
-	    	    if (selectedIndex >= 0) {
+	    	   if (selectedIndex >= 0) {
 		    	    	Alert alert = new Alert(AlertType.CONFIRMATION);
 		    	    	alert.setTitle("Confirmation Dialog");
 		    	    	alert.setHeaderText("Delete");
@@ -146,33 +134,31 @@ public class ManageViewController implements Initializable{
 	    			    		if(DBConnection.deleteUserRole(userObj)) contributorTable.getItems().remove(selectedIndex); 
 	    			    }
 		    	    	}  	
-	    	    	} else {
+	    	    } else {
 		    	    	Alert alert = new Alert(AlertType.INFORMATION);
 		    	    	alert.setTitle("Information Dialog");
 		    	    	alert.setHeaderText(null);
 		    	    	alert.setContentText("Please select one row !");
 		    	    	alert.showAndWait();
-	    	    }
+	    	   }
 		}
-			
-		
-		@FXML
+					
 		private void update (User userObj) {
-	    	try {
-	    		FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(MainApp.class.getResource("view/UpdateUserAccount.fxml"));
-	        AnchorPane contributor = (AnchorPane) loader.load();	        
-	        AddContributorViewController controller = loader.getController();
-	        controller.setMainApp(this.mainApp);	    
-	        controller.txField.setText(userObj.getUserName()); 
-	        controller.pwField.setText(userObj.getPassword());
-	        controller.pwField1.setText(userObj.getPassword());
-	        controller.previousUserObj = userObj;
-	        stackPane.getChildren().remove(0, stackPane.getChildren().size());
-	        stackPane.getChildren().add(contributor);
-	        animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+		    	try {
+		    		FXMLLoader loader = new FXMLLoader();
+		        loader.setLocation(MainApp.class.getResource("view/UpdateUserAccount.fxml"));
+		        AnchorPane contributor = (AnchorPane) loader.load();	        
+		        AddContributorViewController controller = loader.getController();
+		        controller.setMainApp(this.mainApp);	    
+		        controller.txField.setText(userObj.getUserName()); 
+		        controller.pwField.setText(userObj.getPassword());
+		        controller.pwField1.setText(userObj.getPassword());
+		        controller.previousUserObj = userObj;
+		        stackPane.getChildren().remove(0, stackPane.getChildren().size());
+		        stackPane.getChildren().add(contributor);
+		        animationGenerator.applyFadeAnimationOn(stackPane, 500, 0f, 1.0f, null);
+			} catch (IOException e) {
+			        e.printStackTrace();
+			}
 		}
 }
