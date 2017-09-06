@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.embed.swing.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainScene" maxHeight="565.0" maxWidth="850.0" minHeight="565.0" minWidth="850.0" prefHeight="570.0" prefWidth="865.0" stylesheets="@table.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mun.controller.ContributorDictionaryController">
+   <children>
+      <TableView fx:id="dictionaryTable" maxHeight="880.0" minHeight="407.0" prefHeight="415.0" prefWidth="1020.0" styleClass="background" AnchorPane.bottomAnchor="55.0" AnchorPane.topAnchor="95.0">
+        <columns>
+          <TableColumn fx:id="firsteColumn" minWidth="393.0" prefWidth="400.0" text="English" />
+          <TableColumn maxWidth="72.0" prefWidth="72.0" />
+            <TableColumn fx:id="lastColumn" minWidth="0.0" prefWidth="400.0" text="Cayuga" />
+        </columns>
+      </TableView>
+      <Pane fx:id="topPane" cacheShape="false" centerShape="false" layoutX="-1.0" layoutY="1.0" prefHeight="94.0" prefWidth="1020.0" stylesheets="@table.css">
+         <children>
+            <TextField fx:id="inputText" layoutX="288.0" layoutY="50.0" onAction="#onEnter" prefHeight="32.0" prefWidth="460.0" promptText="Search Dictionary">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <Button fx:id="textBut_2" layoutX="543.0" layoutY="12.0" mnemonicParsing="false" onAction="#textButAction_2" onMouseEntered="#MouseMoveText" prefHeight="27.0" prefWidth="48.0" text="ǫ" />
+            <Button fx:id="textBut_1" layoutX="425.0" layoutY="12.0" mnemonicParsing="false" onAction="#textButAction_1" onMouseEntered="#MouseMoveText" prefHeight="27.0" prefWidth="45.0" text="ˀ">
+               <font>
+                  <Font name="System Italic" size="9.0" />
+               </font></Button>
+            <Button fx:id="textBut_3" layoutX="484.0" layoutY="12.0" mnemonicParsing="false" onAction="#textButAction_3" onMouseEntered="#MouseMoveText" prefHeight="27.0" prefWidth="48.0" text=":" />
+            <Button fx:id="textBut_4" layoutX="604.0" layoutY="12.0" mnemonicParsing="false" onAction="#textButAction_4" onMouseEntered="#MouseMoveText" prefHeight="28.0" prefWidth="53.0" text="ę" />
+            <Button fx:id="searchBut" layoutX="770.0" layoutY="52.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="27.0" prefWidth="98.0" text="Search" />
+            <RadioButton fx:id="englishBut" layoutX="53.0" layoutY="30.0" mnemonicParsing="false" text="English to Cayuga" />
+            <RadioButton fx:id="cayugaBut" layoutX="53.0" layoutY="57.0" mnemonicParsing="false" text="Cayuga to English" />
+         </children>
+      </Pane>
+      <Separator layoutY="509.0" prefHeight="8.0" prefWidth="1020.0" />
+      <Button fx:id="relatedImg" layoutX="21.0" layoutY="515.0" maxHeight="45.0" maxWidth="45.0" minHeight="45.0" minWidth="45.0" mnemonicParsing="false" onMouseClicked="#relatedFunction" prefHeight="45.0" prefWidth="45.0" />
+      <Label fx:id="relatedLabel" layoutX="77.0" layoutY="523.0" onMouseClicked="#relatedFunction" prefHeight="27.0" prefWidth="111.0" text="Related words" />
+      <HBox fx:id="relatedPane" layoutX="202.0" layoutY="528.0" prefHeight="20.0" prefWidth="648.0">
+         <children>
+            <Label fx:id="Prefix_label" prefHeight="17.0" prefWidth="74.0" text="Prefix:" />
+            <CheckBox fx:id="Prefix_checkBox_1" mnemonicParsing="false" onMouseClicked="#prefixCheckBox_1" prefHeight="17.0" prefWidth="106.0" text="CheckBox" />
+            <CheckBox fx:id="Prefix_checkBox_2" mnemonicParsing="false" onMouseClicked="#prefixCheckBox_2" prefHeight="17.0" prefWidth="106.0" text="CheckBox" />
+            <CheckBox fx:id="Prefix_checkBox_3" mnemonicParsing="false" onMouseClicked="#prefixCheckBox_3" prefHeight="17.0" prefWidth="106.0" text="CheckBox" />
+            <Region prefHeight="18.0" prefWidth="19.0" />
+            <Label fx:id="Suffix_label" text="Suffix:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="Suffix_checkBox" mnemonicParsing="false" onMouseClicked="#suffixCheckBox" text="CheckBox" />
+            <Region prefHeight="18.0" prefWidth="19.0" />
+         </children>
+      </HBox>
+      <Button fx:id="addbutton" layoutX="960.0" layoutY="522.0" maxHeight="31.0" maxWidth="31.0" minHeight="31.0" minWidth="31.0" mnemonicParsing="false" onMouseClicked="#handleNewData" prefHeight="31.0" prefWidth="31.0" text="Button" />
+      <Label fx:id="similarityButton" layoutX="836.0" layoutY="530.0" onMouseClicked="#similarLetterFunction" text="Similarity" />
+   </children>
+</AnchorPane>

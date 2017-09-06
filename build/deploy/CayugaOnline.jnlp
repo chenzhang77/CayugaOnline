@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="CayugaOnline.jnlp">
+  <information>
+    <title>CayugaOnline</title>
+    <vendor>mun</vendor>
+    <description>CayugaDictionary</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="CayugaOnline.jar" size="5085627" download="eager" />
+    <jar href="libs/cloudinary-core-1.2.2.jar" size="94557" download="eager" />
+    <jar href="libs/cloudinary-http44-1.2.2.jar" size="12913" download="eager" />
+    <jar href="libs/commons-codec-1.9.jar" size="263965" download="eager" />
+    <jar href="libs/commons-lang3-3.1.jar" size="315805" download="eager" />
+    <jar href="libs/commons-logging-1.2.jar" size="61829" download="eager" />
+    <jar href="libs/commons-net-3.6.jar" size="307410" download="eager" />
+    <jar href="libs/controlsfx-8.40.12.jar" size="996389" download="eager" />
+    <jar href="libs/httpclient-4.4.jar" size="719304" download="eager" />
+    <jar href="libs/httpcore-4.4.jar" size="321639" download="eager" />
+    <jar href="libs/httpmime-4.4.jar" size="40627" download="eager" />
+    <jar href="libs/lucene-core-3.2.0.jar" size="1251969" download="eager" />
+    <jar href="libs/lucene-grouping-3.2.0.jar" size="22060" download="eager" />
+    <jar href="libs/mysql-connector-java-5.1.43-bin.jar" size="999018" download="eager" />
+    <jar href="libs/sql2o-1.5.4.jar" size="150857" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="0" height="0" main-class="mun.MainApp"  name="CayugaDictionary" />
+  <update check="background"/>
+</jnlp>
